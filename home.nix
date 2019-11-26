@@ -34,7 +34,6 @@
       scrolling = {
         history = 10000;
         multiplier = 3;
-        faux_multiplier = 3;
         auto_scroll = false;
       };
       tabspaces = 4;
@@ -51,7 +50,7 @@
           family = "RobotoMono Nerd Font";
           style = "Regular";
         };
-        size = 14;
+        size = 20;
       };
       colors = {
         primary.background = "0x282828";
