@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     tree
+    silver-searcher
   ];
 
   programs.fzf = {
