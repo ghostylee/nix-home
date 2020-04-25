@@ -1,6 +1,31 @@
 { pkgs, ... }:
 
 {
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    autocd = true;
+    defaultKeymap = "emacs";
+    dotDir = ".config/zsh";
+    history = {
+      path = ".zsh_history";
+      size = 10000;
+    };
+    profileExtra = ". $HOME/.nix-profile/etc/profile.d/nix.sh";
+    plugins = [
+      {
+        name = "powerlevel10k";
+        file = "powerlevel10k.zsh-theme";
+        src = pkgs.fetchFromGitHub {
+          owner = "romkatv";
+          repo = "powerlevel10k";
+          rev = "v1.5.0";
+          sha256 = "0r8vccgfy85ryswaigzgwmvhvrhlap7nrg7bi66w63877znqlksj";
+        };
+      }
+    ];
+  };
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
