@@ -27,6 +27,10 @@
       path = ".zsh_history";
       size = 10000;
     };
+    sessionVariables = {
+      TERM = "xterm-256color";
+      POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD = true;
+    };
     profileExtra = ". $HOME/.nix-profile/etc/profile.d/nix.sh";
     plugins = [
       {
