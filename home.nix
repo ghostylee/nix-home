@@ -10,6 +10,11 @@
     enable = true;
     enableZshIntegration = true;
   };
+
+  programs.lsd = {
+    enable = true;
+    enableAliases = true;
+  };
   
   programs.zsh = {
     enable = true;
