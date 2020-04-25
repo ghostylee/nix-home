@@ -4,6 +4,11 @@
   home.packages = with pkgs; [
     tree
   ];
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   
   programs.zsh = {
     enable = true;
