@@ -4,6 +4,8 @@
   home.packages = with pkgs; [
     tree
     silver-searcher
+    hexyl
+    fd
   ];
 
   programs.fzf = {
