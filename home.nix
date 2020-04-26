@@ -17,6 +17,13 @@
     enable = true;
     enableAliases = true;
   };
+
+  programs.tmux = {
+    enable = true;
+    baseIndex = 1;
+    keyMode = "vi";
+    terminal = "xterm-256color";
+  };
   
   programs.zsh = {
     enable = true;
