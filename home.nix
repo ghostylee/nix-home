@@ -24,7 +24,70 @@
     keyMode = "vi";
     terminal = "xterm-256color";
   };
-  
+
+  programs.vim = {
+    enable = true;
+    extraConfig =
+    ''
+      set t_Co=256
+      set background=dark
+      colorscheme gruvbox
+      set shortmess=atI
+      set nocompatible
+      set nobackup
+      set encoding=utf-8
+      set number
+      set nowrap
+      set tabstop=4
+      set backspace=2
+      set shiftwidth=4
+      set softtabstop=4
+      set smarttab
+      set expandtab
+      set ignorecase
+      set smartcase
+      set infercase
+      set hlsearch
+      set showmatch
+      set list
+      set listchars=tab:▸\ ,trail:¬
+      set foldenable
+      set foldmethod=marker
+      set foldlevel=0
+      set foldlevelstart=0
+      set keywordprg=":help"
+      nnoremap <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+      let mapleader=","
+      let maplocalleader=","
+      nmap <silent> <leader>v :e .config/nixpkgs/home.nix<CR>
+      nmap <silent> <leader>e :NERDTreeToggle<CR>
+      nmap <silent> <C-h>     :wincmd h<CR>
+      nmap <silent> <C-j>     :wincmd j<CR>
+      nmap <silent> <C-k>     :wincmd k<CR>
+      nmap <silent> <C-l>     :wincmd l<CR>
+
+      let g:airline_powerline_fonts = 1
+      let g:airline#extensions#tabline#enabled = 1
+      let g:airline_theme='gruvbox'
+
+      let g:indentLine_setConceal = 0
+      let g:indentLine_concealcursor = ""
+    '';
+    plugins = with pkgs.vimPlugins; [
+      gruvbox
+      nerdtree
+      vim-airline
+      vim-airline-themes
+      indentLine
+      vim-nix
+      vim-fugitive
+      nerdcommenter
+      vim-signify
+      delimitMate
+      vim-devicons
+      vim-tmux-navigator
+    ];
+  };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
