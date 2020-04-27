@@ -23,6 +23,11 @@
     baseIndex = 1;
     keyMode = "vi";
     terminal = "xterm-256color";
+    customPaneNavigationAndResize = true;
+    plugins = with pkgs.tmuxPlugins; [
+      gruvbox
+      vim-tmux-navigator
+    ];
   };
 
   programs.vim = {
@@ -59,7 +64,7 @@
       nnoremap <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
       let mapleader=","
       let maplocalleader=","
-      nmap <silent> <leader>v :e .config/nixpkgs/home.nix<CR>
+      nmap <silent> <leader>v :e ~/.config/nixpkgs/home.nix<CR>
       nmap <silent> <leader>e :NERDTreeToggle<CR>
       nmap <silent> <C-h>     :wincmd h<CR>
       nmap <silent> <C-j>     :wincmd j<CR>
