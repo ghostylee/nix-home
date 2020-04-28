@@ -127,6 +127,7 @@
         "command_execution_time"
         "nix_shell"
         "newline"
+        "battery"
       ];
       POWERLEVEL9K_MODE="nerdfont-complete";
       POWERLEVEL9K_ICON_PADDING="none";
