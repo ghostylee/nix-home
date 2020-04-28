@@ -212,18 +212,18 @@
       tabspaces = 4;
       font = {
         normal = {
-          family = "RobotoMono Nerd Font";
+          family = "Hack Nerd Font";
           style = "Regular";
         };
         bold = {
-          family = "RobotoMono Nerd Font";
-          style = "Regular";
+          family = "Hack Nerd Font";
+          style = "Bold";
         };
         italic = {
-          family = "RobotoMono Nerd Font";
-          style = "Regular";
+          family = "Hack Nerd Font";
+          style = "Italic";
         };
-        size = 20;
+        size = 14;
       };
       colors = {
         primary.background = "0x282828";
