@@ -37,6 +37,13 @@
       set t_Co=256
       set background=dark
       colorscheme gruvbox
+      filetype plugin indent on
+      syntax enable
+      syntax on
+      set autoread
+      set autochdir
+      set wildmenu
+      set hidden
       set shortmess=atI
       set nocompatible
       set nobackup
