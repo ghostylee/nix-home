@@ -126,6 +126,8 @@
         "status"
         "command_execution_time"
         "nix_shell"
+        "wifi"
+        "ip"
         "newline"
         "battery"
       ];
@@ -160,6 +162,7 @@
       POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=10;
       POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=9;
       POWERLEVEL9K_VCS_LOADING_BACKGROUND=8;
+      POWERLEVEL9K_IP_INTERFACE="wlp2s0";
     };
     profileExtra = ". $HOME/.nix-profile/etc/profile.d/nix.sh";
     plugins = [
@@ -224,7 +227,7 @@
           family = "Hack Nerd Font";
           style = "Italic";
         };
-        size = 14;
+        size = 10;
       };
       colors = {
         primary.background = "0x282828";
