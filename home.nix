@@ -59,6 +59,7 @@
       set ignorecase
       set smartcase
       set infercase
+      set clipboard+=unnamedplus
       set hlsearch
       set showmatch
       set list
