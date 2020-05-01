@@ -117,8 +117,8 @@
     };
     localVariables = {
       POWERLEVEL9K_LEFT_PROMPT_ELEMENTS = [
-        "os_icon"
         "context"
+        "os_icon"
         "dir"
         "vcs"
         "newline"
@@ -164,7 +164,7 @@
       POWERLEVEL9K_VCS_LOADING_BACKGROUND=8;
       POWERLEVEL9K_IP_INTERFACE="wlp2s0";
       POWERLEVEL9K_CONTEXT_DEFAULT_CONTENT_EXPANSION="";
-      POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%n";
+      POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="";
       POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=0;
       POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=1;
     };
