@@ -59,7 +59,7 @@
       set ignorecase
       set smartcase
       set infercase
-      set clipboard+=unnamedplus
+      set clipboard=unnamedplus
       set hlsearch
       set showmatch
       set list
@@ -179,6 +179,15 @@
         zle -N down-line-or-beginning-search
         bindkey "^[[A" up-line-or-beginning-search
         bindkey "^[[B" down-line-or-beginning-search
+
+        POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20;
+        POWERLEVEL9K_BATTERY_LOW_FOREGROUND=1;
+        POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND=2;
+        POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND=2;
+        POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND=3;
+        POWERLEVEL9K_BATTERY_VERBOSE=false;
+        POWERLEVEL9K_BATTERY_STAGES=('%K{232}▁' '%K{232}▂' '%K{232}▃' '%K{232}▄' '%K{232}▅' '%K{232}▆' '%K{232}▇' '%K{232}█')
+        POWERLEVEL9K_BATTERY_BACKGROUND=0;
       '';
     plugins = [
       {
