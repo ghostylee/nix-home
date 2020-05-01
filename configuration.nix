@@ -142,6 +142,7 @@ in
   };
 
   home-manager.users.ghosty = if pathExists ./home.nix then import ./home.nix else {};
+  home-manager.users.root = if pathExists ./home.nix then import ./home.nix else {};
 
   services.sshd.enable = true;
 

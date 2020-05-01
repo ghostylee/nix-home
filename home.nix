@@ -118,17 +118,17 @@
     localVariables = {
       POWERLEVEL9K_LEFT_PROMPT_ELEMENTS = [
         "os_icon"
+        "context"
         "dir"
         "vcs"
         "newline"
       ];
       POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS = [
-        "status"
-        "command_execution_time"
-        "nix_shell"
-        "wifi"
         "ip"
         "newline"
+        "nix_shell"
+        "status"
+        "command_execution_time"
         "battery"
       ];
       POWERLEVEL9K_MODE="nerdfont-complete";
@@ -163,6 +163,10 @@
       POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=9;
       POWERLEVEL9K_VCS_LOADING_BACKGROUND=8;
       POWERLEVEL9K_IP_INTERFACE="wlp2s0";
+      POWERLEVEL9K_CONTEXT_DEFAULT_CONTENT_EXPANSION="";
+      POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%n";
+      POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=0;
+      POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=1;
     };
     profileExtra = ". $HOME/.nix-profile/etc/profile.d/nix.sh";
     plugins = [
