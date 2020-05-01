@@ -126,6 +126,7 @@
       ];
       POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS = [
         "ip"
+        "time"
         "newline"
         "nix_shell"
         "status"
@@ -170,6 +171,10 @@
       POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=1;
     };
     profileExtra = ". $HOME/.nix-profile/etc/profile.d/nix.sh";
+    initExtra =
+      ''
+        zstyle ':completion:*' menu select
+      '';
     plugins = [
       {
         name = "powerlevel10k";
