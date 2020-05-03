@@ -361,6 +361,7 @@
         width = "100%";
         height = "3%";
         radius = 0;
+        modules-left = "bspwm";
         modules-center = "date";
       };
 
@@ -370,6 +371,14 @@
         date = "%d.%m.%y";
         time = "%H:%M";
         label = "%time%  %date%";
+      };
+
+      "module/bspwm" = {
+        type = "internal/bspwm";
+        label-focused-foreground = "#ffffff";
+        label-focused-background = "#3f3f3f";
+        label-focused-underline = "#fba922";
+
       };
     };
     script = "polybar main &";
