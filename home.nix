@@ -300,18 +300,24 @@
     enable = true;
   };
 
-  xsession.enable = true;
-  xsession.windowManager.bspwm = {
+  xsession = {
     enable = true;
-    monitors = {
-      "" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
-    };
-    settings = {
-      border_width = 2;
-      window_gap = 12;
-      split_ratio = 0.52;
-      borderless_monocle = true;
-      gapless_monocle = true;
+    initExtra =
+      ''
+        setxkbmap -option caps:ctrl_modifier
+      '';
+    windowManager.bspwm = {
+      enable = true;
+      monitors = {
+        "" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
+      };
+      settings = {
+        border_width = 2;
+        window_gap = 12;
+        split_ratio = 0.52;
+        borderless_monocle = true;
+        gapless_monocle = true;
+      };
     };
   };
 
