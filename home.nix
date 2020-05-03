@@ -363,6 +363,7 @@
         radius = 0;
         modules-left = "bspwm";
         modules-center = "date";
+        tray-position = "right";
       };
 
       "module/date" = {
@@ -383,4 +384,6 @@
     };
     script = "polybar main &";
   };
+
+  services.pasystray.enable = true;
 }
