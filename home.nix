@@ -352,4 +352,26 @@
       "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
     };
   };
+
+  services.polybar = {
+    enable = true;
+    config = {
+      "bar/main" = {
+        monitor = "\${env:MONITOR:eDP-1}";
+        width = "100%";
+        height = "3%";
+        radius = 0;
+        modules-center = "date";
+      };
+
+      "module/date" = {
+        type = "internal/date";
+        internal = 5;
+        date = "%d.%m.%y";
+        time = "%H:%M";
+        label = "%time%  %date%";
+      };
+    };
+    script = "polybar main &";
+  };
 }
