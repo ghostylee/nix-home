@@ -305,6 +305,7 @@
     initExtra =
       ''
         setxkbmap -option caps:ctrl_modifier
+        xsetroot -cursor_name left_ptr
       '';
     windowManager.bspwm = {
       enable = true;
