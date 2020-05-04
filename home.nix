@@ -6,6 +6,7 @@
     silver-searcher
     hexyl
     fd
+    pamixer
   ];
 
   programs.command-not-found.enable = true;
@@ -329,6 +330,8 @@
     keybindings = {
       "super + Return" = "alacritty";
       "super + @space" = "rofi -show run";
+      "XF86AudioMute" = "pamixer -t";
+      "XF86Audio{Raise,Lower}Volume" = "pamixer -{i,d} 5";
       "super + alt + {q,r}" = "bspc {quit,wm -r}";
       "super + {_,shift + }w" = "bspc node -{c,k}";
       "super + m" = "bspc desktop -l next";
