@@ -7,6 +7,7 @@
     hexyl
     fd
     pamixer
+    minicom
   ];
   programs.home-manager.enable = true;
 
