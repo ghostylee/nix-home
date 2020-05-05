@@ -8,6 +8,7 @@
     fd
     pamixer
     minicom
+    gitAndTools.diff-so-fancy
   ];
   programs.home-manager.enable = true;
 
@@ -240,6 +241,11 @@
       master = "checkout master";
       cm = "commit -m";
       cam = "commit -a -m";
+    };
+    extraConfig = {
+      core = {
+        pager = "diff-so-fancy | less --tabs=4 -RFX";
+      };
     };
   };
 
