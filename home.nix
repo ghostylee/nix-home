@@ -193,7 +193,7 @@
         bindkey "^[[A" up-line-or-beginning-search
         bindkey "^[[B" down-line-or-beginning-search
 
-        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+l:|?=** r:|?=**'
 
         POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20;
         POWERLEVEL9K_BATTERY_LOW_FOREGROUND=1;
