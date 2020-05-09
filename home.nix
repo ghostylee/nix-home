@@ -257,9 +257,7 @@
       scrolling = {
         history = 10000;
         multiplier = 3;
-        auto_scroll = false;
       };
-      tabspaces = 4;
       font = {
         normal = {
           family = "Hack Nerd Font";
