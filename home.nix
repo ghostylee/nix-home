@@ -9,6 +9,8 @@
     pamixer
     minicom
     gitAndTools.diff-so-fancy
+    unzip
+    gitRepo
   ];
   programs.home-manager.enable = true;
 
