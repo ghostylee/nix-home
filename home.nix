@@ -128,6 +128,7 @@
       POWERLEVEL9K_LEFT_PROMPT_ELEMENTS = [
         "context"
         "os_icon"
+        "nix_shell"
         "dir"
         "vcs"
         "newline"
@@ -136,7 +137,6 @@
         "ip"
         "time"
         "newline"
-        "nix_shell"
         "status"
         "command_execution_time"
         "battery"
