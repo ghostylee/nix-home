@@ -34,7 +34,6 @@
     customPaneNavigationAndResize = true;
     plugins = with pkgs.tmuxPlugins; [
       gruvbox
-      vim-tmux-navigator
     ];
   };
 
