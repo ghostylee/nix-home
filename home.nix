@@ -11,6 +11,7 @@
     gitAndTools.diff-so-fancy
     unzip
     gitRepo
+    file
   ];
   programs.home-manager.enable = true;
 
