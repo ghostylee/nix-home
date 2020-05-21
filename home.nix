@@ -13,6 +13,7 @@
     gitRepo
     file
     ncdu
+    firefox
   ];
   programs.home-manager.enable = true;
 
