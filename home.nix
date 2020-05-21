@@ -116,6 +116,9 @@
     enableAutosuggestions = true;
     enableCompletion = true;
     autocd = true;
+    shellAliases = {
+      vimdiff = "nvim -d";
+    };
     defaultKeymap = "emacs";
     dotDir = ".config/zsh";
     history = {
