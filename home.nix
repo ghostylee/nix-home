@@ -12,7 +12,6 @@
     unzip
     gitRepo
     file
-    p7zip
     ncdu
   ];
   programs.home-manager.enable = true;
@@ -43,7 +42,6 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    vimdiffAlias = true;
     extraConfig =
     ''
       set t_Co=256
@@ -311,9 +309,6 @@
     enable = true;
   };
 
-  programs.firefox = {
-    enable = true;
-  };
 
   xsession = {
     enable = true;
