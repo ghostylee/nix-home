@@ -14,6 +14,9 @@
     file
     ncdu
     firefox
+    nodejs
+    clang-tools
+    rls
   ];
   programs.home-manager.enable = true;
 
@@ -96,6 +99,40 @@
 
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
+
+      let g:coc_global_extensions = [ 'coc-clangd', 'coc-cmake', 'coc-rls', 'coc-highlight', 'coc-json', 'coc-lists' ]
+
+      inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "<TAB>" :  coc#refresh()
+      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+      function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+      endfunction
+
+      if exists('*complete_info')
+        inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+      else
+        inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+      endif
+
+      nmap <silent> [g <Plug>(coc-diagnostic-prev)
+      nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+      nmap <silent> gd <Plug>(coc-definition)
+      nmap <silent> gy <Plug>(coc-type-definition)
+      nmap <silent> gi <Plug>(coc-implementation)
+      nmap <silent> gr <Plug>(coc-references)
+
+      nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+      function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+          execute 'h '.expand('<cword>')
+        else
+          call CocAction('doHover')
+        endif
+      endfunction
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox
@@ -110,6 +147,7 @@
       delimitMate
       vim-devicons
       vim-tmux-navigator
+      coc-nvim
     ];
   };
   programs.zsh = {
