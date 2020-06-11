@@ -19,6 +19,7 @@ in
     nodejs
     clang-tools
     rls
+    papirus-icon-theme
   ];
   # }}}
   # home-manager {{{
@@ -368,7 +369,16 @@ in
   # rofi {{{
     programs.rofi = {
       enable = true;
-    };
+      theme = "gruvbox-dark";
+      font = "hack 10";
+      terminal = "${pkgs.alacritty}/bin/alacritty";
+      extraConfig =
+        ''
+          rofi.show-icons : true
+          rofi.icon-theme : Papirus-Dark
+          rofi.modi : drun,run
+        '';
+      };
   # }}}
   # firefox {{{
     programs.firefox = {
@@ -425,7 +435,7 @@ in
       enable = true;
       keybindings = {
         "super + Return" = "alacritty";
-        "super + @space" = "rofi -show run";
+        "super + @space" = "rofi -show drun";
         "XF86AudioMute" = "pamixer -t";
         "XF86Audio{Raise,Lower}Volume" = "pamixer -{i,d} 5";
         "super + alt + {q,r}" = "bspc {quit,wm -r}";
