@@ -476,6 +476,7 @@ in
           modules-left = "bspwm";
           modules-center = "date";
           tray-position = "right";
+          font-0 = "Hack:size=10";
         };
 
         "module/date" = {
@@ -484,6 +485,7 @@ in
           date = "%d.%m.%y";
           time = "%H:%M";
           label = "%time%  %date%";
+          format-foreground = "#fe8019";
         };
 
         "module/bspwm" = {
@@ -491,7 +493,6 @@ in
           label-focused-foreground = "#ffffff";
           label-focused-background = "#3f3f3f";
           label-focused-underline = "#fba922";
-
         };
       };
       script = "polybar main &";
