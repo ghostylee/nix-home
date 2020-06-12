@@ -123,6 +123,11 @@ in
         defaultSession = "none+bspwm";
         sddm = {
           enable = true;
+          autoLogin = {
+            enable = true;
+            user = "ghosty";
+          };
+          theme = "maldives";
         };
       };
 
