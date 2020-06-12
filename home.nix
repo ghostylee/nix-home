@@ -362,7 +362,9 @@ in
             cyan    = "0x8ec07c";
             white   = "0xebdbb2";
           };
+
         };
+        background_opacity = 0.9;
         live_config_reload = true;
       };
     };
