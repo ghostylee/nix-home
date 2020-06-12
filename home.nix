@@ -19,7 +19,8 @@ in
     nodejs
     clang-tools
     rls
-    papirus-icon-theme
+    dconf
+    gnome3.nautilus
   ];
   # }}}
   # home-manager {{{
@@ -496,5 +497,21 @@ in
   # }}}
   # services.pasystray {{{
     services.pasystray.enable = true;
+  # }}}
+  # gtk {{{
+    gtk = {
+      enable = true;
+      font = {
+        name = "hack 10";
+      };
+      theme = {
+        name = "Sierra-dark";
+        package = pkgs.sierra-gtk-theme;
+      };
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+    };
   # }}}
 }
