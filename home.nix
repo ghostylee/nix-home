@@ -498,6 +498,12 @@ in
   # services.pasystray {{{
     services.pasystray.enable = true;
   # }}}
+  # services.random-background {{{
+    services.random-background = {
+      enable = true;
+      imageDirectory = "%h/backgrounds";
+    };
+  # }}}
   # gtk {{{
     gtk = {
       enable = true;
