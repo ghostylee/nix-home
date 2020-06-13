@@ -144,6 +144,8 @@ in
           call CocAction('doHover')
         endif
       endfunction
+
+      let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox
@@ -159,6 +161,7 @@ in
       vim-devicons
       vim-tmux-navigator
       coc-nvim
+      vimwiki
     ];
   };
   # }}}
@@ -413,12 +416,13 @@ in
   # xsession.windowManager.bspwm {{{
     xsession = {
       enable = true;
-      initExtra =
-        ''
-        setxkbmap -option caps:ctrl_modifier
-        xsetroot -cursor_name left_ptr
-        '';
-        windowManager.bspwm = {
+      initExtra = " setxkbmap -option caps:ctrl_modifier ";
+      pointerCursor = {
+        defaultCursor = "left_ptr";
+        name = "Numix-Cursor";
+        package = pkgs.numix-cursor-theme;
+      };
+      windowManager.bspwm = {
           enable = true;
           monitors = {
             "" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
@@ -430,6 +434,9 @@ in
             borderless_monocle = true;
             gapless_monocle = true;
           };
+          startupPrograms = [
+            "systemctl restart --user polybar"
+            ];
         };
       };
   # }}}
