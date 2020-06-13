@@ -507,6 +507,11 @@ in
       imageDirectory = "%h/backgrounds";
     };
   # }}}
+  # services.flameshot {{{
+    services.flameshot = {
+      enable = true;
+    };
+  # }}}
   # gtk {{{
     gtk = {
       enable = true;
