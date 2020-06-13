@@ -519,6 +519,10 @@ in
       enable = true;
     };
   # }}}
+  # services.cbatticon {{{
+    services.cbatticon = {
+      enable = true;
+    };
   # gtk {{{
     gtk = {
       enable = true;
