@@ -482,8 +482,9 @@ in
           radius = 0;
           modules-left = "bspwm";
           modules-center = "date";
+          modules-right = "cpu";
           tray-position = "right";
-          font-0 = "Hack:size=10";
+          font-0 = "Hack Nerd Font Mono:size=10";
         };
 
         "module/date" = {
@@ -500,6 +501,22 @@ in
           label-focused-foreground = "#ffffff";
           label-focused-background = "#3f3f3f";
           label-focused-underline = "#fba922";
+        };
+
+        "module/cpu" = {
+          type = "internal/cpu";
+          format = "<label> <ramp-coreload>";
+          format-foreground = "#8ec07c";
+          label = "CPU %percentage%%";
+          ramp-coreload-spacing = 1;
+          ramp-coreload-0 = "▁";
+          ramp-coreload-1 = "▂";
+          ramp-coreload-2 = "▃";
+          ramp-coreload-3 = "▄";
+          ramp-coreload-4 = "▅";
+          ramp-coreload-5 = "▆";
+          ramp-coreload-6 = "▇";
+          ramp-coreload-7 = "█";
         };
       };
       script = "polybar main &";
