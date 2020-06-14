@@ -21,6 +21,7 @@ in
     rls
     dconf
     gnome3.nautilus
+    ctags
   ];
   # }}}
   # home-manager {{{
@@ -146,6 +147,9 @@ in
       endfunction
 
       let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+      let g:tagbar_width = 30
+      nnoremap <leader>t :TagbarToggle<cr>
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox
@@ -162,6 +166,7 @@ in
       vim-tmux-navigator
       coc-nvim
       vimwiki
+      tagbar
     ];
   };
   # }}}
