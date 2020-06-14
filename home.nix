@@ -521,8 +521,7 @@ in
         "module/date" = {
           type = "internal/date";
           internal = 30;
-          time = " %H:%M";
-          time-alt = " %Y-%m-%d";
+          time = " %Y-%m-%d  %H:%M";
           label = "%time%";
           format-background = "\${colors.yellow}";
           format-foreground = "\${colors.bg}";
@@ -618,8 +617,8 @@ in
           type = "internal/alsa";
           format-volume = "<ramp-volume> <label-volume>";
           format-muted = "<label-muted>";
-          label-mute = "婢";
-          label-mute-foreground = "\${colors.red}";
+          label-muted = "婢";
+          label-muted-foreground = "\${colors.red}";
           ramp-volume-0 = "奄";
           ramp-volume-1 = "奄";
           ramp-volume-2 = "奔";
