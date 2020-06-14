@@ -476,37 +476,87 @@ in
     services.polybar = {
       enable = true;
       config = {
+        "colors" = {
+          bg = "#282828";
+          fg = "#ebdbb2";
+          black = "#282828";
+          darkgrey = "#928374";
+          darkred = "#cc241d";
+          red = "#fb4934";
+          darkgreen = "#98971a";
+          green = "#b8bb26";
+          darkyellow = "#d79921";
+          yellow = "#fabd2f";
+          darkblue = "#458588";
+          blue = "#83a598";
+          darkmegenta = "#b16286";
+          magenta = "#d3869b";
+          darkcyan = "#689d6a";
+          cyan = "#8ec07c";
+          lightgrey = "#a89984";
+          white = "#ebdbb2";
+          ac = "#fabd2f";
+        };
+
+        "global/wm" = {
+          margin-bottom = 0;
+          margin-top = 0;
+        };
+
         "bar/main" = {
           width = "100%";
-          height = "3%";
+          height = 24;
           radius = 0;
           modules-left = "bspwm";
-          modules-center = "date";
-          modules-right = "cpu";
-          tray-position = "right";
-          font-0 = "Hack Nerd Font Mono:size=10";
+          modules-center = "cpu";
+          modules-right = "volume battery network date";
+          tray-position = "none";
+          font-0 = "Iosevka Nerd Font:size=12;3";
+          font-1 = "Iosevka Nerd Font Mono:pixelsize=24;6";
+          background = "\${colors.bg}";
+          foreground = "\${colors.fg}";
+          separator = " ";
         };
 
         "module/date" = {
           type = "internal/date";
-          internal = 5;
-          date = "%d.%m.%y";
-          time = "%H:%M";
-          label = "%time%  %date%";
-          format-foreground = "#fe8019";
+          internal = 30;
+          time = " %H:%M";
+          time-alt = " %Y-%m-%d";
+          label = "%time%";
+          format-background = "\${colors.yellow}";
+          format-foreground = "\${colors.bg}";
         };
 
         "module/bspwm" = {
           type = "internal/bspwm";
-          label-focused-foreground = "#ffffff";
-          label-focused-background = "#3f3f3f";
-          label-focused-underline = "#fba922";
+          ws-icon-0 ="1;";
+          ws-icon-1 ="2;";
+          ws-icon-2 ="3;";
+          ws-icon-3 ="4;";
+          ws-icon-4 ="5;";
+          ws-icon-5 ="6;";
+          ws-icon-6 ="7;";
+          ws-icon-7 ="8;";
+          ws-icon-8 ="9;";
+          ws-icon-9 ="0;";
+          label-monitor = "%icon%";
+          label-focused = "%icon%";
+          label-focused-font = 2;
+          label-focused-foreground = "\${colors.ac}";
+          label-focused-background = "\${colors.bg}";
+          label-occupied = "%icon%";
+          label-occupied-font = 2;
+          label-empty = "%icon%";
+          label-empty-font = 2;
+          label-empty-foreground = "\${colors.darkgrey}";
+          label-empty-background = "\${colors.bg}";
         };
 
         "module/cpu" = {
           type = "internal/cpu";
-          format = "<label> <ramp-coreload>";
-          format-foreground = "#8ec07c";
+          format = "<ramp-coreload>";
+          format-foreground = "\${colors.yellow}";
           label = "CPU %percentage%%";
           ramp-coreload-spacing = 1;
           ramp-coreload-0 = "▁";
@@ -518,12 +568,86 @@ in
           ramp-coreload-6 = "▇";
           ramp-coreload-7 = "█";
         };
+
+        "module/temperature" = {
+          type = "internal/temperature";
+          warn-temperature = 60;
+          format = "<ramp> <label>";
+          format-warn = "<ramp> <label-warn>";
+          label = "%temperature-c%";
+          label-warn = "%temperature-c%";
+          label-warn-foreground = "\${colors.red}";
+
+
+        };
+
+        "module/battery" = {
+          type = "internal/battery";
+          full-at = 99;
+          battery = "BAT0";
+          adapter = "ADP1";
+          time-format = "%H:%M";
+          format-charging = "<animation-charging> <label-charging>";
+          format-discharging = "<ramp-capacity> <label-discharging>";
+          format-full = "<label-full>";
+          format-full-foreground = "\${colors.green}";
+          label-charging = "%percentage%%";
+          label-discharging = "%percentage%%";
+          label-full = "";
+          ramp-capacity-0 = "";
+          ramp-capacity-1 = "";
+          ramp-capacity-2 = "";
+          ramp-capacity-3 = "";
+          ramp-capacity-4 = "";
+          ramp-capacity-5 = "";
+          ramp-capacity-6 = "";
+          ramp-capacity-7 = "";
+          ramp-capacity-8 = "";
+          ramp-capacity-9 = "";
+          animation-charging-0 = "";
+          animation-charging-1 = "";
+          animation-charging-2 = "";
+          animation-charging-3 = "";
+          animation-charging-4 = "";
+          animation-charging-5 = "";
+          animation-charging-6 = "";
+          animation-charging-framerate = 750;
+        };
+
+        "module/volume" = {
+          type = "internal/alsa";
+          format-volume = "<ramp-volume> <label-volume>";
+          format-muted = "<label-muted>";
+          label-mute = "婢";
+          label-mute-foreground = "\${colors.red}";
+          ramp-volume-0 = "奄";
+          ramp-volume-1 = "奄";
+          ramp-volume-2 = "奔";
+          ramp-volume-3 = "奔";
+          ramp-volume-4 = "墳";
+          ramp-volume-5 = "墳";
+          ramp-volume-6 = "墳";
+        };
+
+        "module/network" = {
+          type = "internal/network";
+          interface = "wlp2s0";
+          accumulate-stats = true;
+          unknown-as-up = true;
+          format-connected = "<ramp-signal> <label-connected>";
+          format-disconnected = "<label-disconnected>";
+          label-connected = "%essid%";
+          label-disconnected = "睊";
+          label-disconnected-foreground = "\${colors.red}";
+          ramp-signal-0 = "直";
+          ramp-signal-1 = "直";
+          ramp-signal-2 = "直";
+          ramp-signal-3 = "直";
+          ramp-signal-4 = "直";
+        };
       };
       script = "polybar main &";
     };
-  # }}}
-  # services.pasystray {{{
-    services.pasystray.enable = true;
   # }}}
   # services.random-background {{{
     services.random-background = {
@@ -531,15 +655,6 @@ in
       imageDirectory = "%h/backgrounds";
     };
   # }}}
-  # services.flameshot {{{
-    services.flameshot = {
-      enable = true;
-    };
-  # }}}
-  # services.cbatticon {{{
-    services.cbatticon = {
-      enable = true;
-    };
   # gtk {{{
     gtk = {
       enable = true;
