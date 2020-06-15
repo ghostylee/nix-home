@@ -513,8 +513,7 @@ in
           width = "100%";
           height = 24;
           radius = 0;
-          modules-left = "bspwm";
-          modules-center = "cpu";
+          modules-left = "bspwm cpu";
           modules-right = "volume battery network date";
           tray-position = "none";
           font-0 = "Iosevka Nerd Font:size=12;3";
@@ -641,7 +640,7 @@ in
           unknown-as-up = true;
           format-connected = "<ramp-signal> <label-connected>";
           format-disconnected = "<label-disconnected>";
-          label-connected = "%essid%";
+          label-connected = "%essid% %local_ip% ﯴ %upspeed% ﯲ %downspeed%";
           label-disconnected = "睊";
           label-disconnected-foreground = "\${colors.red}";
           ramp-signal-0 = "直";
