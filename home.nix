@@ -514,7 +514,7 @@ in
           height = 24;
           radius = 0;
           modules-left = "bspwm cpu";
-          modules-right = "volume battery network date";
+          modules-right = "network volume battery date";
           tray-position = "none";
           font-0 = "Iosevka Nerd Font:size=12;3";
           font-1 = "Iosevka Nerd Font Mono:pixelsize=24;6";
