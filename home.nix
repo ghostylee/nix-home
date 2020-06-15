@@ -148,6 +148,7 @@ in
 
       let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_tags': 1, 'syntax': 'markdown', 'ext': '.md'}]
       let g:vimwiki_table_mappings = 0
+      let g:vimwiki_folding = 'expr'
 
       let g:tagbar_width = 30
       nnoremap <leader>t :TagbarToggle<cr>
