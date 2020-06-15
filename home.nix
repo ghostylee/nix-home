@@ -95,7 +95,7 @@ in
       set foldlevel=0
       set foldlevelstart=0
       set keywordprg=":help"
-      nnoremap <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+      nnoremap <silent> <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
       let mapleader=","
       let maplocalleader=","
       nmap <silent> <leader>v :e ~/.config/nixpkgs/home.nix<CR>
@@ -135,16 +135,6 @@ in
       nmap <silent> gy <Plug>(coc-type-definition)
       nmap <silent> gi <Plug>(coc-implementation)
       nmap <silent> gr <Plug>(coc-references)
-
-      nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-      function! s:show_documentation()
-        if (index(['vim','help'], &filetype) >= 0)
-          execute 'h '.expand('<cword>')
-        else
-          call CocAction('doHover')
-        endif
-      endfunction
 
       let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_tags': 1, 'syntax': 'markdown', 'ext': '.md'}]
       let g:vimwiki_table_mappings = 0
