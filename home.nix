@@ -112,7 +112,7 @@ in
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
 
-      let g:coc_global_extensions = [ 'coc-clangd', 'coc-cmake', 'coc-rls', 'coc-highlight', 'coc-json', 'coc-lists', 'coc-tag' ]
+      let g:coc_global_extensions = [ 'coc-clangd', 'coc-cmake', 'coc-rls', 'coc-highlight', 'coc-json', 'coc-lists', 'coc-tag', 'coc-word', 'coc-syntax' ]
 
       inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "<TAB>" :  coc#refresh()
       inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -147,6 +147,7 @@ in
       endfunction
 
       let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_tags': 1, 'syntax': 'markdown', 'ext': '.md'}]
+      let g:vimwiki_table_mappings = 0
 
       let g:tagbar_width = 30
       nnoremap <leader>t :TagbarToggle<cr>
