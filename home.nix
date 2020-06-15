@@ -431,6 +431,12 @@ in
             borderless_monocle = true;
             gapless_monocle = true;
           };
+          rules = {
+            "Firefox" = {
+              desktop = "^2";
+              follow = true;
+            };
+          };
           startupPrograms = [
             "systemctl restart --user polybar"
             ];
