@@ -22,6 +22,7 @@ in
     dconf
     gnome3.nautilus
     ctags
+    libnotify
   ];
   # }}}
   # home-manager {{{
@@ -648,6 +649,63 @@ in
         };
       };
       script = "polybar main &";
+    };
+  # }}}
+  # services.dunst {{{
+    services.dunst = {
+      enable =true;
+      settings = {
+        global = {
+          monitor = 0;
+          follow = "mouse";
+          geometry = "300x5-13+37";
+          transparency = 0;
+          frame_color = "#fb4934";
+          font = "Iosevka Term 20";
+          markup = "full";
+          plain_text = false;
+          format = "<b>%s</b>\\n%b";
+          shrink = false;
+          sort = false;
+          indicate_hidden = true;
+          alignment = "center";
+          bounce_freq = 0;
+          word_wrap = true;
+          ignore_newline = false;
+          stack_duplicates = true;
+          hide_duplicates_count = true;
+          show_indicators = false;
+          line_height = 3;
+          separator_height = 2;
+          padding = 6;
+          horizontal_padding = 6;
+          separator_color = "frame";
+          startup_notification = false;
+          icon_position = "left";
+          max_icon_size = 80;
+        };
+
+        urgency_low = {
+          frame_color = "#3B7C87";
+          foreground = "#3B7C87";
+          background = "#191311";
+          timeout = 4;
+        };
+
+        urgency_normal = {
+          frame_color = "#5B8234";
+          foreground = "#5B8234";
+          background = "#191311";
+          timeout = 6;
+        };
+
+        urgency_critical = {
+          frame_color = "#B7472A";
+          foreground = "#B7472A";
+          background = "#191311";
+          timeout = 8;
+        };
+      };
     };
   # }}}
   # services.random-background {{{
