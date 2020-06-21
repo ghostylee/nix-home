@@ -422,23 +422,22 @@ in
       browser = "qutebrowser";
       extraConfig =
         ''
-          bind-key j down            feedlist
-          bind-key k up              feedlist
-          bind-key l open            feedlist
-          bind-key h quit            feedlist
+          article-sort-order date-asc
 
-          bind-key j next            articlelist
-          bind-key k prev            articlelist
-          bind-key l open            articlelist
-          bind-key h quit            articlelist
-
+          bind-key j down
+          bind-key k up
+          bind-key G end
+          bind-key g home
+          bind-key d pagedown
+          bind-key u pageup
+          bind-key l open
+          bind-key h quit
+          bind-key a toggle-article-read
+          bind-key n next-unread
+          bind-key N prev-unread
+          bind-key l open-in-browser article
           bind-key J next-feed       articlelist
           bind-key K prev-feed       articlelist
-
-          bind-key j down            article
-          bind-key k up              article
-          bind-key l open-in-browser article
-          bind-key h quit            article
           macro m set browser "mpv %u --autofit=80%%"; open-in-browser-and-mark-read ; set browser "qutebrowser"
         '';
       urls = [
