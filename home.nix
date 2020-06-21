@@ -143,6 +143,8 @@ in
 
       let g:tagbar_width = 30
       nnoremap <leader>t :TagbarToggle<cr>
+
+      nmap <C-t> :GitFiles<CR>
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox
@@ -160,6 +162,7 @@ in
       coc-nvim
       vimwiki
       tagbar
+      fzf-vim
     ];
   };
   # }}}
