@@ -436,13 +436,13 @@ in
           bind-key u pageup
           bind-key l open
           bind-key h quit
-          bind-key a toggle-article-read
+          bind-key m toggle-article-read
           bind-key n next-unread
           bind-key N prev-unread
           bind-key l open-in-browser article
           bind-key J next-feed       articlelist
           bind-key K prev-feed       articlelist
-          macro m set browser "mpv %u --autofit=80%%"; open-in-browser-and-mark-read ; set browser "qutebrowser"
+          macro p set browser "mpv %u --autofit=80%%"; open-in-browser-and-mark-read ; set browser "qutebrowser"
         '';
       urls = [
         { tags = [ "tech" ]; url = "https://news.ycombinator.com/rss"; }
