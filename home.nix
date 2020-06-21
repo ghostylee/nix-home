@@ -409,6 +409,54 @@ in
   # qutebrowser {{{
     programs.qutebrowser = {
       enable = true;
+      extraConfig =
+        ''
+          config.bind("h","quit")
+        '';
+    };
+  # }}}
+  # newsboat {{{
+    programs.newsboat = {
+      enable = true;
+      autoReload = true;
+      browser = "qutebrowser";
+      extraConfig =
+        ''
+          bind-key j down            feedlist
+          bind-key k up              feedlist
+          bind-key l open            feedlist
+          bind-key h quit            feedlist
+
+          bind-key j next            articlelist
+          bind-key k prev            articlelist
+          bind-key l open            articlelist
+          bind-key h quit            articlelist
+
+          bind-key J next-feed       articlelist
+          bind-key K prev-feed       articlelist
+
+          bind-key j down            article
+          bind-key k up              article
+          bind-key l open-in-browser article
+          bind-key h quit            article
+          macro m set browser "mpv %u --autofit=80%%"; open-in-browser-and-mark-read ; set browser "qutebrowser"
+        '';
+      urls = [
+        { tags = [ "tech" ]; url = "https://news.ycombinator.com/rss"; }
+        { tags = [ "tech" ]; url = "https://lwn.net/headlines/newrss"; }
+        { tags = [ "tech" ]; url = "https://www.theverge.com/rss/index.xml"; }
+        { tags = [ "tube" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg"; }
+        { tags = [ "code" ]; url = "https://martinfowler.com/feed.atom"; }
+        { tags = [ "code" ]; url = "https://www.embedded.com/rss"; }
+        { tags = [ "code" ]; url = "https://devops.com/rss"; }
+        { tags = [ "deal" ]; url = "https://slickdeals.net/newsearch.php?mode=frontpage&searcharea=deals&searchin=first&rss=1"; }
+        { tags = [ "deal" ]; url = "https://feeds.feedburner.com/dealmoon"; }
+      ];
+    };
+  # }}}
+  # mpv {{{
+    programs.mpv = {
+      enable = true;
     };
   # }}}
   # xsession.windowManager.bspwm {{{
@@ -436,6 +484,14 @@ in
             "Firefox" = {
               desktop = "^2";
               follow = true;
+            };
+            "qutebrowser" = {
+              state = "fullscreen";
+              center = true;
+            };
+            "mpv" = {
+              state = "floating";
+              center = true;
             };
           };
           startupPrograms = [
