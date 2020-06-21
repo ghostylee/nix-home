@@ -23,6 +23,7 @@ in
     gnome3.nautilus
     ctags
     libnotify
+    brightnessctl
   ];
   # }}}
   # home-manager {{{
@@ -510,6 +511,8 @@ in
         "super + @space" = "rofi -show drun";
         "XF86AudioMute" = "pamixer -t";
         "XF86Audio{Raise,Lower}Volume" = "pamixer -{i,d} 5";
+        "XF86MonBrightnessUp" = "brightnessctl s +10%";
+        "XF86MonBrightnessDown" = "brightnessctl s 10%-";
         "super + alt + {q,r}" = "bspc {quit,wm -r}";
         "super + {_,shift + }w" = "bspc node -{c,k}";
         "super + m" = "bspc desktop -l next";
