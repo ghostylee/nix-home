@@ -426,14 +426,14 @@ in
       browser = "qutebrowser";
       extraConfig =
         ''
+          download-path "~/Downloads/podcasts/%n"
+          player mpv
           article-sort-order date-asc
 
           bind-key j down
           bind-key k up
           bind-key G end
           bind-key g home
-          bind-key d pagedown
-          bind-key u pageup
           bind-key l open
           bind-key h quit
           bind-key m toggle-article-read
@@ -442,18 +442,17 @@ in
           bind-key l open-in-browser article
           bind-key J next-feed       articlelist
           bind-key K prev-feed       articlelist
-          macro p set browser "mpv %u --autofit=80%%"; open-in-browser-and-mark-read ; set browser "qutebrowser"
+          macro i set browser "mpv %u --autofit=80%%"; open-in-browser-and-mark-read ; set browser "qutebrowser"
         '';
       urls = [
         { tags = [ "tech" ]; url = "https://news.ycombinator.com/rss"; }
         { tags = [ "tech" ]; url = "https://lwn.net/headlines/newrss"; }
-        { tags = [ "tech" ]; url = "https://www.theverge.com/rss/index.xml"; }
-        { tags = [ "tube" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg"; }
-        { tags = [ "code" ]; url = "https://martinfowler.com/feed.atom"; }
-        { tags = [ "code" ]; url = "https://www.embedded.com/rss"; }
-        { tags = [ "code" ]; url = "https://devops.com/rss"; }
-        { tags = [ "deal" ]; url = "https://slickdeals.net/newsearch.php?mode=frontpage&searcharea=deals&searchin=first&rss=1"; }
-        { tags = [ "deal" ]; url = "https://feeds.feedburner.com/dealmoon"; }
+        { tags = [ "tech" ]; url = "https://martinfowler.com/feed.atom"; }
+        { tags = [ "tech" ]; url = "https://blog.rust-lang.org/feed"; }
+        { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCfX55Sx5hEFjoC3cNs6mCUQ"; }
+        { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCs_tLP3AiwYKwdUHpltJPuA"; }
+        { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC4-GrpQBx6WCGwmwozP744Q"; }
+        { tags = [ "cast" ]; url = "http://feeds.twit.tv/twit.xml"; }
       ];
     };
   # }}}
