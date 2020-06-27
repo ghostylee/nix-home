@@ -24,6 +24,7 @@ in
     ctags
     libnotify
     brightnessctl
+    vifm
   ];
   # }}}
   # home-manager {{{
@@ -416,6 +417,9 @@ in
       extraConfig =
         ''
           config.bind("h","quit")
+          config.set("colors.webpage.prefers_color_scheme_dark", True);
+          config.set("colors.webpage.darkmode.enabled", True);
+          config.set("colors.webpage.darkmode.policy.page", "always");
         '';
     };
   # }}}

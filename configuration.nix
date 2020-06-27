@@ -2,18 +2,11 @@
 
 with builtins;
 
-let
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/rycee/home-manager.git";
-    rev = "98fa8f63b8d7508e84275eb47cd7f3003e6b9510";
-    ref = "release-20.03";
-  };
-in
 {
   imports =
     [
       ./hardware-configuration.nix
-      "${home-manager}/nixos"
+      (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
     ] ++ lib.optional (pathExists ./local.nix) ./local.nix ;
 
   boot.loader.systemd-boot.enable = true;
@@ -99,13 +92,6 @@ in
   };
 
   services = {
-    compton = {
-      enable = true;
-      fade = true;
-      inactiveOpacity = "0.9";
-      shadow = true;
-      fadeDelta = 4;
-    };
     xserver = {
       enable = true;
       exportConfiguration = true;
