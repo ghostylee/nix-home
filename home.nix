@@ -168,6 +168,14 @@ in
     ];
   };
   # }}}
+  # starship {{{
+    programs.starship = {
+      enable = true;
+      settings = {
+        add_newline = false;
+      };
+    };
+  # }}}
   # zsh {{{
     programs.zsh = {
       enable = true;
@@ -270,16 +278,16 @@ in
             POWERLEVEL9K_BATTERY_BACKGROUND=0;
             '';
             plugins = [
-              {
-                name = "powerlevel10k";
-                file = "powerlevel10k.zsh-theme";
-                src = pkgs.fetchFromGitHub {
-                  owner = "romkatv";
-                  repo = "powerlevel10k";
-                  rev = "v1.5.0";
-                  sha256 = "0r8vccgfy85ryswaigzgwmvhvrhlap7nrg7bi66w63877znqlksj";
-                };
-              }
+              #{
+                #name = "powerlevel10k";
+                #file = "powerlevel10k.zsh-theme";
+                #src = pkgs.fetchFromGitHub {
+                  #owner = "romkatv";
+                  #repo = "powerlevel10k";
+                  #rev = "v1.5.0";
+                  #sha256 = "0r8vccgfy85ryswaigzgwmvhvrhlap7nrg7bi66w63877znqlksj";
+                #};
+              #}
             ];
           };
   # }}}
