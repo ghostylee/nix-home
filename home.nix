@@ -507,14 +507,6 @@ in
               desktop = "^2";
               follow = true;
             };
-            "qutebrowser" = {
-              state = "fullscreen";
-              center = true;
-            };
-            "mpv" = {
-              state = "floating";
-              center = true;
-            };
           };
           startupPrograms = [
             "systemctl restart --user polybar"
