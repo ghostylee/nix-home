@@ -424,12 +424,14 @@ in
       enable = true;
       keyBindings = {
         normal = {
-          "h" = "quit";
+          "h" = "close";
           ",m" = "hint links spawn mpv {hint-url}";
         };
       };
       extraConfig =
         ''
+          config.set("content.private_browsing", True);
+          config.set("tabs.tabs_are_windows", True);
           config.set("colors.webpage.prefers_color_scheme_dark", True);
           config.set("colors.webpage.darkmode.enabled", True);
           config.set("colors.webpage.darkmode.policy.page", "always");
@@ -464,6 +466,7 @@ in
       urls = [
         { tags = [ "tech" ]; url = "https://news.ycombinator.com/rss"; }
         { tags = [ "tech" ]; url = "https://lwn.net/headlines/newrss"; }
+        { tags = [ "tech" ]; url = "https://www.phoronix.com/rss.php"; }
         { tags = [ "tech" ]; url = "https://martinfowler.com/feed.atom"; }
         { tags = [ "tech" ]; url = "https://blog.rust-lang.org/feed"; }
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCfX55Sx5hEFjoC3cNs6mCUQ"; }
@@ -625,6 +628,8 @@ in
           label-empty-font = 2;
           label-empty-foreground = "\${colors.darkgrey}";
           label-empty-background = "\${colors.bg}";
+          label-urgent = "%icon%";
+          label-urgent-font = 2;
         };
 
         "module/cpu" = {
