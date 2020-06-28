@@ -422,9 +422,14 @@ in
   # qutebrowser {{{
     programs.qutebrowser = {
       enable = true;
+      keyBindings = {
+        normal = {
+          "h" = "quit";
+          ",m" = "hint links spawn mpv {hint-url}";
+        };
+      };
       extraConfig =
         ''
-          config.bind("h","quit")
           config.set("colors.webpage.prefers_color_scheme_dark", True);
           config.set("colors.webpage.darkmode.enabled", True);
           config.set("colors.webpage.darkmode.policy.page", "always");
@@ -454,7 +459,7 @@ in
           bind-key l open-in-browser article
           bind-key J next-feed       articlelist
           bind-key K prev-feed       articlelist
-          macro i set browser "mpv %u --autofit=80%%"; open-in-browser-and-mark-read ; set browser "qutebrowser"
+          macro i set browser "mpv %u"; open-in-browser-and-mark-read ; set browser "qutebrowser"
         '';
       urls = [
         { tags = [ "tech" ]; url = "https://news.ycombinator.com/rss"; }
@@ -471,6 +476,9 @@ in
   # mpv {{{
     programs.mpv = {
       enable = true;
+      config = {
+        autofit = "90%";
+      };
     };
   # }}}
   # xsession.windowManager.bspwm {{{
