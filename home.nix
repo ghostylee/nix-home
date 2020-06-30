@@ -428,6 +428,15 @@ in
           ",m" = "hint links spawn mpv {hint-url}";
         };
       };
+      searchEngines = {
+        g = "https://www.google.com/search?hl=en&q={}";
+        w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
+        yt = "https://www.youtube.com/results?search_query={}";
+        aw = "https://wiki.archlinux.org/?search={}";
+        nw = "https://nixos.wiki/index.php?search={}";
+        np = "https://nixos.org/nixos/packages.html?channel=nixpkgs-unstable&query={}";
+        no = "https://nixos.org/nixos/options.html#{}";
+      };
       extraConfig =
         ''
           config.set("content.private_browsing", True);
@@ -435,6 +444,7 @@ in
           config.set("colors.webpage.prefers_color_scheme_dark", True);
           config.set("colors.webpage.darkmode.enabled", True);
           config.set("colors.webpage.darkmode.policy.page", "always");
+          config.set("url.start_pages", [ "about:blank" ]);
         '';
     };
   # }}}
