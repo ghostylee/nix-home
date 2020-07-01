@@ -11,6 +11,7 @@ with builtins;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 
   console.font = "Lat2-Terminus16";
   console.keyMap = "us";
