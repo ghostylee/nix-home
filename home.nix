@@ -25,6 +25,7 @@ in
     libnotify
     brightnessctl
     vifm
+    mupdf
   ];
   # }}}
   # home-manager {{{
