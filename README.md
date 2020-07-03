@@ -1,6 +1,14 @@
-# My nixos $HOME configuration with [home-manager](https://github.com/rycee/home-manager)
+# My home-manager configuration for NixOS and non-NixOS system
 
-## Install
+### for NixOS
+
+* Clone repo to `/etc/nixos` and keep your `hardware-configuration.nix` file in the folder
+```
+git clone https://github.com/ghostylee/nix-home.git /etc/nixos/
+```
+* put local setttings like wifi ssid/password into `local.nix` file
+
+### for nox-NixOS
 
 * clone repo
 ```
