@@ -325,6 +325,7 @@ in
       extraConfig = {
         core = {
           pager = "diff-so-fancy | less --tabs=4 -RFX";
+          pull.ff = "only";
         };
       };
     };
@@ -437,6 +438,7 @@ in
         nw = "https://nixos.wiki/index.php?search={}";
         np = "https://nixos.org/nixos/packages.html?channel=nixpkgs-unstable&query={}";
         no = "https://nixos.org/nixos/options.html#{}";
+        lr = "https://search.azlyrics.com/search.php?q={}";
       };
       extraConfig =
         ''
