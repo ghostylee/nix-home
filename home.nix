@@ -468,13 +468,13 @@ in
           bind-key g home
           bind-key l open
           bind-key h quit
-          bind-key m toggle-article-read
+          bind-key u toggle-article-read
           bind-key n next-unread
           bind-key N prev-unread
           bind-key l open-in-browser article
           bind-key J next-feed       articlelist
           bind-key K prev-feed       articlelist
-          macro i set browser "mpv %u"; open-in-browser-and-mark-read ; set browser "qutebrowser"
+          macro m set browser "mpv %u"; open-in-browser-and-mark-read ; set browser "qutebrowser"
         '';
       urls = [
         { tags = [ "tech" ]; url = "https://news.ycombinator.com/rss"; }
@@ -492,6 +492,9 @@ in
   # mpv {{{
     programs.mpv = {
       enable = true;
+      bindings = {
+        h = "quit";
+      };
       config = {
         autofit = "90%";
       };
