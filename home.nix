@@ -482,6 +482,7 @@ in
         { tags = [ "tech" ]; url = "https://www.phoronix.com/rss.php"; }
         { tags = [ "tech" ]; url = "https://martinfowler.com/feed.atom"; }
         { tags = [ "tech" ]; url = "https://blog.rust-lang.org/feed"; }
+        { tags = [ "tech" ]; url = "https://weekly.nixos.org/feeds/all.rss.xml"; }
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCfX55Sx5hEFjoC3cNs6mCUQ"; }
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCs_tLP3AiwYKwdUHpltJPuA"; }
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC4-GrpQBx6WCGwmwozP744Q"; }
