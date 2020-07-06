@@ -325,7 +325,9 @@ in
       extraConfig = {
         core = {
           pager = "diff-so-fancy | less --tabs=4 -RFX";
-          pull.ff = "only";
+        };
+        pull = {
+          ff = "only";
         };
       };
     };
