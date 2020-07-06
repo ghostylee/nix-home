@@ -166,6 +166,7 @@ in
       vimwiki
       tagbar
       fzf-vim
+      vim-dirdiff
     ];
   };
   # }}}
