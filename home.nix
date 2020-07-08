@@ -465,6 +465,14 @@ in
           player mpv
           article-sort-order date-asc
 
+          color background          white   black
+          color listnormal          white   black
+          color listfocus           black   white   bold
+          color listnormal_unread   black   yellow
+          color listfocus_unread    black   yellow   bold
+          color info                yellow  black    bold
+          color article             white   black
+
           bind-key j down
           bind-key k up
           bind-key G end
