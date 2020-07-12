@@ -108,12 +108,12 @@ with builtins;
 
       displayManager = {
         defaultSession = "none+bspwm";
+        autoLogin = {
+          enable = true;
+          user = "ghosty";
+        };
         sddm = {
           enable = true;
-          autoLogin = {
-            enable = true;
-            user = "ghosty";
-          };
           theme = "maldives";
         };
       };
