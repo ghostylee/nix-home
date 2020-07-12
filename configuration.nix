@@ -140,4 +140,7 @@ with builtins;
 
   system.stateVersion = "20.03";
 
+  nix.gc.automatic = true;
+  nix.gc.dates = "03:15";
+
 }
