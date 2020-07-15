@@ -492,6 +492,7 @@ in
         { tags = [ "tech" ]; url = "https://lwn.net/headlines/newrss"; }
         { tags = [ "tech" ]; url = "https://www.phoronix.com/rss.php"; }
         { tags = [ "tech" ]; url = "http://feeds.feedburner.com/cnx-software/blog"; }
+        { tags = [ "tech" ]; url = "https://distrowatch.com/news/dw.xml"; }
         { tags = [ "tech" ]; url = "https://martinfowler.com/feed.atom"; }
         { tags = [ "tech" ]; url = "https://blog.rust-lang.org/feed"; }
         { tags = [ "tech" ]; url = "https://weekly.nixos.org/feeds/all.rss.xml"; }
