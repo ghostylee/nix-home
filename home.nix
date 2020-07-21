@@ -7,7 +7,6 @@ in
   home.packages = with pkgs; [
     tree
     silver-searcher
-    hexyl
     fd
     pamixer
     minicom
@@ -18,7 +17,6 @@ in
     ncdu
     nodejs
     clang-tools
-    rls
     dconf
     gnome3.nautilus
     ctags
