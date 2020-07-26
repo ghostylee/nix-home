@@ -16,7 +16,11 @@ with builtins;
   console.font = "Lat2-Terminus16";
   console.keyMap = "us";
   i18n = {
-     defaultLocale = "en_US.UTF-8";
+    defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      enabled = "fcitx";
+      fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    };
   };
 
   sound.enable = true;
@@ -48,29 +52,7 @@ with builtins;
   environment.variables.EDITOR = "vim";
 
   environment.systemPackages = with pkgs; [
-    wget
-    bspwm
-    sxhkd
-    polybar
-    dmenu
-    alacritty
-    rofi-unwrapped
-    ranger
-    firefox
-    feh
-    tree
-    gitFull
-    htop
-    bat
-    neofetch
-    silver-searcher
-    minikube
-    networkmanager
-    vscode
-    cargo
     home-manager
-    ostree
-    binutils
   ];
 
   fonts = {

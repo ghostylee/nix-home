@@ -24,6 +24,12 @@ in
     brightnessctl
     vifm
     mupdf
+    wget
+    feh
+    htop
+    bat
+    neofetch
+    ranger
   ];
   # }}}
   # home-manager {{{
@@ -193,103 +199,23 @@ in
       };
       sessionVariables = {
         TERM = "xterm-256color";
-        POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD = true;
       };
-      localVariables = {
-        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS = [
-          "context"
-          "os_icon"
-          "nix_shell"
-          "dir"
-          "vcs"
-          "newline"
-        ];
-        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS = [
-          "ip"
-          "time"
-          "newline"
-          "status"
-          "command_execution_time"
-          "battery"
-        ];
-        POWERLEVEL9K_MODE="nerdfont-complete";
-        POWERLEVEL9K_ICON_PADDING="none";
-        POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%242F╭─";
-        POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX="%242F├─";
-        POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%242F╰─";
-        POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX="%242F─╮";
-        POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX="%242F─┤";
-        POWERLEVEL9K_MULTILINE_LAST_PROMPT_SUFFIX="%242F─╯";
-        POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR="·";
-        POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_BACKGROUND="";
-        POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=242;
-        POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_FIRST_SEGMENT_END_SYMBOL="%{%}";
-        POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL="%{%}";
-        POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR="\\u2502";
-        POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR="\\u2502";
-        POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="";
-        POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="";
-        POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL="\\uE0B0";
-        POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL="\\uE0B2";
-        POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL="";
-        POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL="";
-        POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL="";
-        POWERLEVEL9K_OS_ICON_FOREGROUND=232;
-        POWERLEVEL9K_OS_ICON_BACKGROUND=7;
-        POWERLEVEL9K_DIR_FRONTGROUND=237;
-        POWERLEVEL9K_DIR_BACKGROUND=214;
-        POWERLEVEL9K_VCS_CLEAN_BACKGROUND=10;
-        POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=9;
-        POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=10;
-        POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=9;
-        POWERLEVEL9K_VCS_LOADING_BACKGROUND=8;
-        POWERLEVEL9K_IP_INTERFACE="wlp2s0";
-        POWERLEVEL9K_CONTEXT_DEFAULT_CONTENT_EXPANSION="";
-        POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="";
-        POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=0;
-        POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=1;
-      };
-      profileExtra =
+      initExtraBeforeCompInit =
         ''
-        source ~/.nix-profile/etc/profile.d/nix.sh
+        source /etc/profile
         '';
-        initExtraBeforeCompInit =
-          ''
-          source /etc/profile
-          '';
-          initExtra =
-            ''
-            zstyle ':completion:*' menu select
-            autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-            zle -N up-line-or-beginning-search
-            zle -N down-line-or-beginning-search
-            bindkey "^[[A" up-line-or-beginning-search
-            bindkey "^[[B" down-line-or-beginning-search
+      initExtra =
+        ''
+          zstyle ':completion:*' menu select
+          autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+          zle -N up-line-or-beginning-search
+          zle -N down-line-or-beginning-search
+          bindkey "^[[A" up-line-or-beginning-search
+          bindkey "^[[B" down-line-or-beginning-search
 
-            zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+l:|=* r:|=*'
-
-            POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20;
-            POWERLEVEL9K_BATTERY_LOW_FOREGROUND=1;
-            POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND=2;
-            POWERLEVEL9K_BATTERY_CHARGED_FOREGROUND=2;
-            POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND=3;
-            POWERLEVEL9K_BATTERY_VERBOSE=false;
-            POWERLEVEL9K_BATTERY_STAGES=('%K{232}▁' '%K{232}▂' '%K{232}▃' '%K{232}▄' '%K{232}▅' '%K{232}▆' '%K{232}▇' '%K{232}█')
-            POWERLEVEL9K_BATTERY_BACKGROUND=0;
-            '';
-            plugins = [
-              #{
-                #name = "powerlevel10k";
-                #file = "powerlevel10k.zsh-theme";
-                #src = pkgs.fetchFromGitHub {
-                  #owner = "romkatv";
-                  #repo = "powerlevel10k";
-                  #rev = "v1.5.0";
-                  #sha256 = "0r8vccgfy85ryswaigzgwmvhvrhlap7nrg7bi66w63877znqlksj";
-                #};
-              #}
-            ];
-          };
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+l:|=* r:|=*'
+        '';
+      };
   # }}}
   # direnv {{{
     programs.direnv = {
@@ -445,9 +371,6 @@ in
         ''
           config.set("content.private_browsing", True);
           config.set("tabs.tabs_are_windows", True);
-          config.set("colors.webpage.prefers_color_scheme_dark", True);
-          config.set("colors.webpage.darkmode.enabled", True);
-          config.set("colors.webpage.darkmode.policy.page", "always");
           config.set("url.start_pages", [ "about:blank" ]);
         '';
     };
@@ -516,6 +439,12 @@ in
     xsession = {
       enable = true;
       initExtra = " setxkbmap -option caps:ctrl_modifier ";
+      profileExtra =
+        ''
+          export GTK_IM_MODULE=fcitx
+          export QT_IM_MODULE=fcitx
+          export XMODIFIERS=@im=fcitx
+        '';
       pointerCursor = {
         defaultCursor = "left_ptr";
         name = "Numix-Cursor";
@@ -550,7 +479,7 @@ in
       enable = true;
       keybindings = {
         "super + Return" = "alacritty";
-        "super + @space" = "rofi -show drun";
+        "super + @space" = "GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx rofi -show drun";
         "XF86AudioMute" = "pamixer -t";
         "XF86Audio{Raise,Lower}Volume" = "pamixer -{i,d} 5";
         "XF86MonBrightnessUp" = "brightnessctl s +10%";
