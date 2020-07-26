@@ -477,6 +477,7 @@ in
   # services.sxhkd {{{
     services.sxhkd = {
       enable = true;
+      extraPath = "/run/current-system/sw/bin";
       keybindings = {
         "super + Return" = "alacritty";
         "super + @space" = "GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx rofi -show drun";
