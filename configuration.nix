@@ -10,7 +10,7 @@ with builtins;
     ] ++ lib.optional (pathExists ./local.nix) ./local.nix ;
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 100;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 

@@ -35,6 +35,9 @@ in
   # home-manager {{{
     programs.home-manager.enable = true;
   # }}}
+  # gpg {{{
+    programs.gpg.enable = true;
+  # }}}
   # command-not-found {{{
     programs.command-not-found.enable = true;
   # }}}
