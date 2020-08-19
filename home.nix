@@ -375,6 +375,9 @@ in
           config.set("content.private_browsing", True);
           config.set("tabs.tabs_are_windows", True);
           config.set("url.start_pages", [ "about:blank" ]);
+          config.set("colors.webpage.prefers_color_scheme_dark", True);
+          config.set("colors.webpage.darkmode.enabled", True);
+          config.set("colors.webpage.darkmode.policy.page", "always");
         '';
     };
   # }}}
