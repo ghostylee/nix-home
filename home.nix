@@ -30,6 +30,7 @@ in
     bat
     neofetch
     ranger
+    perl
   ];
   # }}}
   # home-manager {{{

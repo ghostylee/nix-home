@@ -66,7 +66,6 @@ with builtins;
     ];
 
     fontconfig = {
-      penultimate.enable = false;
       defaultFonts = {
         serif = [ "DejaVu Serif" ];
         sansSerif = [ "DejaVu Sans" ];
@@ -76,6 +75,8 @@ with builtins;
   };
 
   services = {
+    thermald.enable = true;
+    tlp.enable = true;
     xserver = {
       enable = true;
       exportConfiguration = true;
