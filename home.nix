@@ -31,6 +31,7 @@ in
     neofetch
     ranger
     perl
+    nxpmicro-mfgtools
   ];
   # }}}
   # home-manager {{{
