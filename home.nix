@@ -368,7 +368,7 @@ in
         yt = "https://www.youtube.com/results?search_query={}";
         aw = "https://wiki.archlinux.org/?search={}";
         nw = "https://nixos.wiki/index.php?search={}";
-        np = "https://nixos.org/nixos/packages.html?channel=nixpkgs-unstable&query={}";
+        np = "https://nixos.org/nixos/packages.html?channel=unstable&query={}";
         no = "https://nixos.org/nixos/options.html#{}";
         lr = "https://search.azlyrics.com/search.php?q={}";
       };
