@@ -79,6 +79,7 @@ in
       filetype plugin indent on
       syntax enable
       syntax on
+      set noswapfile
       set autoread
       set autochdir
       set wildmenu
