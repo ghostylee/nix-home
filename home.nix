@@ -242,6 +242,7 @@ in
       enable = true;
       userName = "Song Li";
       userEmail = "ghosty.lee.1984@gmail.com";
+      signing.key = "B1E0152BFCF886EC";
       aliases = {
         co = "checkout";
         cob = "checkout -b";
@@ -369,9 +370,10 @@ in
         yt = "https://www.youtube.com/results?search_query={}";
         aw = "https://wiki.archlinux.org/?search={}";
         nw = "https://nixos.wiki/index.php?search={}";
-        np = "https://nixos.org/nixos/packages.html?channel=unstable&query={}";
-        no = "https://nixos.org/nixos/options.html#{}";
+        np = "https://search.nixos.org/packages?query={}&from=0&size=30&sort=relevance&channel=unstable";
+        no = "https://search.nixos.org/options?query={}&from=0&size=30&sort=relevance&channel=unstable";
         lr = "https://search.azlyrics.com/search.php?q={}";
+        tw = "https://twitter.com/search?q={}&src=typed_query";
       };
       extraConfig =
         ''
@@ -447,6 +449,17 @@ in
       };
     };
   # }}}
+  # password-store {{{
+    programs.password-store = {
+      enable = true;
+    };
+  # }}}
+  # browserpass {{{
+    programs.browserpass = {
+      enable = true;
+      browsers = ["firefox"];
+    };
+  # }}}
   # xsession.windowManager.bspwm {{{
     xsession = {
       enable = true;
@@ -459,8 +472,9 @@ in
         '';
       pointerCursor = {
         defaultCursor = "left_ptr";
-        name = "Numix-Cursor";
-        package = pkgs.numix-cursor-theme;
+        name = "Vanilla-DMZ";
+        size = 16;
+        package = pkgs.vanilla-dmz;
       };
       windowManager.bspwm = {
           enable = true;
