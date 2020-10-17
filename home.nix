@@ -126,7 +126,22 @@ in
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
 
-      let g:coc_global_extensions = [ 'coc-clangd', 'coc-cmake', 'coc-rls', 'coc-highlight', 'coc-json', 'coc-lists', 'coc-tag', 'coc-word', 'coc-syntax' ]
+      let g:coc_global_extensions = [
+                  \ 'coc-clangd',
+                  \ 'coc-cmake',
+                  \ 'coc-rls',
+                  \ 'coc-highlight',
+                  \ 'coc-json',
+                  \ 'coc-lists',
+                  \ 'coc-tag',
+                  \ 'coc-word',
+                  \ 'coc-syntax',
+                  \ 'coc-emoji'
+                  \ ]
+      let g:coc_user_config = {
+            \ 'coc.source.emoji.filetypes': ["markdown", 'vimwiki.markdown.pandoc'],
+            \ 'coc.source.emoji.triggerCharacters': ['.']
+            \ }
 
       inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "<TAB>" :  coc#refresh()
       inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -150,9 +165,39 @@ in
       nmap <silent> gi <Plug>(coc-implementation)
       nmap <silent> gr <Plug>(coc-references)
 
-      let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_tags': 1, 'syntax': 'markdown', 'ext': '.md'}]
+      " Use K to show documentation in preview window.
+      nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+      function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+      else
+      call CocActionAsync('doHover')
+      endif
+      endfunction
+
+      let g:vimwiki_list = [{'path': '~/vimwiki/',
+                  \ 'auto_tags': 1,
+                  \ 'auto_diary_index': 1,
+                  \ 'syntax': 'markdown',
+                  \ 'ext': '.md'}]
       let g:vimwiki_table_mappings = 0
-      let g:vimwiki_folding = 'expr'
+      let g:vimwiki_key_mappings =
+                  \ {
+                  \   'all_maps': 1,
+                  \   'global': 1,
+                  \   'headers': 0,
+                  \   'text_objs': 0,
+                  \   'table_format': 0,
+                  \   'table_mappings': 0,
+                  \   'lists': 0,
+                  \   'links': 1,
+                  \   'html': 0,
+                  \   'mouse': 0,
+                  \ }
+      let g:vimwiki_folding = 'custom'
+      let g:vimwiki_filetypes = ['markdown', 'pandoc']
+      let g:vimwiki_global_ext = 0
 
       let g:tagbar_width = 30
       nnoremap <leader>t :TagbarToggle<cr>
@@ -177,6 +222,8 @@ in
       tagbar
       fzf-vim
       vim-dirdiff
+      vim-pandoc
+      vim-pandoc-syntax
     ];
   };
   # }}}
