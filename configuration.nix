@@ -59,8 +59,6 @@ with builtins;
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
-      powerline-fonts
-      font-awesome_5
       wqy_zenhei
       nerdfonts
     ];
@@ -69,7 +67,7 @@ with builtins;
       defaultFonts = {
         serif = [ "DejaVu Serif" ];
         sansSerif = [ "DejaVu Sans" ];
-        monospace = [ "Hack NF" ];
+        monospace = [ "FiraCode Nerd Font Mono" ];
       };
     };
   };
