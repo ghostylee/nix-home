@@ -33,6 +33,7 @@ with builtins;
 
   nixpkgs.config = {
     allowUnfree = true;
+    joypixels.acceptLicense = true;
   };
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -61,13 +62,17 @@ with builtins;
     fonts = with pkgs; [
       wqy_zenhei
       nerdfonts
+      joypixels
+      twitter-color-emoji
     ];
 
     fontconfig = {
+      localConf   = lib.fileContents ./fontconfig.xml;
       defaultFonts = {
         serif = [ "DejaVu Serif" ];
         sansSerif = [ "DejaVu Sans" ];
         monospace = [ "FiraCode Nerd Font Mono" ];
+        emoji = [ "Noto Color Emoji" "Twitter Color Emoji" "JoyPixels" ];
       };
     };
   };
