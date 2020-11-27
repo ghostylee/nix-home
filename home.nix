@@ -178,7 +178,7 @@ in
 
       let g:vimwiki_list = [{'path': '~/vimwiki/',
                   \ 'auto_tags': 1,
-                  \ 'auto_diary_index': 1,
+                  \ 'auto_diary_index': 0,
                   \ 'syntax': 'markdown',
                   \ 'ext': '.md'}]
       let g:vimwiki_table_mappings = 0
@@ -854,6 +854,11 @@ in
     services.random-background = {
       enable = true;
       imageDirectory = "%h/backgrounds";
+    };
+  # }}}
+  # services.syncthing {{{
+    services.syncthing = {
+      enable = true;
     };
   # }}}
   # gtk {{{
