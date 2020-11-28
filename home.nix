@@ -515,12 +515,6 @@ in
     xsession = {
       enable = true;
       initExtra = " setxkbmap -option caps:ctrl_modifier ";
-      profileExtra =
-        ''
-          export GTK_IM_MODULE=fcitx
-          export QT_IM_MODULE=fcitx
-          export XMODIFIERS=@im=fcitx
-        '';
       pointerCursor = {
         defaultCursor = "left_ptr";
         name = "Vanilla-DMZ";
@@ -557,7 +551,7 @@ in
       extraPath = "/run/current-system/sw/bin";
       keybindings = {
         "super + Return" = "alacritty";
-        "super + @space" = "GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx rofi -show drun";
+        "super + @space" = "rofi -show drun";
         "XF86AudioMute" = "pamixer -t";
         "XF86Audio{Raise,Lower}Volume" = "pamixer -{i,d} 5";
         "XF86MonBrightnessUp" = "brightnessctl s +10%";
@@ -844,6 +838,15 @@ in
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
+      };
+    };
+  # }}}
+  # systemd {{{
+    systemd.user = {
+      sessionVariables = {
+         GTK_IM_MODULE="fcitx";
+         QT_IM_MODULE="fcitx";
+         XMODIFIERS="@im=fcitx";
       };
     };
   # }}}
