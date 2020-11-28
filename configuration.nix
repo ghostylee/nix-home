@@ -69,9 +69,9 @@ with builtins;
     fontconfig = {
       localConf   = lib.fileContents ./fontconfig.xml;
       defaultFonts = {
-        serif = [ "DejaVu Serif" ];
-        sansSerif = [ "DejaVu Sans" ];
-        monospace = [ "FiraCode Nerd Font Mono" ];
+        serif = [ "DejaVu Serif" "WenQuanYi Zen Hei" ];
+        sansSerif = [ "DejaVu Sans" "WenQuanYi Zen Hei" ];
+        monospace = [ "FiraCode Nerd Font Mono" "WenQuanYi Zen Hei Mono" ];
         emoji = [ "Noto Color Emoji" "Twitter Color Emoji" "JoyPixels" ];
       };
     };
