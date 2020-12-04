@@ -32,6 +32,7 @@ in
     ranger
     perl
     nxpmicro-mfgtools
+    calcurse
   ];
   # }}}
   # home-manager {{{
