@@ -511,6 +511,12 @@ in
       browsers = ["firefox"];
     };
   # }}}
+  # taskwarrior {{{
+    programs.taskwarrior = {
+      enable = true;
+      colorTheme = "dark-blue-256";
+    };
+  # }}}
   # xsession.windowManager.bspwm {{{
     xsession = {
       enable = true;
