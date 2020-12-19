@@ -151,7 +151,7 @@ with builtins;
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
+  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable-small";
 
 
 
