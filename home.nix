@@ -32,7 +32,7 @@ in
     ranger
     perl
     nxpmicro-mfgtools
-    calcurse
+    todoist-electron
   ];
   # }}}
   # home-manager {{{
@@ -204,13 +204,6 @@ in
       nnoremap <leader>t :TagbarToggle<cr>
 
       nmap <C-t> :GitFiles<CR>
-
-      noremap  <leader>t  :FloatermToggle<CR>
-      noremap! <leader>t  <Esc>:FloatermToggle<CR>
-      tnoremap <leader>t  <C-\><C-n>:FloatermToggle<CR>
-
-      let g:floaterm_width = 100
-      let g:floaterm_winblend = 0
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox
@@ -232,7 +225,6 @@ in
       vim-dirdiff
       vim-pandoc
       vim-pandoc-syntax
-      vim-floaterm
     ];
   };
   # }}}
@@ -632,7 +624,7 @@ in
           radius = 0;
           modules-left = "bspwm cpu";
           modules-right = "network volume battery date";
-          tray-position = "none";
+          tray-position = "right";
           font-0 = "Iosevka Nerd Font:size=12;3";
           font-1 = "Iosevka Nerd Font Mono:pixelsize=24;6";
           background = "\${colors.bg}";
@@ -837,6 +829,11 @@ in
   # }}}
   # services.syncthing {{{
     services.syncthing = {
+      enable = true;
+    };
+  # }}}
+  # services.nextcloud-client {{{
+    services.nextcloud-client = {
       enable = true;
     };
   # }}}
