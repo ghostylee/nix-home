@@ -830,6 +830,16 @@
       enable = true;
     };
   # }}}
+  # services.blueman-applet {{{
+    services.blueman-applet = {
+      enable = true;
+    };
+  # }}}
+  # services.pasystray {{{
+    services.pasystray = {
+      enable = true;
+    };
+  # }}}
   # gtk {{{
     gtk = {
       enable = true;
