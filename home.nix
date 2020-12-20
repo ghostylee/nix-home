@@ -1,7 +1,4 @@
 { pkgs, ... }:
-let
-  nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { inherit pkgs; };
-in
 {
   # packages {{{
   home.packages = with pkgs; [
@@ -388,11 +385,6 @@ in
   # firefox {{{
     programs.firefox = {
       enable = true;
-      extensions = with nur.repos.rycee.firefox-addons; [
-        darkreader
-        vimium
-        ublock-origin
-      ];
       profiles = {
         myfox = {
           settings = {
