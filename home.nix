@@ -426,6 +426,7 @@ in
         no = "https://search.nixos.org/options?query={}&from=0&size=30&sort=relevance&channel=unstable";
         lr = "https://search.azlyrics.com/search.php?q={}";
         tw = "https://twitter.com/search?q={}&src=typed_query";
+        rd = "https://www.reddit.com/search/?q={}";
       };
       extraConfig =
         ''
