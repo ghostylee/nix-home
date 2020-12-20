@@ -174,7 +174,7 @@
       endif
       endfunction
 
-      let g:vimwiki_list = [{'path': '~/vimwiki/',
+      let g:vimwiki_list = [{'path': '~/Nextcloud/Notes/',
                   \ 'auto_tags': 1,
                   \ 'auto_diary_index': 0,
                   \ 'syntax': 'markdown',
