@@ -26,18 +26,11 @@ with builtins;
 
   sound.enable = true;
 
+  networking.networkmanager.enable = true;
+
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.pulseaudio.configFile = pkgs.writeText "default.pa" ''
-    load-module module-bluetooth-policy
-    load-module module-bluetooth-discover
-    ## module fails to load with 
-    ##   module-bluez5-device.c: Failed to get device path from module arguments
-    ##   module.c: Failed to load module "module-bluez5-device" (argument: ""): initialization failed.
-    # load-module module-bluez5-device
-    # load-module module-bluez5-discover
-  '';
 
   hardware.bluetooth.enable = true;
 

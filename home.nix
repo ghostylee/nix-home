@@ -616,7 +616,7 @@
           height = 24;
           radius = 0;
           modules-left = "bspwm cpu";
-          modules-right = "network volume battery date";
+          modules-center = "date";
           tray-position = "right";
           font-0 = "Iosevka Nerd Font:size=12;3";
           font-1 = "Iosevka Nerd Font Mono:pixelsize=24;6";
@@ -837,6 +837,16 @@
   # }}}
   # services.pasystray {{{
     services.pasystray = {
+      enable = true;
+    };
+  # }}}
+  # services.cbatticon {{{
+    services.cbatticon = {
+      enable = true;
+    };
+  # }}}
+  # services.network-manager-applet {{{
+    services.network-manager-applet = {
       enable = true;
     };
   # }}}
