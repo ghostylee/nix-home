@@ -62,6 +62,7 @@ with builtins;
 
   environment.systemPackages = with pkgs; [
     home-manager
+    gnome3.gnome-tweaks
   ];
 
   fonts = {
@@ -87,6 +88,10 @@ with builtins;
   services = {
     thermald.enable = true;
     tlp.enable = true;
+    gvfs.enable = true;
+    gnome3 = {
+      gnome-keyring.enable = true;
+    };
     xserver = {
       enable = true;
       exportConfiguration = true;
@@ -95,28 +100,18 @@ with builtins;
         enable = true;
         naturalScrolling = true;
       };
-
-      desktopManager = {
-        xterm.enable = false;
+      desktopManager.gnome3 = {
+        enable = true;
+        extraGSettingsOverrides =
+        ''
+          [org.gnome.desktop.calendar]
+          show-weekdate=true
+          [org.gnome.desktop.interface]
+          clock-show-date=true
+          clock-show-seconds=false
+        '';
       };
-
-      displayManager = {
-        defaultSession = "none+bspwm";
-        autoLogin = {
-          enable = true;
-          user = "ghosty";
-        };
-        sddm = {
-          enable = true;
-          theme = "maldives";
-        };
-      };
-
-      windowManager = {
-        bspwm = {
-          enable = true;
-        };
-      };
+      displayManager.gdm.enable = true;
     };
   };
 
@@ -146,7 +141,7 @@ with builtins;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "gnome3";
   };
 
 

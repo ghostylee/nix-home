@@ -30,6 +30,8 @@
     perl
     nxpmicro-mfgtools
     todoist-electron
+    gnome3.gnome-calendar
+    gnome3.geary
   ];
   # }}}
   # home-manager {{{
@@ -188,7 +190,7 @@
                   \   'text_objs': 0,
                   \   'table_format': 0,
                   \   'table_mappings': 0,
-                  \   'lists': 0,
+                  \   'lists': 1,
                   \   'links': 1,
                   \   'html': 0,
                   \   'mouse': 0,
@@ -222,6 +224,7 @@
       vim-dirdiff
       vim-pandoc
       vim-pandoc-syntax
+      todo-txt-vim
     ];
   };
   # }}}
@@ -513,7 +516,7 @@
   # }}}
   # xsession.windowManager.bspwm {{{
     xsession = {
-      enable = true;
+      enable = false;
       initExtra = " setxkbmap -option caps:ctrl_modifier ";
       pointerCursor = {
         defaultCursor = "left_ptr";
@@ -545,9 +548,9 @@
         };
       };
   # }}}
-  # services.sxhkd {{{
+  # services.sxhkd disabled {{{
     services.sxhkd = {
-      enable = true;
+      enable = false;
       extraPath = "/run/current-system/sw/bin";
       keybindings = {
         "super + Return" = "alacritty";
@@ -580,9 +583,9 @@
       };
     };
   # }}}
-  # services.polybar {{{
+  # services.polybar disabled {{{
     services.polybar = {
-      enable = true;
+      enable = false;
       config = {
         "colors" = {
           bg = "#282828";
@@ -618,8 +621,8 @@
           modules-left = "bspwm cpu";
           modules-center = "date";
           tray-position = "right";
-          font-0 = "Iosevka Nerd Font:size=12;3";
-          font-1 = "Iosevka Nerd Font Mono:pixelsize=24;6";
+          font-0 = "FiraMono Nerd Font:size=12:weight=bold;3";
+          font-1 = "FiraMono Nerd Font Mono:pixelsize=24;6";
           background = "\${colors.bg}";
           foreground = "\${colors.fg}";
           separator = " ";
@@ -628,10 +631,10 @@
         "module/date" = {
           type = "internal/date";
           internal = 30;
-          time = " %Y-%m-%d  %H:%M";
+          time = "%Y-%m-%d %H:%M";
           label = "%time%";
-          format-background = "\${colors.yellow}";
-          format-foreground = "\${colors.bg}";
+          format-background = "\${colors.bg}";
+          format-foreground = "\${colors.yellow}";
         };
 
         "module/bspwm" = {
@@ -757,9 +760,9 @@
       script = "polybar main &";
     };
   # }}}
-  # services.dunst {{{
+  # services.dunst disabled{{{
     services.dunst = {
-      enable =true;
+      enable =false;
       settings = {
         global = {
           monitor = 0;
@@ -814,9 +817,9 @@
       };
     };
   # }}}
-  # services.random-background {{{
+  # services.random-background disabled{{{
     services.random-background = {
-      enable = true;
+      enable = false;
       imageDirectory = "%h/backgrounds";
     };
   # }}}
@@ -825,29 +828,29 @@
       enable = true;
     };
   # }}}
-  # services.nextcloud-client {{{
+  # services.nextcloud-client disabled {{{
     services.nextcloud-client = {
       enable = true;
     };
   # }}}
-  # services.blueman-applet {{{
+  # services.blueman-applet disabled {{{
     services.blueman-applet = {
-      enable = true;
+      enable = false;
     };
   # }}}
-  # services.pasystray {{{
+  # services.pasystray disabled {{{
     services.pasystray = {
-      enable = true;
+      enable = false;
     };
   # }}}
-  # services.cbatticon {{{
+  # services.cbatticon disabled {{{
     services.cbatticon = {
-      enable = true;
+      enable = false;
     };
   # }}}
-  # services.network-manager-applet {{{
+  # services.network-manager-applet disabled {{{
     services.network-manager-applet = {
-      enable = true;
+      enable = false;
     };
   # }}}
   # gtk {{{
@@ -857,7 +860,7 @@
         name = "hack 10";
       };
       theme = {
-        name = "Sierra-dark";
+        name = "Sierra-light";
         package = pkgs.sierra-gtk-theme;
       };
       iconTheme = {
