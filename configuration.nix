@@ -19,8 +19,8 @@ with builtins;
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      enabled = "fcitx";
-      fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ rime ];
     };
   };
 
@@ -63,6 +63,9 @@ with builtins;
   environment.systemPackages = with pkgs; [
     home-manager
     gnome3.gnome-tweaks
+    vivaldi
+    vivaldi-ffmpeg-codecs
+    brave
   ];
 
   fonts = {
@@ -91,6 +94,7 @@ with builtins;
     gvfs.enable = true;
     gnome3 = {
       gnome-keyring.enable = true;
+      gnome-online-accounts.enable = true;
     };
     xserver = {
       enable = true;
