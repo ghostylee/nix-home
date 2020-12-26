@@ -36,6 +36,8 @@ with builtins;
 
   services.blueman.enable = true;
 
+  services.flatpak.enable = true;
+
   virtualisation.docker.enable = true;
 
   nixpkgs.config = {
