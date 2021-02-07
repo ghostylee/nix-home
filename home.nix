@@ -32,6 +32,8 @@
     todoist-electron
     gnome3.gnome-calendar
     gnome3.geary
+    pandoc
+    marp
   ];
   # }}}
   # home-manager {{{
@@ -377,12 +379,11 @@
       font = "hack 10";
       terminal = "${pkgs.alacritty}/bin/alacritty";
       package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji ]; };
-      extraConfig =
-        ''
-          rofi.show-icons : true
-          rofi.icon-theme : Papirus-Dark
-          rofi.modi : drun,run,emoji
-        '';
+      extraConfig = {
+          show-icons = true;
+          icon-theme = "Papirus-Dark";
+          modi = "drun,run,emoji";
+        };
       };
   # }}}
   # firefox {{{
