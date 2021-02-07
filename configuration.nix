@@ -68,6 +68,7 @@ with builtins;
     vivaldi
     vivaldi-ffmpeg-codecs
     brave
+    teams
   ];
 
   fonts = {
@@ -104,7 +105,7 @@ with builtins;
       layout = "us";
       libinput = {
         enable = true;
-        naturalScrolling = true;
+        touchpad.naturalScrolling = true;
       };
       desktopManager.gnome3 = {
         enable = true;
