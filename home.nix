@@ -432,6 +432,7 @@
           config.set("colors.webpage.prefers_color_scheme_dark", True);
           config.set("colors.webpage.darkmode.enabled", True);
           config.set("colors.webpage.darkmode.policy.page", "always");
+          config.load_autoconfig(False)
         '';
     };
   # }}}
