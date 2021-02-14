@@ -518,7 +518,7 @@
   # }}}
   # xsession.windowManager.bspwm {{{
     xsession = {
-      enable = false;
+      enable = true;
       initExtra = " setxkbmap -option caps:ctrl_modifier ";
       pointerCursor = {
         defaultCursor = "left_ptr";
@@ -550,9 +550,9 @@
         };
       };
   # }}}
-  # services.sxhkd disabled {{{
+  # services.sxhkd {{{
     services.sxhkd = {
-      enable = false;
+      enable = true;
       extraPath = "/run/current-system/sw/bin";
       keybindings = {
         "super + Return" = "alacritty";
@@ -585,9 +585,9 @@
       };
     };
   # }}}
-  # services.polybar disabled {{{
+  # services.polybar {{{
     services.polybar = {
-      enable = false;
+      enable = true;
       config = {
         "colors" = {
           bg = "#282828";
@@ -762,9 +762,9 @@
       script = "polybar main &";
     };
   # }}}
-  # services.dunst disabled{{{
+  # services.dunst {{{
     services.dunst = {
-      enable =false;
+      enable =true;
       settings = {
         global = {
           monitor = 0;
@@ -819,9 +819,9 @@
       };
     };
   # }}}
-  # services.random-background disabled{{{
+  # services.random-background {{{
     services.random-background = {
-      enable = false;
+      enable = true;
       imageDirectory = "%h/backgrounds";
     };
   # }}}
@@ -830,29 +830,29 @@
       enable = true;
     };
   # }}}
-  # services.nextcloud-client disabled {{{
+  # services.nextcloud-client {{{
     services.nextcloud-client = {
       enable = true;
     };
   # }}}
-  # services.blueman-applet disabled {{{
+  # services.blueman-applet {{{
     services.blueman-applet = {
-      enable = false;
+      enable = true;
     };
   # }}}
-  # services.pasystray disabled {{{
+  # services.pasystray {{{
     services.pasystray = {
-      enable = false;
+      enable = true;
     };
   # }}}
-  # services.cbatticon disabled {{{
+  # services.cbatticon {{{
     services.cbatticon = {
-      enable = false;
+      enable = true;
     };
   # }}}
-  # services.network-manager-applet disabled {{{
+  # services.network-manager-applet {{{
     services.network-manager-applet = {
-      enable = false;
+      enable = true;
     };
   # }}}
   # gtk {{{
@@ -862,7 +862,7 @@
         name = "hack 10";
       };
       theme = {
-        name = "Sierra-light";
+        name = "Sierra-Dark";
         package = pkgs.sierra-gtk-theme;
       };
       iconTheme = {

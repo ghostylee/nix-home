@@ -37,6 +37,10 @@ with builtins;
   services.blueman.enable = true;
 
   services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   virtualisation.docker.enable = true;
 
@@ -107,18 +111,9 @@ with builtins;
         enable = true;
         touchpad.naturalScrolling = true;
       };
-      desktopManager.gnome3 = {
-        enable = true;
-        extraGSettingsOverrides =
-        ''
-          [org.gnome.desktop.calendar]
-          show-weekdate=true
-          [org.gnome.desktop.interface]
-          clock-show-date=true
-          clock-show-seconds=false
-        '';
-      };
-      displayManager.gdm.enable = true;
+      desktopManager.xterm.enable = false;
+      displayManager.defaultSession = "none+bspwm";
+      windowManager.bspwm.enable = true;
     };
   };
 
@@ -148,7 +143,7 @@ with builtins;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    pinentryFlavor = "gnome3";
+    pinentryFlavor = "gtk2";
   };
 
 
