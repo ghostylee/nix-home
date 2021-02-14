@@ -82,6 +82,7 @@ with builtins;
       nerdfonts
       joypixels
       twitter-color-emoji
+      source-sans-pro
     ];
 
     fontconfig = {

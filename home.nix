@@ -496,6 +496,7 @@
       };
       config = {
         autofit = "90%";
+        font = "Source Sans Pro";
       };
     };
   # }}}
