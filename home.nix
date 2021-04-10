@@ -29,9 +29,7 @@
     ranger
     perl
     nxpmicro-mfgtools
-    todoist-electron
     gnome3.gnome-calendar
-    gnome3.geary
     pandoc
     marp
   ];
@@ -429,7 +427,6 @@
           config.set("content.private_browsing", True);
           config.set("tabs.tabs_are_windows", True);
           config.set("url.start_pages", [ "about:blank" ]);
-          config.set("colors.webpage.prefers_color_scheme_dark", True);
           config.set("colors.webpage.darkmode.enabled", True);
           config.set("colors.webpage.darkmode.policy.page", "always");
           config.load_autoconfig(False)
@@ -875,9 +872,9 @@
   # systemd {{{
     systemd.user = {
       sessionVariables = {
-         GTK_IM_MODULE="ibus";
-         QT_IM_MODULE="ibus";
-         XMODIFIERS="@im=ibus";
+         GTK_IM_MODULE="fcitx";
+         QT_IM_MODULE="fcitx";
+         XMODIFIERS="@im=fcitx";
       };
     };
   # }}}
