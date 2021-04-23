@@ -195,7 +195,6 @@
                   \   'html': 0,
                   \   'mouse': 0,
                   \ }
-      let g:vimwiki_folding = 'custom'
       let g:vimwiki_filetypes = ['markdown', 'pandoc']
       let g:vimwiki_global_ext = 0
 
