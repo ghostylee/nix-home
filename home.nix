@@ -550,7 +550,6 @@
   # services.sxhkd {{{
     services.sxhkd = {
       enable = true;
-      extraPath = "/run/current-system/sw/bin";
       keybindings = {
         "super + Return" = "alacritty";
         "super + @space" = "rofi -show drun";
