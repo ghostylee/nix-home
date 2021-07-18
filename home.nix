@@ -324,15 +324,15 @@
         };
         font = {
           normal = {
-            family = "Hack Nerd Font Mono";
+            family = "JetBrainsMono Nerd Font Mono";
             style = "Regular";
           };
           bold = {
-            family = "Hack Nerd Font Mono";
+            family = "JetBrainsMono Nerd Font Mono";
             style = "Bold";
           };
           italic = {
-            family = "Hack Nerd Font Mono";
+            family = "JetBrainsMono Nerd Font Mono";
             style = "Italic";
           };
           size = 12;
@@ -526,7 +526,7 @@
       windowManager.bspwm = {
           enable = true;
           monitors = {
-            "" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
+            "eDP-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
           };
           settings = {
             border_width = 2;

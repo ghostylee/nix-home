@@ -90,7 +90,7 @@ with builtins;
       defaultFonts = {
         serif = [ "DejaVu Serif" "WenQuanYi Zen Hei" ];
         sansSerif = [ "DejaVu Sans" "WenQuanYi Zen Hei" ];
-        monospace = [ "FiraCode Nerd Font Mono" "WenQuanYi Zen Hei Mono" ];
+        monospace = [ "JetBrainsMono Nerd Font Mono" "WenQuanYi Zen Hei Mono" ];
         emoji = [ "Noto Color Emoji" "Twitter Color Emoji" "JoyPixels" ];
       };
     };
@@ -100,7 +100,7 @@ with builtins;
     thermald.enable = true;
     tlp.enable = true;
     gvfs.enable = true;
-    gnome3 = {
+    gnome = {
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
     };
