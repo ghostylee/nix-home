@@ -38,6 +38,7 @@
     nodePackages.bash-language-server
     rnix-lsp
     rust-analyzer
+    flameshot
   ];
   # }}}
   # home-manager {{{
@@ -249,13 +250,17 @@
       vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
       vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
       vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+      require('lualine').setup{
+        options = {
+          theme = 'gruvbox'
+        }
+      }
       EOF
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox
       nerdtree
-      vim-airline
-      vim-airline-themes
       indentLine
       vim-nix
       vim-fugitive
@@ -274,6 +279,8 @@
       nvim-treesitter
       nvim-lspconfig
       nvim-compe
+      onedark-nvim
+      lualine-nvim
     ];
   };
   # }}}
@@ -603,6 +610,7 @@
       keybindings = {
         "super + Return" = "alacritty";
         "super + @space" = "rofi -show drun";
+        "super + shift + s" = "flameshot gui";
         "XF86AudioMute" = "pamixer -t";
         "XF86Audio{Raise,Lower}Volume" = "pamixer -{i,d} 5";
         "XF86MonBrightnessUp" = "brightnessctl s +10%";
