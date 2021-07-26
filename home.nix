@@ -5,6 +5,7 @@
     tree
     silver-searcher
     fd
+    ripgrep
     hexyl
     pamixer
     minicom
@@ -348,6 +349,12 @@
 
       " a list of groups can be found at `:help nvim_tree_highlight`
       highlight NvimTreeFolderIcon guibg=blue
+
+      " Find files using Telescope command-line sugar.
+      nnoremap <leader>ff <cmd>Telescope find_files<cr>
+      nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+      nnoremap <leader>fb <cmd>Telescope buffers<cr>
+      nnoremap <leader>fh <cmd>Telescope help_tags<cr>
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox
@@ -373,6 +380,8 @@
       nvim-web-devicons
       gitsigns-nvim
       nvim-tree-lua
+      telescope-nvim
+      telescope-fzf-native-nvim
     ];
   };
   # }}}
