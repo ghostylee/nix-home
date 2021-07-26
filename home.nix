@@ -5,6 +5,7 @@
     tree
     silver-searcher
     fd
+    hexyl
     pamixer
     minicom
     gitAndTools.diff-so-fancy
@@ -38,6 +39,8 @@
     nodePackages.bash-language-server
     rnix-lsp
     rust-analyzer
+    cargo
+    rustc
     flameshot
   ];
   # }}}
@@ -82,6 +85,7 @@
     ''
       set t_Co=256
       set background=dark
+      set termguicolors
       colorscheme gruvbox
       filetype plugin indent on
       syntax enable
@@ -251,11 +255,9 @@
       vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
       vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
-      require('lualine').setup{
-        options = {
-          theme = 'gruvbox'
-        }
-      }
+      require('feline').setup()
+      require('gitsigns').setup()
+
       EOF
     '';
     plugins = with pkgs.vimPlugins; [
@@ -267,7 +269,6 @@
       nerdcommenter
       vim-signify
       delimitMate
-      vim-devicons
       vim-tmux-navigator
       vimwiki
       tagbar
@@ -280,7 +281,9 @@
       nvim-lspconfig
       nvim-compe
       onedark-nvim
-      lualine-nvim
+      feline-nvim
+      nvim-web-devicons
+      gitsigns-nvim
     ];
   };
   # }}}
