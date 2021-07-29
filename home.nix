@@ -177,6 +177,11 @@
           enable = true,
           disable = {},
         },
+        rainbow = {
+          enable = true,
+          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+          max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+        }
       }
       require'lspconfig'.bashls.setup{}
       require'lspconfig'.clangd.setup{}
@@ -257,6 +262,10 @@
 
       require('feline').setup()
       require('gitsigns').setup()
+      require("bufferline").setup()
+      require('hop').setup()
+      vim.api.nvim_set_keymap('n', '<leader>F', "<cmd>lua require'hop'.hint_words()<cr>", {})
+      require('numb').setup()
 
       EOF
 
@@ -362,7 +371,6 @@
       vim-nix
       vim-fugitive
       nerdcommenter
-      vim-signify
       delimitMate
       vim-tmux-navigator
       vimwiki
@@ -382,6 +390,11 @@
       nvim-tree-lua
       telescope-nvim
       telescope-fzf-native-nvim
+      nvim-bufferline-lua
+      git-blame-nvim
+      hop-nvim
+      nvim-ts-rainbow
+      numb-nvim
     ];
   };
   # }}}
