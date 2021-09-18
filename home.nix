@@ -43,6 +43,7 @@
     cargo
     rustc
     flameshot
+    neuron-notes
   ];
   # }}}
   # home-manager {{{
@@ -159,8 +160,7 @@
       let g:vimwiki_filetypes = ['markdown', 'pandoc']
       let g:vimwiki_global_ext = 0
 
-      let g:tagbar_width = 30
-      nnoremap <leader>t :TagbarToggle<cr>
+      nnoremap <leader>t :SymbolsOutline<cr>
 
       nmap <C-t> :GitFiles<CR>
 
@@ -190,6 +190,9 @@
       require'lspconfig'.rnix.setup{}
       require'lspconfig'.rust_analyzer.setup{}
       require'lspconfig'.yamlls.setup{}
+      require'lspconfig'.zeta_note.setup{
+        cmd = {'/home/ghosty/bin/zeta-note-linux'}
+      }
 
       vim.o.completeopt = "menuone,noselect"
       require'compe'.setup {
@@ -213,12 +216,13 @@
           calc = true;
           nvim_lsp = true;
           nvim_lua = true;
-          vsnip = true;
-          ultisnips = true;
-          luasnip = true;
+          vsnip = false;
+          ultisnips = false;
+          luasnip = false;
           spell = true;
           tag = true;
           treesitter = true;
+          orgmode = true;
         };
       }
       local t = function(str)
@@ -236,8 +240,6 @@
       _G.tab_complete = function()
       if vim.fn.pumvisible() == 1 then
         return t "<C-n>"
-      elseif vim.fn['vsnip#available'](1) == 1 then
-        return t "<Plug>(vsnip-expand-or-jump)"
       elseif check_back_space() then
         return t "<Tab>"
       else
@@ -260,12 +262,106 @@
       vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
       vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
-      require('feline').setup()
+      local colors = {
+        bg = '#202328',
+        fg = '#bbc2cf',
+        yellow = '#ECBE7B',
+        cyan = '#008080',
+        darkblue = '#081633',
+        green = '#98be65',
+        orange = '#FF8800',
+        violet = '#a9a1e1',
+        magenta = '#c678dd',
+        blue = '#51afef',
+        red = '#ec5f67'
+      }
+      require('lualine').setup {
+        options = {
+          section_separators = {'', ''},
+          component_separators = {'', ''}
+        },
+        extensions = {'quickfix', 'nvim-tree', 'fugitive'},
+        sections = {
+          lualine_b = {
+            'branch',
+            'diff'
+          },
+          lualine_c = {
+            'filename',
+            'lsp_progress'
+          },
+          lualine_y = {
+            {'diagnostics',
+            sources = {'nvim_lsp'},
+            symbols = {error = ' ', warn = ' ', info = ' '},
+            color_error = colors.red,
+            color_warn = colors.yellow,
+            color_info = colors.cyan
+            }
+          }
+        }
+      }
       require('gitsigns').setup()
-      require("bufferline").setup()
       require('hop').setup()
       vim.api.nvim_set_keymap('n', '<leader>F', "<cmd>lua require'hop'.hint_words()<cr>", {})
       require('numb').setup()
+
+      local cb = require'diffview.config'.diffview_callback
+      require('diffview').setup {
+        diff_binaries = false,    -- Show diffs for binaries
+        file_panel = {
+          width = 35,
+        },
+        key_bindings = {
+          disable_defaults = false,                   -- Disable the default key bindings
+          -- The `view` bindings are active in the diff buffers, only when the current
+          -- tabpage is a Diffview.
+          view = {
+            ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
+            ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
+            ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
+            ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
+          },
+          file_panel = {
+            ["j"]             = cb("next_entry"),         -- Bring the cursor to the next file entry
+            ["<down>"]        = cb("next_entry"),
+            ["k"]             = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
+            ["<up>"]          = cb("prev_entry"),
+            ["<cr>"]          = cb("select_entry"),       -- Open the diff for the selected entry.
+            ["o"]             = cb("select_entry"),
+            ["<2-LeftMouse>"] = cb("select_entry"),
+            ["-"]             = cb("toggle_stage_entry"), -- Stage / unstage the selected entry.
+            ["S"]             = cb("stage_all"),          -- Stage all entries.
+            ["U"]             = cb("unstage_all"),        -- Unstage all entries.
+            ["X"]             = cb("restore_entry"),      -- Restore entry to the state on the left side.
+            ["R"]             = cb("refresh_files"),      -- Update stats and entries in the file list.
+            ["<tab>"]         = cb("select_next_entry"),
+            ["<s-tab>"]       = cb("select_prev_entry"),
+            ["<leader>e"]     = cb("focus_files"),
+            ["<leader>b"]     = cb("toggle_files"),
+          }
+        }
+      }
+
+      require('orgmode').setup({
+        org_agenda_files = {'~/Nextcloud/org/*'},
+        org_default_notes_file = '~/Nextcloud/org/refile.org',
+        org_todo_keywords = { 'TODO(t)', 'PROG(p)', 'NEXT(x)', 'MEET(m)', 'WAIT(w)', '|', 'NOTE(n)','DONE(d)'},
+        org_todo_keyword_faces = {
+            MEET = ':foreground #D3869B :weight bold',
+            NOTE = ':foreground #FE8019 :weight bold',
+            TODO = ':foreground #FB4934 :weight bold',
+            PROG = ':foreground #83A598 :weight bold',
+            NEXT = ':foreground #FABD2F :weight bold',
+            WAIT = ':foreground #928374 :weight bold',
+            DONE = ':foreground #B8BB26 :weight bold',
+            },
+        org_agenda_templates = {
+            t = { description = 'Task', template = '* TODO %?\n %u'},
+            n = { description = 'Note', template = '* NOTE %?\n %u'},
+            j = { description = 'Journal', template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?', target = '~/Nextcloud/org/journal.org' }
+            }
+      })
 
       EOF
 
@@ -293,7 +389,7 @@
       let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
       let g:nvim_tree_hijack_cursor = 0 "1 by default, when moving cursor in the tree, will position the cursor at the start of the file on the current line
       let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
-      let g:nvim_tree_update_cwd = 1 "0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
+      let g:nvim_tree_update_cwd = 0 "0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
       let g:nvim_tree_window_picker_exclude = {
           \   'filetype': [
           \     'packer',
@@ -374,7 +470,6 @@
       delimitMate
       vim-tmux-navigator
       vimwiki
-      tagbar
       fzf-vim
       vim-dirdiff
       vim-pandoc
@@ -384,17 +479,20 @@
       nvim-lspconfig
       nvim-compe
       onedark-nvim
-      feline-nvim
+      lualine-nvim
+      lualine-lsp-progress
       nvim-web-devicons
       gitsigns-nvim
       nvim-tree-lua
       telescope-nvim
       telescope-fzf-native-nvim
-      nvim-bufferline-lua
       git-blame-nvim
       hop-nvim
       nvim-ts-rainbow
       numb-nvim
+      diffview-nvim
+      symbols-outline-nvim
+      orgmode-nvim
     ];
   };
   # }}}
