@@ -275,6 +275,7 @@
         blue = '#51afef',
         red = '#ec5f67'
       }
+      local gps = require("nvim-gps")
       require('lualine').setup {
         options = {
           section_separators = {'', ''},
@@ -288,7 +289,8 @@
           },
           lualine_c = {
             'filename',
-            'lsp_progress'
+            'lsp_progress',
+            { gps.get_location, condition = gps.is_available },
           },
           lualine_y = {
             {'diagnostics',
@@ -365,6 +367,22 @@
 
       require'colorizer'.setup()
 
+      require("nvim-gps").setup({
+        icons = {
+          ["class-name"] = ' ',      -- Classes and class-like objects
+          ["function-name"] = ' ',   -- Functions
+          ["method-name"] = ' ',     -- Methods (functions inside class-like objects)
+          ["container-name"] = '⛶ ',  -- Containers (example: lua tables)
+          ["tag-name"] = '炙'         -- Tags (example: html tags)
+        },
+        -- Disable any languages individually over here
+        -- Any language not disabled here is enabled by default
+        languages = {
+          -- ["bash"] = false,
+          -- ["go"] = false,
+        },
+        separator = ' > ',
+      })
       EOF
 
       let g:nvim_tree_side = 'left' "left by default
@@ -496,6 +514,7 @@
       symbols-outline-nvim
       orgmode-nvim
       nvim-colorizer-lua
+      nvim-gps
     ];
   };
   # }}}
