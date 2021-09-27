@@ -363,6 +363,8 @@
             }
       })
 
+      require'colorizer'.setup()
+
       EOF
 
       let g:nvim_tree_side = 'left' "left by default
@@ -493,6 +495,7 @@
       diffview-nvim
       symbols-outline-nvim
       orgmode-nvim
+      nvim-colorizer-lua
     ];
   };
   # }}}
