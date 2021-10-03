@@ -184,7 +184,9 @@
         }
       }
       require'lspconfig'.bashls.setup{}
-      require'lspconfig'.clangd.setup{}
+      require'lspconfig'.clangd.setup{
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      }
       require'lspconfig'.cmake.setup{}
       require'lspconfig'.pyright.setup{}
       require'lspconfig'.rnix.setup{}
@@ -195,72 +197,26 @@
       }
 
       vim.o.completeopt = "menuone,noselect"
-      require'compe'.setup {
-        enabled = true;
-        autocomplete = true;
-        debug = false;
-        min_length = 1;
-        preselect = 'enable';
-        throttle_time = 80;
-        source_timeout = 200;
-        resolve_timeout = 800;
-        incomplete_delay = 400;
-        max_abbr_width = 100;
-        max_kind_width = 100;
-        max_menu_width = 100;
-        documentation = false;
+      local cmp = require'cmp'
 
-        source = {
-          path = true;
-          buffer = true;
-          calc = true;
-          nvim_lsp = true;
-          nvim_lua = true;
-          vsnip = false;
-          ultisnips = false;
-          luasnip = false;
-          spell = true;
-          tag = true;
-          treesitter = true;
-          orgmode = true;
-        };
+      cmp.setup {
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'emoji' },
+          { name = 'path' },
+          { name = 'calc' },
+          { name = 'orgmode' }
+        },
+        mapping = {
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+        }
       }
-      local t = function(str)
-        return vim.api.nvim_replace_termcodes(str, true, true, true)
-      end
-
-      local check_back_space = function()
-        local col = vim.fn.col('.') - 1
-        return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-      end
-
-      -- Use (s-)tab to:
-      --- move to prev/next item in completion menuone
-      --- jump to prev/next snippet's placeholder
-      _G.tab_complete = function()
-      if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-      elseif check_back_space() then
-        return t "<Tab>"
-      else
-        return vim.fn['compe#complete']()
-        end
-      end
-      _G.s_tab_complete = function()
-      if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
-      elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-        return t "<Plug>(vsnip-jump-prev)"
-      else
-        -- If <S-Tab> is not working in your terminal, change it to <C-h>
-        return t "<S-Tab>"
-        end
-      end
-
-      vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-      vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-      vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-      vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
       local colors = {
         bg = '#202328',
@@ -497,7 +453,13 @@
       todo-txt-vim
       nvim-treesitter
       nvim-lspconfig
-      nvim-compe
+      nvim-cmp
+      cmp-path
+      cmp-calc
+      cmp-buffer
+      cmp-emoji
+      cmp-spell
+      cmp-nvim-lsp
       onedark-nvim
       lualine-nvim
       lualine-lsp-progress
