@@ -200,12 +200,19 @@
       local cmp = require'cmp'
 
       cmp.setup {
+        snippet = {
+          expand = function(args)
+            -- For `vsnip` user.
+            vim.fn["vsnip#anonymous"](args.body)
+          end,
+        },
         sources = {
           { name = 'nvim_lsp' },
           { name = 'buffer' },
           { name = 'emoji' },
           { name = 'path' },
           { name = 'calc' },
+          { name = 'vsnip' },
           { name = 'orgmode' }
         },
         mapping = {
@@ -460,6 +467,9 @@
       cmp-emoji
       cmp-spell
       cmp-nvim-lsp
+      cmp-vsnip
+      vim-vsnip
+      friendly-snippets
       onedark-nvim
       lualine-nvim
       lualine-lsp-progress
