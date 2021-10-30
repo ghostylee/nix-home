@@ -209,7 +209,6 @@
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
-        lsp_diagnostics     = false,
         update_focused_file = {
           enable      = false,
           update_cwd  = false,
@@ -273,11 +272,10 @@
         blue = '#51afef',
         red = '#ec5f67'
       }
-      local gps = require("nvim-gps")
       require('lualine').setup {
         options = {
-          section_separators = {'', ''},
-          component_separators = {'', ''}
+          section_separators = { left = '', right = ''},
+          component_separators = { left = '', right = ''}
         },
         extensions = {'quickfix', 'nvim-tree', 'fugitive'},
         sections = {
@@ -287,18 +285,7 @@
           },
           lualine_c = {
             'filename',
-            'lsp_progress',
-            { gps.get_location, condition = gps.is_available },
           },
-          lualine_y = {
-            {'diagnostics',
-            sources = {'nvim_lsp'},
-            symbols = {error = ' ', warn = ' ', info = ' '},
-            color_error = colors.red,
-            color_warn = colors.yellow,
-            color_info = colors.cyan
-            }
-          }
         }
       }
       require('gitsigns').setup()
@@ -494,6 +481,7 @@
       orgmode-nvim
       nvim-colorizer-lua
       nvim-gps
+      markdown-preview-nvim
     ];
   };
   # }}}
