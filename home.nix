@@ -478,7 +478,7 @@
       numb-nvim
       diffview-nvim
       symbols-outline-nvim
-      orgmode-nvim
+      orgmode
       nvim-colorizer-lua
       nvim-gps
       markdown-preview-nvim
