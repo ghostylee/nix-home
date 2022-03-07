@@ -3,12 +3,6 @@
 with builtins;
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
-    ] ++ lib.optional (pathExists ./local.nix) ./local.nix ;
-
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -74,7 +68,6 @@ with builtins;
   environment.variables.EDITOR = "vim";
 
   environment.systemPackages = with pkgs; [
-    home-manager
     gnome3.gnome-tweaks
     vivaldi
     vivaldi-ffmpeg-codecs
@@ -132,8 +125,6 @@ with builtins;
      extraGroups = [ "wheel" "docker" "audio" ];
   };
 
-  home-manager.users.ghosty = if pathExists ./home.nix then import ./home.nix else {};
-  home-manager.users.root = if pathExists ./home.nix then import ./home.nix else {};
 
   services.sshd.enable = true;
 

@@ -44,6 +44,8 @@
     rustc
     flameshot
     neuron-notes
+    fasd
+    element-desktop
   ];
   # }}}
   # home-manager {{{
@@ -192,9 +194,6 @@
       require'lspconfig'.rnix.setup{}
       require'lspconfig'.rust_analyzer.setup{}
       require'lspconfig'.yamlls.setup{}
-      require'lspconfig'.zeta_note.setup{
-        cmd = {'/home/ghosty/bin/zeta-note-linux'}
-      }
 
       require'nvim-tree'.setup {
         disable_netrw       = true,
@@ -464,7 +463,6 @@
       cmp-vsnip
       vim-vsnip
       friendly-snippets
-      onedark-nvim
       lualine-nvim
       lualine-lsp-progress
       nvim-web-devicons
@@ -622,7 +620,7 @@
           };
 
         };
-        background_opacity = 0.9;
+        window.opacity = 0.9;
         live_config_reload = true;
       };
     };
