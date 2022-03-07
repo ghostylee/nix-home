@@ -156,6 +156,7 @@ with builtins;
   system.autoUpgrade.allowReboot = false;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
 
-
+  time.timeZone = "America/New_York";
+  networking.hostName = "dell-nixos";
 
 }
