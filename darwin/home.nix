@@ -132,7 +132,7 @@
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
 
-      let g:vimwiki_list = [{'path': '~/Nextcloud/Notes/',
+      let g:vimwiki_list = [{'path': '~/Notes/',
                   \ 'auto_tags': 1,
                   \ 'auto_diary_index': 0,
                   \ 'syntax': 'markdown',
