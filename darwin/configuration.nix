@@ -3,10 +3,10 @@
 let
   yabaiM1 = pkgs.stdenvNoCC.mkDerivation {
     name = "yabai";
-    version = "4.0.1";
+    version = "4.0.4";
     src = pkgs.fetchurl {
-      url = "https://github.com/koekeishiya/yabai/releases/download/v4.0.1/yabai-v4.0.1.tar.gz";
-      sha256 = "UFtPBftcBytzvrELOjE4vPCKc3CCaA4bpqusok5sUMU=";
+      url = "https://github.com/koekeishiya/yabai/releases/download/v4.0.4/yabai-v4.0.4.tar.gz";
+      sha256 = "Ox+iZUwDGCIU+GswISblnbVGrNjF3uWzBkiv2O9q3fg=";
     };
 
     dontConfigure = true;
@@ -20,10 +20,12 @@ let
   };
 in {
   nixpkgs.config.allowBroken = true;
+  nixpkgs.config.allowUnfree = true;
   users.users.song = {               # macOS user
     home = "/Users/song";
     shell = pkgs.zsh;                     # Default shell
   };
+
 
   networking = {
     computerName = "Songs-MBP";             # Host name

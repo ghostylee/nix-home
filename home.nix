@@ -161,6 +161,7 @@
                   \ }
       let g:vimwiki_filetypes = ['markdown', 'pandoc']
       let g:vimwiki_global_ext = 0
+      let g:vimwiki_folding = 'custom'
 
       nnoremap <leader>t :SymbolsOutline<cr>
 
@@ -246,7 +247,9 @@
           { name = 'path' },
           { name = 'calc' },
           { name = 'vsnip' },
-          { name = 'orgmode' }
+          { name = 'orgmode' },
+          { name = 'pandoc_references' },
+          { name = 'nvim_lsp_document_symbol' }
         },
         mapping = {
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -461,6 +464,8 @@
       cmp-spell
       cmp-nvim-lsp
       cmp-vsnip
+      cmp-pandoc-references
+      cmp-nvim-lsp-document-symbol
       vim-vsnip
       friendly-snippets
       lualine-nvim
