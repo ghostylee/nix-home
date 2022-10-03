@@ -167,8 +167,12 @@
       nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
       lua <<EOF
+      -- Defines a read-write directory for treesitters in nvim's cache dir
+      local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+      vim.fn.mkdir(parser_install_dir, "p")
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = "all",
+        parser_install_dir = parser_install_dir,
+        ensure_installed = "",
         highlight = {
           enable = true,
           disable = {},
@@ -194,10 +198,6 @@
         hijack_netrw        = true,
         open_on_setup       = false,
         ignore_ft_on_setup  = {},
-        update_to_buf_dir   = {
-          enable = true,
-          auto_open = true,
-        },
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
@@ -214,7 +214,6 @@
           width = 30,
           height = 30,
           side = 'left',
-          auto_resize = false,
           mappings = {
             custom_only = false,
             list = {}
@@ -390,7 +389,7 @@
       vim-pandoc
       vim-pandoc-syntax
       todo-txt-vim
-      nvim-treesitter
+      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       nvim-lspconfig
       nvim-cmp
       cmp-path
