@@ -13,7 +13,6 @@
     unzip
     gitRepo
     file
-    ncdu
     nodejs
     clang-tools
     dconf
@@ -39,6 +38,7 @@
     rustc
     fasd
     ookla-speedtest
+    yt-dlp
   ];
   # }}}
   # home-manager {{{
@@ -435,7 +435,7 @@
       enable = true;
       enableAutosuggestions = true;
       enableCompletion = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       autocd = true;
       shellAliases = {
         vim = "nvim";
@@ -490,7 +490,7 @@
       userName = "Song Li";
       userEmail = "ghosty.lee.1984@gmail.com";
       signing = {
-        signByDefault = true;
+        signByDefault = false;
         key = "B1E0152BFCF886EC";
       };
       aliases = {

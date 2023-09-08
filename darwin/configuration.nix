@@ -106,7 +106,7 @@ in {
       interval.Day = 7;
     };
     extraOptions = ''
-      auto-optimise-store = true
+      auto-optimise-store = false
       experimental-features = nix-command flakes
     '';
   };
