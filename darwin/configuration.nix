@@ -1,24 +1,6 @@
 { config, pkgs, ... }:
 
-let
-  yabaiM1 = pkgs.stdenvNoCC.mkDerivation {
-    name = "yabai";
-    version = "4.0.4";
-    src = pkgs.fetchurl {
-      url = "https://github.com/koekeishiya/yabai/releases/download/v4.0.4/yabai-v4.0.4.tar.gz";
-      sha256 = "Ox+iZUwDGCIU+GswISblnbVGrNjF3uWzBkiv2O9q3fg=";
-    };
-
-    dontConfigure = true;
-    dontBuild = true;
-
-    installPhase = ''
-      mkdir -p $out
-      cp -ar ./* $out
-      chmod +x $out/bin/yabai
-    '';
-  };
-in {
+{
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfree = true;
   users.users.song = {               # macOS user
@@ -64,7 +46,6 @@ in {
     nix-daemon.enable = true;             # Auto upgrade daemon
     yabai = {                             # Tiling window manager
       enable = true;
-      package = yabaiM1;
       config = {                          # Other configuration options
         layout = "bsp";
         auto_balance = "on";
@@ -94,7 +75,7 @@ in {
       package = pkgs.skhd;
       skhdConfig = ''
         # Open Terminal
-        cmd - return : alacritty
+        cmd - return : ~/Applications/Home\ Manager\ Apps/Alacritty.app/Contents/MacOS/alacritty
       '';
     };
   };
