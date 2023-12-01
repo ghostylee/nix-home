@@ -184,9 +184,7 @@
         }
       }
       require'lspconfig'.bashls.setup{}
-      require'lspconfig'.clangd.setup{
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-      }
+      require'lspconfig'.clangd.setup{}
       require'lspconfig'.cmake.setup{}
       require'lspconfig'.pyright.setup{}
       require'lspconfig'.rnix.setup{}
@@ -196,8 +194,6 @@
       require'nvim-tree'.setup {
         disable_netrw       = true,
         hijack_netrw        = true,
-        open_on_setup       = false,
-        ignore_ft_on_setup  = {},
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
@@ -212,12 +208,7 @@
         },
         view = {
           width = 30,
-          height = 30,
           side = 'left',
-          mappings = {
-            custom_only = false,
-            list = {}
-          }
         }
       }
 
