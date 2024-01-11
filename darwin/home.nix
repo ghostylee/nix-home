@@ -403,7 +403,6 @@
       telescope-fzf-native-nvim
       git-blame-nvim
       hop-nvim
-      nvim-ts-rainbow
       numb-nvim
       symbols-outline-nvim
       nvim-colorizer-lua
