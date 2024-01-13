@@ -514,15 +514,15 @@
         };
         font = {
           normal = {
-            family = "NotoMono Nerd Font Mono";
+            family = "BlexMono Nerd Font Mono";
             style = "Regular";
           };
           bold = {
-            family = "NotoMono Nerd Font Mono";
+            family = "BlexMono Nerd Font Mono";
             style = "Bold";
           };
           italic = {
-            family = "NotoMono Nerd Font Mono";
+            family = "BlexMono Nerd Font Mono";
             style = "Italic";
           };
           size = 20;
