@@ -380,7 +380,7 @@
       vim-pandoc
       vim-pandoc-syntax
       todo-txt-vim
-      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+      nvim-treesitter.withAllGrammars
       nvim-lspconfig
       nvim-cmp
       cmp-path
