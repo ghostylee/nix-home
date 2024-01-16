@@ -11,7 +11,7 @@
 
   outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs: {
     nixosConfigurations = {
-      dell-nixos = nixpkgs.lib.nixosSystem {
+      nuc-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
@@ -20,7 +20,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.ghosty = import ./home.nix;
+            home-manager.users.song = import ./home.nix;
             home-manager.users.root = import ./home.nix;
           }
         ];

@@ -8,22 +8,43 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/6c31eef4-9746-4d52-830f-74ac11e6d184";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/70af2511-1987-481c-940b-9a814f22f9f2";
+      fsType = "btrfs";
+      options = [ "subvol=nixos-root" ];
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/70af2511-1987-481c-940b-9a814f22f9f2";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/67E3-17ED";
+    { device = "/dev/disk/by-uuid/AD32-9979";
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/924fdda2-9cfb-45c8-a40c-47442e3b42f7"; }
+    ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-475491c53120.useDHCP = lib.mkDefault true;
+  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp6s0.useDHCP = lib.mkDefault true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

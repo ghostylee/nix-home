@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 
-with builtins;
-
 {
   nix = {
     package = pkgs.nixUnstable;
@@ -13,15 +11,14 @@ with builtins;
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 
   console.font = "Lat2-Terminus16";
   console.keyMap = "us";
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      enabled = "fcitx";
-      fcitx.engines = with pkgs.fcitx-engines; [ cloudpinyin ];
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [ fcitx5-rime ];
     };
   };
 
@@ -36,12 +33,6 @@ with builtins;
   hardware.bluetooth.enable = true;
 
   services.blueman.enable = true;
-
-  services.flatpak.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
 
   virtualisation.docker.enable = true;
 
@@ -67,17 +58,9 @@ with builtins;
 
   environment.variables.EDITOR = "vim";
 
-  environment.systemPackages = with pkgs; [
-    gnome3.gnome-tweaks
-    vivaldi
-    vivaldi-ffmpeg-codecs
-    brave
-    teams
-  ];
-
   fonts = {
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       wqy_zenhei
       nerdfonts
       joypixels
@@ -118,8 +101,9 @@ with builtins;
     };
   };
 
+  programs.zsh.enable = true; 
   users.defaultUserShell = pkgs.zsh;
-  users.users.ghosty = {
+  users.users.song = {
      isNormalUser = true;
      uid = 1000;
      extraGroups = [ "wheel" "docker" "audio" ];
@@ -131,23 +115,14 @@ with builtins;
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
-
-  environment.shellInit = ''
-    export GPG_TTY="$(tty)"
-    gpg-connect-agent updatestartuptty /bye > /dev/null
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  '';
-
   programs.ssh.startAgent = false;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryFlavor = "gtk2";
-  };
 
+  environment.systemPackages = with pkgs; [
+    git
+    neovim
+  ];
 
-
-  system.stateVersion = "20.03";
+  system.stateVersion = "23.11";
 
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
@@ -157,6 +132,6 @@ with builtins;
   system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
 
   time.timeZone = "America/New_York";
-  networking.hostName = "dell-nixos";
+  networking.hostName = "nuc-nixos";
 
 }

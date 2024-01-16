@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  home.stateVersion = "23.11";
   # packages {{{
   home.packages = with pkgs; [
     tree
@@ -33,7 +34,6 @@
     nxpmicro-mfgtools
     gnome3.gnome-calendar
     pandoc
-    marp
     gcc
     nodePackages.pyright
     nodePackages.yaml-language-server
@@ -43,7 +43,6 @@
     cargo
     rustc
     flameshot
-    neuron-notes
     fasd
     element-desktop
   ];
@@ -140,7 +139,7 @@
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
 
-      let g:vimwiki_list = [{'path': '~/Nextcloud/Notes/',
+      let g:vimwiki_list = [{'path': '~/Notes/',
                   \ 'auto_tags': 1,
                   \ 'auto_diary_index': 0,
                   \ 'syntax': 'markdown',
@@ -174,8 +173,12 @@
       nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
       lua <<EOF
+      -- Defines a read-write directory for treesitters in nvim's cache dir
+      local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+      vim.fn.mkdir(parser_install_dir, "p")
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = "maintained",
+        parser_install_dir = parser_install_dir,
+        ensure_installed = "",
         highlight = {
           enable = true,
           disable = {},
@@ -187,9 +190,7 @@
         }
       }
       require'lspconfig'.bashls.setup{}
-      require'lspconfig'.clangd.setup{
-        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-      }
+      require'lspconfig'.clangd.setup{}
       require'lspconfig'.cmake.setup{}
       require'lspconfig'.pyright.setup{}
       require'lspconfig'.rnix.setup{}
@@ -199,13 +200,6 @@
       require'nvim-tree'.setup {
         disable_netrw       = true,
         hijack_netrw        = true,
-        open_on_setup       = false,
-        ignore_ft_on_setup  = {},
-        update_to_buf_dir   = {
-          enable = true,
-          auto_open = true,
-        },
-        auto_close          = false,
         open_on_tab         = false,
         hijack_cursor       = false,
         update_cwd          = false,
@@ -220,13 +214,7 @@
         },
         view = {
           width = 30,
-          height = 30,
           side = 'left',
-          auto_resize = false,
-          mappings = {
-            custom_only = false,
-            list = {}
-          }
         }
       }
 
@@ -248,6 +236,7 @@
           { name = 'calc' },
           { name = 'vsnip' },
           { name = 'orgmode' },
+          { name = 'spell' },
           { name = 'pandoc_references' },
           { name = 'nvim_lsp_document_symbol' }
         },
@@ -294,63 +283,6 @@
       require('hop').setup()
       vim.api.nvim_set_keymap('n', '<leader>F', "<cmd>lua require'hop'.hint_words()<cr>", {})
       require('numb').setup()
-
-      local cb = require'diffview.config'.diffview_callback
-      require('diffview').setup {
-        diff_binaries = false,    -- Show diffs for binaries
-        file_panel = {
-          width = 35,
-        },
-        key_bindings = {
-          disable_defaults = false,                   -- Disable the default key bindings
-          -- The `view` bindings are active in the diff buffers, only when the current
-          -- tabpage is a Diffview.
-          view = {
-            ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
-            ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
-            ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
-            ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
-          },
-          file_panel = {
-            ["j"]             = cb("next_entry"),         -- Bring the cursor to the next file entry
-            ["<down>"]        = cb("next_entry"),
-            ["k"]             = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
-            ["<up>"]          = cb("prev_entry"),
-            ["<cr>"]          = cb("select_entry"),       -- Open the diff for the selected entry.
-            ["o"]             = cb("select_entry"),
-            ["<2-LeftMouse>"] = cb("select_entry"),
-            ["-"]             = cb("toggle_stage_entry"), -- Stage / unstage the selected entry.
-            ["S"]             = cb("stage_all"),          -- Stage all entries.
-            ["U"]             = cb("unstage_all"),        -- Unstage all entries.
-            ["X"]             = cb("restore_entry"),      -- Restore entry to the state on the left side.
-            ["R"]             = cb("refresh_files"),      -- Update stats and entries in the file list.
-            ["<tab>"]         = cb("select_next_entry"),
-            ["<s-tab>"]       = cb("select_prev_entry"),
-            ["<leader>e"]     = cb("focus_files"),
-            ["<leader>b"]     = cb("toggle_files"),
-          }
-        }
-      }
-
-      require('orgmode').setup({
-        org_agenda_files = {'~/Nextcloud/org/*'},
-        org_default_notes_file = '~/Nextcloud/org/refile.org',
-        org_todo_keywords = { 'TODO(t)', 'PROG(p)', 'NEXT(x)', 'MEET(m)', 'WAIT(w)', '|', 'NOTE(n)','DONE(d)'},
-        org_todo_keyword_faces = {
-            MEET = ':foreground #D3869B :weight bold',
-            NOTE = ':foreground #FE8019 :weight bold',
-            TODO = ':foreground #FB4934 :weight bold',
-            PROG = ':foreground #83A598 :weight bold',
-            NEXT = ':foreground #FABD2F :weight bold',
-            WAIT = ':foreground #928374 :weight bold',
-            DONE = ':foreground #B8BB26 :weight bold',
-            },
-        org_agenda_templates = {
-            t = { description = 'Task', template = '* TODO %?\n %u'},
-            n = { description = 'Note', template = '* NOTE %?\n %u'},
-            j = { description = 'Journal', template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?', target = '~/Nextcloud/org/journal.org' }
-            }
-      })
 
       require'colorizer'.setup()
 
@@ -454,7 +386,7 @@
       vim-pandoc
       vim-pandoc-syntax
       todo-txt-vim
-      nvim-treesitter
+      nvim-treesitter.withAllGrammars
       nvim-lspconfig
       nvim-cmp
       cmp-path
@@ -477,11 +409,8 @@
       telescope-fzf-native-nvim
       git-blame-nvim
       hop-nvim
-      nvim-ts-rainbow
       numb-nvim
-      diffview-nvim
       symbols-outline-nvim
-      orgmode
       nvim-colorizer-lua
       nvim-gps
       markdown-preview-nvim
@@ -778,16 +707,10 @@
     xsession = {
       enable = true;
       initExtra = " setxkbmap -option caps:ctrl_modifier ";
-      pointerCursor = {
-        defaultCursor = "left_ptr";
-        name = "Vanilla-DMZ";
-        size = 16;
-        package = pkgs.vanilla-dmz;
-      };
       windowManager.bspwm = {
           enable = true;
           monitors = {
-            "eDP-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
+            "HDMI-5" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
           };
           settings = {
             border_width = 2;
