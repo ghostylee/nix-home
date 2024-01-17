@@ -83,6 +83,7 @@
     thermald.enable = true;
     tlp.enable = true;
     gvfs.enable = true;
+    tailscale.enable = true;
     gnome = {
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
@@ -110,19 +111,7 @@
   };
 
 
-  services.sshd.enable = true;
-
-  services.pcscd.enable = true;
-  services.udev.packages = [ pkgs.yubikey-personalization ];
-
-  programs.ssh.startAgent = false;
-
-  environment.systemPackages = with pkgs; [
-    git
-    neovim
-  ];
-
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
