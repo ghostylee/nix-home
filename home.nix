@@ -479,10 +479,6 @@
       enable = true;
       userName = "Song Li";
       userEmail = "ghosty.lee.1984@gmail.com";
-      signing = {
-        signByDefault = true;
-        key = "B1E0152BFCF886EC";
-      };
       aliases = {
         co = "checkout";
         cob = "checkout -b";
