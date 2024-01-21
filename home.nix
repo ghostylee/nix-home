@@ -797,14 +797,20 @@
           width = "100%";
           height = 24;
           radius = 0;
-          modules-left = "bspwm cpu";
+          modules-left = "bspwm";
           modules-center = "date";
-          tray-position = "right";
+          modules-right = "tray";
           font-0 = "FiraMono Nerd Font:size=12:weight=bold;3";
           font-1 = "FiraMono Nerd Font Mono:pixelsize=24;6";
           background = "\${colors.bg}";
           foreground = "\${colors.fg}";
           separator = " ";
+        };
+
+        "module/tray" = {
+          type = "internal/tray";
+          format-margin = "8px";
+          tray-spacing = "8px";
         };
 
         "module/date" = {
@@ -818,16 +824,16 @@
 
         "module/bspwm" = {
           type = "internal/bspwm";
-          ws-icon-0 ="1;";
-          ws-icon-1 ="2;";
-          ws-icon-2 ="3;";
-          ws-icon-3 ="4;";
-          ws-icon-4 ="5;";
-          ws-icon-5 ="6;";
-          ws-icon-6 ="7;";
-          ws-icon-7 ="8;";
-          ws-icon-8 ="9;";
-          ws-icon-9 ="0;";
+          ws-icon-0 ="1;1";
+          ws-icon-1 ="2;2";
+          ws-icon-2 ="3;3";
+          ws-icon-3 ="4;4";
+          ws-icon-4 ="5;5";
+          ws-icon-5 ="6;6";
+          ws-icon-6 ="7;7";
+          ws-icon-7 ="8;8";
+          ws-icon-8 ="9;9";
+          ws-icon-9 ="0;0";
           label-monitor = "%icon%";
           label-focused = "%icon%";
           label-focused-font = 2;
@@ -921,7 +927,7 @@
 
         "module/network" = {
           type = "internal/network";
-          interface = "wlp2s0";
+          interface = "wlp6s0";
           accumulate-stats = true;
           unknown-as-up = true;
           format-connected = "<ramp-signal> <label-connected>";

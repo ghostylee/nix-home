@@ -102,6 +102,12 @@
     };
   };
 
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    config.common = { default = [ "gtk" ]; };
+  };
+
   programs.zsh.enable = true; 
   users.defaultUserShell = pkgs.zsh;
   users.users.song = {
