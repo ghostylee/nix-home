@@ -97,10 +97,16 @@
         touchpad.naturalScrolling = true;
       };
       desktopManager.xterm.enable = false;
-      displayManager.defaultSession = "none+bspwm";
-      windowManager.bspwm.enable = true;
+      displayManager.defaultSession = "hyprland";
+      #windowManager.bspwm.enable = true;
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
     };
   };
+
+  programs.hyprland.enable = true;
 
   services.flatpak.enable = true;
   xdg.portal = {
@@ -108,7 +114,7 @@
     config.common = { default = [ "gtk" ]; };
   };
 
-  programs.zsh.enable = true; 
+  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   users.users.song = {
      isNormalUser = true;

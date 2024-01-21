@@ -699,6 +699,50 @@
       colorTheme = "dark-blue-256";
     };
   # }}}
+  # waybar {{{
+    programs.waybar = {
+      enable = true;
+      systemd.enable = true;
+      settings = {
+        mainBar = {
+          layer = "top";
+          position = "top";
+          height = 30;
+
+          modules-left = [ "hyprland/workspaces" ];
+          modules-center = [ "clock" ];
+          modules-right = ["tray"];
+
+          "hyprland/workspaces" = {
+            format = "{icon}";
+            on-click = "activate";
+            format-icons = {
+              "1" = "1";
+              "2" = "2";
+              "3" = "3";
+              "4" = "4";
+            };
+          };
+          tray = {
+            icon-size = 21;
+            spacing = 10;
+          };
+          clock = {
+            interval = 60;
+            format = "{:%H:%M}";
+            max-length = 25;
+          };
+        };
+      };
+      style = ''
+        window#waybar {
+          background: @theme_base_color;
+          border-bottom: 1px solid @unfocused_borders;
+          color: @theme_text_color;
+        }
+      '';
+    };
+  # }}}
   # xsession.windowManager.bspwm {{{
     xsession = {
       enable = true;
@@ -726,6 +770,36 @@
             ];
         };
       };
+  # }}}
+  # wayland.windowManager.hyprland {{{
+    wayland.windowManager.hyprland = {
+      enable = true;
+      systemd.enable = true;
+      settings = {
+        decoration = {
+          shadow_offset = "0 5";
+          "col.shadow" = "rgba(00000099)";
+        };
+
+        "$mod" = "SUPER";
+
+        bind = [
+          "$mod, 1, workspace, 1"
+          "$mod, 2, workspace, 2"
+          "$mod, 3, workspace, 3"
+          "$mod, 4, workspace, 4"
+          "$mod, Return, exec, alacritty"
+          "$mod, Space, exec, rofi -show drun"
+        ];
+
+        bindm = [
+          # mouse movements
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+          "$mod ALT, mouse:272, resizewindow"
+        ];
+      };
+    };
   # }}}
   # services.sxhkd {{{
     services.sxhkd = {
@@ -764,7 +838,7 @@
   # }}}
   # services.polybar {{{
     services.polybar = {
-      enable = true;
+      enable = false;
       config = {
         "colors" = {
           bg = "#282828";
@@ -1004,7 +1078,7 @@
   # }}}
   # services.random-background {{{
     services.random-background = {
-      enable = true;
+      enable = false;
       imageDirectory = "%h/backgrounds";
     };
   # }}}
@@ -1028,11 +1102,6 @@
       enable = true;
     };
   # }}}
-  # services.cbatticon {{{
-    services.cbatticon = {
-      enable = true;
-    };
-  # }}}
   # services.network-manager-applet {{{
     services.network-manager-applet = {
       enable = true;
@@ -1045,8 +1114,8 @@
         name = "hack 10";
       };
       theme = {
-        name = "Sierra-Dark";
-        package = pkgs.sierra-gtk-theme;
+        name = "Gruvbox-Dark-B";
+        package = pkgs.gruvbox-gtk-theme;
       };
       iconTheme = {
         name = "Papirus-Dark";
