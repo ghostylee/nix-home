@@ -1086,11 +1086,6 @@
       imageDirectory = "%h/backgrounds";
     };
   # }}}
-  # services.syncthing {{{
-    services.syncthing = {
-      enable = true;
-    };
-  # }}}
   # services.nextcloud-client {{{
     services.nextcloud-client = {
       enable = true;
