@@ -714,14 +714,7 @@
           modules-right = ["tray"];
 
           "hyprland/workspaces" = {
-            format = "{icon}";
-            on-click = "activate";
-            format-icons = {
-              "1" = "1";
-              "2" = "2";
-              "3" = "3";
-              "4" = "4";
-            };
+            format = "{name}";
           };
           tray = {
             icon-size = 21;
@@ -735,10 +728,21 @@
         };
       };
       style = ''
+        * {
+          border: none;
+          border-radius: 0px;
+          font-family: "Inconsolata";
+          font-size: 16px;
+          min-height: 0;
+          color: #ebdbb2;
+        }
         window#waybar {
           background: @theme_base_color;
           border-bottom: 1px solid @unfocused_borders;
           color: @theme_text_color;
+        }
+        #workspaces button.active {
+          background: #689d6a;
         }
       '';
     };
