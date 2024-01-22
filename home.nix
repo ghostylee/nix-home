@@ -728,7 +728,7 @@
         * {
           border: none;
           border-radius: 0px;
-          font-family: "Inconsolata";
+          font-family: "JetBrainsMono Nerd Font";
           font-size: 16px;
           min-height: 0;
           color: #ebdbb2;
@@ -740,6 +740,10 @@
         }
         #workspaces button.active {
           background: #689d6a;
+        }
+        #clock {
+          color: #d79921;
+          font-weight: bold;
         }
       '';
     };
