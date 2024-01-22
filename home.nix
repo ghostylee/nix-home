@@ -18,7 +18,7 @@
     nodejs
     clang-tools
     dconf
-    gnome3.nautilus
+    xfce.thunar
     ctags
     libnotify
     brightnessctl
@@ -32,7 +32,6 @@
     ranger
     perl
     nxpmicro-mfgtools
-    gnome3.gnome-calendar
     pandoc
     gcc
     nodePackages.pyright
@@ -42,10 +41,8 @@
     rust-analyzer
     cargo
     rustc
-    flameshot
     fasd
-    element-desktop
-    gtk-engine-murrine
+    obsidian
   ];
   # }}}
   # home-manager {{{
