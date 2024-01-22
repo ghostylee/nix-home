@@ -436,10 +436,6 @@
       };
       defaultKeymap = "emacs";
       dotDir = ".config/zsh";
-      history = {
-        path = ".zsh_history";
-        size = 10000;
-      };
       sessionVariables = {
         TERM = "xterm-256color";
       };
@@ -561,11 +557,11 @@
       theme = "gruvbox-dark";
       font = "hack 10";
       terminal = "${pkgs.alacritty}/bin/alacritty";
-      package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji ]; };
+      package = pkgs.rofi-wayland;
       extraConfig = {
           show-icons = true;
           icon-theme = "Papirus-Dark";
-          modi = "drun,run,emoji";
+          modi = "drun,run";
         };
       };
   # }}}
