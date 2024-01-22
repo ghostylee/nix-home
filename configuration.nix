@@ -107,6 +107,7 @@
   };
 
   programs.hyprland.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   services.flatpak.enable = true;
   xdg.portal = {
