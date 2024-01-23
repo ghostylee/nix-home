@@ -1151,13 +1151,14 @@
       };
     };
   # }}}
-  # systemd {{{
-    systemd.user = {
-      sessionVariables = {
-         GTK_IM_MODULE="fcitx";
-         QT_IM_MODULE="fcitx";
-         XMODIFIERS="@im=fcitx";
-      };
+  # input method{{{
+    i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-rime
+        fcitx5-nord
+        fcitx5-gtk
+      ];
     };
-  # }}}
+  #}}}
 }
