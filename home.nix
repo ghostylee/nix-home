@@ -23,7 +23,7 @@
     libnotify
     brightnessctl
     vifm
-    mupdf
+    evince
     wget
     feh
     htop
@@ -43,6 +43,8 @@
     rustc
     fasd
     obsidian
+    img2pdf
+    gnome.eog
   ];
   # }}}
   # home-manager {{{
