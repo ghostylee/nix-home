@@ -45,6 +45,8 @@
     obsidian
     img2pdf
     gnome.eog
+    libva-utils
+    tradingview
   ];
   # }}}
   # home-manager {{{
@@ -302,6 +304,8 @@
         },
         separator = ' > ',
       })
+
+      require("symbols-outline").setup()
       EOF
 
       let g:nvim_tree_window_picker_exclude = {

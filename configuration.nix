@@ -94,7 +94,7 @@
     xserver = {
       enable = true;
       exportConfiguration = true;
-      layout = "us";
+      xkb.layout = "us";
       libinput = {
         enable = true;
         touchpad.naturalScrolling = true;
