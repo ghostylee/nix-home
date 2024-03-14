@@ -25,6 +25,20 @@
           }
         ];
       };
+      T7910-nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./t7910/configuration.nix
+          ./t7910/hardware-configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.song = import ./t7910/home.nix;
+            home-manager.users.root = import ./t7910/home.nix;
+          }
+        ];
+      };
     };
     darwinConfigurations = {
       Songs-MBP = darwin.lib.darwinSystem {
