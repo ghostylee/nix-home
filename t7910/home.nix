@@ -10,7 +10,6 @@
     hexyl
     pamixer
     minicom
-    gitAndTools.diff-so-fancy
     unzip
     gitRepo
     file
@@ -49,6 +48,11 @@
     wl-clipboard
     tree-sitter
     nixd
+    jfrog-cli
+    ostree
+    sshpass
+    dfu-util
+    nxpmicro-mfgtools
   ];
   # }}}
   # home-manager {{{
@@ -444,6 +448,11 @@
         '';
       };
   # }}}
+  # autojump {{{
+    programs.autojump = {
+      enable = true;
+    };
+  # }}}
   # direnv {{{
     programs.direnv = {
       enable = true;
@@ -462,7 +471,13 @@
     programs.git = {
       enable = true;
       userName = "Song Li";
-      userEmail = "ghosty.lee.1984@gmail.com";
+      userEmail = "song.li@resideo.com";
+      difftastic = {
+        enable = true;
+        background = "dark";
+        color = "always";
+        display = "inline";
+      };
       aliases = {
         co = "checkout";
         cob = "checkout -b";
@@ -475,9 +490,6 @@
         cam = "commit -a -m";
       };
       extraConfig = {
-        core = {
-          pager = "diff-so-fancy | less --tabs=4 -RFX";
-        };
         pull = {
           ff = "only";
         };

@@ -25,7 +25,7 @@
           }
         ];
       };
-      T7910-nixos = nixpkgs.lib.nixosSystem {
+      T7910-Song = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./t7910/configuration.nix

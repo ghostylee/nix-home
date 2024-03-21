@@ -32,9 +32,12 @@
 
   hardware.bluetooth.enable = true;
 
-  services.blueman.enable = true;
+  services.openssh.enable = true;
 
   virtualisation.docker.enable = true;
+  virtualisation.docker.daemon.settings = {
+    insecure-registries = [ "gop-docker-stable-local.artifactory.softwaretools.resideo.com" ];
+  };
 
   nixpkgs.config = {
     allowUnfree = true;
