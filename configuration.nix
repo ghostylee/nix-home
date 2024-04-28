@@ -91,6 +91,7 @@
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
     };
+    displayManager.defaultSession = "hyprland";
     xserver = {
       enable = true;
       exportConfiguration = true;
@@ -100,7 +101,6 @@
         touchpad.naturalScrolling = true;
       };
       desktopManager.xterm.enable = false;
-      displayManager.defaultSession = "hyprland";
       #windowManager.bspwm.enable = true;
       displayManager.gdm = {
         enable = true;

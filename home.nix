@@ -10,7 +10,6 @@
     hexyl
     pamixer
     minicom
-    gitAndTools.diff-so-fancy
     unzip
     gitRepo
     file
@@ -37,7 +36,6 @@
     nodePackages.pyright
     nodePackages.yaml-language-server
     nodePackages.bash-language-server
-    rnix-lsp
     rust-analyzer
     cargo
     rustc
@@ -49,6 +47,11 @@
     tradingview
     wl-clipboard
     tree-sitter
+    nixd
+    bear
+    cmake-language-server
+    cmake
+    ninja
   ];
   # }}}
   # home-manager {{{
@@ -197,7 +200,7 @@
       require'lspconfig'.clangd.setup{}
       require'lspconfig'.cmake.setup{}
       require'lspconfig'.pyright.setup{}
-      require'lspconfig'.rnix.setup{}
+      require'lspconfig'.nixd.setup{}
       require'lspconfig'.rust_analyzer.setup{}
       require'lspconfig'.yamlls.setup{}
 
@@ -416,7 +419,7 @@
   # zsh {{{
     programs.zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       autocd = true;
       shellAliases = {
@@ -444,6 +447,11 @@
         '';
       };
   # }}}
+  # autojump {{{
+    programs.autojump = {
+      enable = true;
+    };
+  # }}}
   # direnv {{{
     programs.direnv = {
       enable = true;
@@ -463,6 +471,12 @@
       enable = true;
       userName = "Song Li";
       userEmail = "ghosty.lee.1984@gmail.com";
+      difftastic = {
+        enable = true;
+        background = "dark";
+        color = "always";
+        display = "inline";
+      };
       aliases = {
         co = "checkout";
         cob = "checkout -b";
@@ -475,9 +489,6 @@
         cam = "commit -a -m";
       };
       extraConfig = {
-        core = {
-          pager = "diff-so-fancy | less --tabs=4 -RFX";
-        };
         pull = {
           ff = "only";
         };
