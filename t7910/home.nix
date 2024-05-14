@@ -420,7 +420,7 @@
   # zsh {{{
     programs.zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       autocd = true;
       shellAliases = {
@@ -836,10 +836,10 @@
       };
 
       extraConfig = ''
-        monitor= DP-4, 1920x1080, 0x-1080, 1;
-        monitor= DP-3, 1920x1080, 1920x-1080, 1;
-        monitor= DP-2, 1920x1080, 0x0, 1;
-        monitor= DP-1, 1920x1080, 1920x0, 1;
+        monitor= DP-4, 1920x1080, 0x-1080, 1
+        monitor= DP-3, 1920x1080, 1920x-1080, 1
+        monitor= DP-2, 1920x1080, 0x0, 1
+        monitor= DP-1, 1920x1080, 1920x0, 1
       '';
     };
   # }}}

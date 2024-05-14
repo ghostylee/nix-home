@@ -2,7 +2,7 @@
 
 {
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -23,6 +23,8 @@
   };
 
   sound.enable = true;
+
+  zramSwap.enable = true;
 
   networking.networkmanager.enable = true;
 
@@ -94,16 +96,16 @@
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
     };
+    displayManager.defaultSession = "hyprland";
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
+    };
     xserver = {
       enable = true;
       exportConfiguration = true;
       xkb.layout = "us";
-      libinput = {
-        enable = true;
-        touchpad.naturalScrolling = true;
-      };
       desktopManager.xterm.enable = false;
-      displayManager.defaultSession = "hyprland";
       #windowManager.bspwm.enable = true;
       displayManager.gdm = {
         enable = true;
