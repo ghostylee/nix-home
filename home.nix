@@ -33,7 +33,7 @@
     nxpmicro-mfgtools
     pandoc
     gcc
-    nodePackages.pyright
+    pyright
     nodePackages.yaml-language-server
     nodePackages.bash-language-server
     rust-analyzer
