@@ -29,16 +29,16 @@
     nxpmicro-mfgtools
     pandoc
     gcc
-    nodePackages.pyright
+    pyright
     nodePackages.yaml-language-server
     nodePackages.bash-language-server
-    rnix-lsp
     rust-analyzer
     cargo
     rustc
     fasd
     ookla-speedtest
     yt-dlp
+    nixd
   ];
   # }}}
   # home-manager {{{
@@ -187,7 +187,7 @@
       require'lspconfig'.clangd.setup{}
       require'lspconfig'.cmake.setup{}
       require'lspconfig'.pyright.setup{}
-      require'lspconfig'.rnix.setup{}
+      require'lspconfig'.nixd.setup{}
       require'lspconfig'.rust_analyzer.setup{}
       require'lspconfig'.yamlls.setup{}
 
@@ -423,7 +423,7 @@
   # zsh {{{
     programs.zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       autocd = true;

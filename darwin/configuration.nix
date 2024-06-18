@@ -3,6 +3,7 @@
 {
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [ "nix-2.16.2" ];
   users.users.song = {               # macOS user
     home = "/Users/song";
     shell = pkgs.zsh;                     # Default shell
@@ -15,8 +16,7 @@
   };
 
   fonts = {                               # Fonts
-    fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       source-code-pro
       font-awesome
       nerdfonts
@@ -81,7 +81,7 @@
   };
 
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     gc = {
       automatic = true;
       interval.Day = 7;
