@@ -22,8 +22,6 @@
     };
   };
 
-  sound.enable = true;
-
   zramSwap.enable = true;
 
   networking.networkmanager.enable = true;

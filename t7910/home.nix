@@ -472,11 +472,8 @@
       enable = true;
       userName = "Song Li";
       userEmail = "song.li@resideo.com";
-      difftastic = {
+      diff-so-fancy = {
         enable = true;
-        background = "dark";
-        color = "always";
-        display = "inline";
       };
       aliases = {
         co = "checkout";
@@ -1151,12 +1148,15 @@
         name = "hack 10";
       };
       theme = {
-        name = "Gruvbox-Dark-B";
+        name = "Gruvbox-Dark";
         package = pkgs.gruvbox-gtk-theme;
       };
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
+      };
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
       };
     };
   # }}}
