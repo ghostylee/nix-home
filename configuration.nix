@@ -17,12 +17,11 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
-      enabled = "fcitx5";
+      enable = true;
+      type = "fcitx5";
       fcitx5.addons = with pkgs; [ fcitx5-rime ];
     };
   };
-
-  sound.enable = true;
 
   networking.networkmanager.enable = true;
 
@@ -49,7 +48,7 @@
       enableHybridCodec = true;
     };
   };
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       vaapiIntel

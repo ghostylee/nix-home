@@ -42,7 +42,7 @@
     fasd
     obsidian
     img2pdf
-    gnome.eog
+    eog
     libva-utils
     tradingview
     wl-clipboard
@@ -1143,7 +1143,7 @@
         name = "hack 10";
       };
       theme = {
-        name = "Gruvbox-Dark-B";
+        name = "Gruvbox-Dark";
         package = pkgs.gruvbox-gtk-theme;
       };
       iconTheme = {
