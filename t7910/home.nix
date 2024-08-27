@@ -42,7 +42,7 @@
     fasd
     obsidian
     img2pdf
-    gnome.eog
+    eog
     libva-utils
     tradingview
     wl-clipboard
@@ -684,12 +684,6 @@
     programs.browserpass = {
       enable = true;
       browsers = ["firefox"];
-    };
-  # }}}
-  # taskwarrior {{{
-    programs.taskwarrior = {
-      enable = true;
-      colorTheme = "dark-blue-256";
     };
   # }}}
   # waybar {{{
