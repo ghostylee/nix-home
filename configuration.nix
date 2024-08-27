@@ -131,10 +131,6 @@
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
-
   time.timeZone = "America/New_York";
   networking.hostName = "nuc-nixos";
 
