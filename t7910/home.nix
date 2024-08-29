@@ -831,6 +831,10 @@
         monitor= DP-3, 1920x1080, 0x0, 1
         monitor= DP-2, 1920x1080, 0x-1080, 1
         monitor= DP-1, 1920x1080, 1920x-1080, 1
+        env= HYPRCURSOR_THEME, Bibata-Modern-Classic
+        env= HYPRCURSOR_SIZE, 24
+        env= XCURSOR_THEME, Bibata-Modern-Classic
+        env= XCURSOR_SIZE, 24
       '';
     };
   # }}}
@@ -1148,6 +1152,10 @@
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
+      };
+      cursorTheme = {
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
       };
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = true;
