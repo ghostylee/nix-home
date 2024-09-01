@@ -833,6 +833,13 @@
           ",XF86AudioLowerVolume, exec, pamixer -d 5"
         ];
       };
+
+      extraConfig = ''
+        env= HYPRCURSOR_THEME, Bibata-Modern-Classic
+        env= HYPRCURSOR_SIZE, 24
+        env= XCURSOR_THEME, Bibata-Modern-Classic
+        env= XCURSOR_SIZE, 24
+      '';
     };
   # }}}
   # services.sxhkd {{{
@@ -1149,6 +1156,10 @@
       iconTheme = {
         name = "Papirus-Dark";
         package = pkgs.papirus-icon-theme;
+      };
+      cursorTheme = {
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
       };
     };
   # }}}
