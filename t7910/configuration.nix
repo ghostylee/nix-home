@@ -27,10 +27,6 @@
 
   networking.networkmanager.enable = true;
 
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-
   hardware.bluetooth.enable = true;
 
   services.openssh.enable = true;
@@ -70,7 +66,9 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       wqy_zenhei
-      nerdfonts
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-mono
+      nerd-fonts.blex-mono
       joypixels
       twitter-color-emoji
       source-sans-pro
