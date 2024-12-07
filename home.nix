@@ -546,7 +546,7 @@
 
         };
         window.opacity = 0.9;
-        live_config_reload = true;
+        general.live_config_reload = true;
       };
     };
   # }}}
@@ -688,12 +688,6 @@
       browsers = ["firefox"];
     };
   # }}}
-  # taskwarrior {{{
-    programs.taskwarrior = {
-      enable = true;
-      colorTheme = "dark-blue-256";
-    };
-  # }}}
   # waybar {{{
     programs.waybar = {
       enable = true;
@@ -779,11 +773,6 @@
       enable = true;
       systemd.enable = true;
       settings = {
-        decoration = {
-          shadow_offset = "0 5";
-          "col.shadow" = "rgba(00000099)";
-        };
-
         input.kb_options = "caps:ctrl_modifier";
 
         "$mod" = "SUPER";
