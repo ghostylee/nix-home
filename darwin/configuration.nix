@@ -19,7 +19,9 @@
     packages = with pkgs; [
       source-code-pro
       font-awesome
-      nerdfonts
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-mono
+      nerd-fonts.blex-mono
     ];
   };
 
