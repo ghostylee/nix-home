@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
   # packages {{{
   home.packages = with pkgs; [
     tree
@@ -548,6 +548,18 @@
       };
     };
   # }}}
+  # ghostty {{{
+    programs.ghostty = {
+      enable = true;
+      settings = {
+        theme = "GruvboxDark";
+        font-family = "CaskaydiaMono Nerd Font Mono";
+        font-size = "14";
+        background-opacity = "0.9";
+        window-decoration = false;
+      };
+    };
+  # }}}
   # rofi {{{
     programs.rofi = {
       enable = true;
@@ -796,7 +808,7 @@
           "$mod SHIFT, 8, movetoworkspace, 8"
           "$mod SHIFT, 9, movetoworkspace, 9"
           "$mod SHIFT, 0, movetoworkspace, 10"
-          "$mod, Return, exec, alacritty"
+          "$mod, Return, exec, ghostty"
           "$mod, Space, exec, rofi -show drun"
           "$mod, w, killactive,"
           "$mod, m, fullscreen,"
@@ -837,7 +849,7 @@
     services.sxhkd = {
       enable = true;
       keybindings = {
-        "super + Return" = "alacritty";
+        "super + Return" = "ghostty";
         "super + @space" = "rofi -show drun";
         "super + shift + s" = "flameshot gui";
         "XF86AudioMute" = "pamixer -t";

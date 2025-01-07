@@ -68,6 +68,7 @@
       wqy_zenhei
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-mono
+      nerd-fonts.caskaydia-mono
       nerd-fonts.blex-mono
       joypixels
       twitter-color-emoji
