@@ -4,6 +4,7 @@
   imports = [
     ./../modules/ghostty.nix
     ./../modules/neovim.nix
+    ./../modules/tmux.nix
   ];
   # packages {{{
   home.packages = with pkgs; [
@@ -78,18 +79,6 @@
     programs.lsd = {
       enable = true;
       enableAliases = true;
-    };
-  # }}}
-  # tmux {{{
-    programs.tmux = {
-      enable = true;
-      baseIndex = 1;
-      keyMode = "vi";
-      terminal = "xterm-256color";
-      customPaneNavigationAndResize = true;
-      plugins = with pkgs.tmuxPlugins; [
-        gruvbox
-      ];
     };
   # }}}
   # starship {{{
