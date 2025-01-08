@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   home.stateVersion = "24.11";
+  imports = [
+    ./../modules/ghostty.nix
+  ];
   # packages {{{
   home.packages = with pkgs; [
     tree
@@ -545,18 +548,6 @@
         };
         window.opacity = 0.9;
         general.live_config_reload = true;
-      };
-    };
-  # }}}
-  # ghostty {{{
-    programs.ghostty = {
-      enable = true;
-      settings = {
-        theme = "GruvboxDark";
-        font-family = "CaskaydiaMono Nerd Font Mono";
-        font-size = "14";
-        background-opacity = "0.9";
-        window-decoration = false;
       };
     };
   # }}}
