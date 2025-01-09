@@ -3,6 +3,7 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    vimdiffAlias = true;
     extraConfig =
     ''
       set t_Co=256
@@ -77,11 +78,10 @@
                   \   'html': 0,
                   \   'mouse': 0,
                   \ }
-      let g:vimwiki_filetypes = ['markdown', 'pandoc']
+      let g:vimwiki_filetypes = ['markdown']
       let g:vimwiki_global_ext = 0
       let g:vimwiki_folding = 'custom'
 
-      nnoremap <leader>t :SymbolsOutline<cr>
 
       nmap <C-t> :GitFiles<CR>
 
@@ -90,123 +90,6 @@
       nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
       nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
       nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-
-      lua <<EOF
-      -- Defines a read-write directory for treesitters in nvim's cache dir
-      local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
-      vim.fn.mkdir(parser_install_dir, "p")
-      require'nvim-treesitter.configs'.setup {
-        parser_install_dir = parser_install_dir,
-        ensure_installed = "",
-        highlight = {
-          enable = true,
-          disable = {},
-        },
-        rainbow = {
-          enable = true,
-          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-          max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
-        }
-      }
-      require'lspconfig'.bashls.setup{}
-      require'lspconfig'.clangd.setup{}
-      require'lspconfig'.cmake.setup{}
-      require'lspconfig'.pyright.setup{}
-      require'lspconfig'.nixd.setup{}
-      require'lspconfig'.rust_analyzer.setup{}
-      require'lspconfig'.yamlls.setup{}
-
-      require'nvim-tree'.setup {
-        disable_netrw       = true,
-        hijack_netrw        = true,
-        open_on_tab         = false,
-        hijack_cursor       = false,
-        update_cwd          = false,
-        update_focused_file = {
-          enable      = false,
-          update_cwd  = false,
-          ignore_list = {}
-        },
-        system_open = {
-          cmd  = nil,
-          args = {}
-        },
-        view = {
-          width = 30,
-          side = 'left',
-        }
-      }
-
-      vim.o.completeopt = "menuone,noselect"
-      local cmp = require'cmp'
-
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            -- For `vsnip` user.
-            vim.fn["vsnip#anonymous"](args.body)
-          end,
-        },
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'buffer' },
-          { name = 'emoji' },
-          { name = 'path' },
-          { name = 'calc' },
-          { name = 'vsnip' },
-          { name = 'orgmode' },
-          { name = 'spell' },
-          { name = 'pandoc_references' },
-          { name = 'nvim_lsp_document_symbol' }
-        },
-        mapping = {
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
-        }
-      }
-
-      local colors = {
-        bg = '#202328',
-        fg = '#bbc2cf',
-        yellow = '#ECBE7B',
-        cyan = '#008080',
-        darkblue = '#081633',
-        green = '#98be65',
-        orange = '#FF8800',
-        violet = '#a9a1e1',
-        magenta = '#c678dd',
-        blue = '#51afef',
-        red = '#ec5f67'
-      }
-      require('lualine').setup {
-        options = {
-          section_separators = { left = '', right = ''},
-          component_separators = { left = '', right = ''}
-        },
-        extensions = {'quickfix', 'nvim-tree', 'fugitive'},
-        sections = {
-          lualine_b = {
-            'branch',
-            'diff'
-          },
-          lualine_c = {
-            'filename',
-          },
-        }
-      }
-      require('gitsigns').setup()
-      require('hop').setup()
-      vim.api.nvim_set_keymap('n', '<leader>F', "<cmd>lua require'hop'.hint_words()<cr>", {})
-      require('numb').setup()
-
-      require'colorizer'.setup()
-
-      require("symbols-outline").setup()
-      EOF
 
       let g:nvim_tree_window_picker_exclude = {
           \   'filetype': [
@@ -275,6 +158,136 @@
       nnoremap <leader>fg <cmd>Telescope live_grep<cr>
       nnoremap <leader>fb <cmd>Telescope buffers<cr>
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+      nnoremap <leader>x <cmd>Trouble diagnostics toggle<cr>
+      nnoremap <leader>t <cmd>Trouble symbols toggle<cr>
+    '';
+    extraLuaConfig = ''
+      -- Defines a read-write directory for treesitters in nvim's cache dir
+      local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+      vim.fn.mkdir(parser_install_dir, "p")
+      require'nvim-treesitter.configs'.setup {
+        parser_install_dir = parser_install_dir,
+        ensure_installed = "",
+        highlight = {
+          enable = true,
+          disable = {},
+        },
+        rainbow = {
+          enable = true,
+          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+          max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+        }
+      }
+      require'lspconfig'.bashls.setup{}
+      require'lspconfig'.clangd.setup{}
+      require'lspconfig'.cmake.setup{}
+      require'lspconfig'.pyright.setup{}
+      require'lspconfig'.nixd.setup{}
+      require'lspconfig'.rust_analyzer.setup{}
+      require'lspconfig'.yamlls.setup{}
+
+      require'nvim-tree'.setup {
+        disable_netrw       = true,
+        hijack_netrw        = true,
+        open_on_tab         = false,
+        hijack_cursor       = false,
+        update_cwd          = false,
+        update_focused_file = {
+          enable      = false,
+          update_cwd  = false,
+          ignore_list = {}
+        },
+        system_open = {
+          cmd  = nil,
+          args = {}
+        },
+        view = {
+          width = 30,
+          side = 'left',
+        }
+      }
+
+      vim.o.completeopt = "menuone,noselect"
+      local cmp = require'cmp'
+
+      cmp.setup {
+        snippet = {
+          expand = function(args)
+            -- For `vsnip` user.
+            vim.fn["vsnip#anonymous"](args.body)
+          end,
+        },
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+          { name = 'emoji' },
+          { name = 'path' },
+          { name = 'calc' },
+          { name = 'vsnip' },
+          { name = 'orgmode' },
+          { name = 'spell' },
+          { name = 'render-markdown' },
+          { name = 'nvim_lsp_document_symbol' }
+        },
+        mapping = {
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
+        }
+      }
+
+      local colors = {
+        bg = '#202328',
+        fg = '#bbc2cf',
+        yellow = '#ECBE7B',
+        cyan = '#008080',
+        darkblue = '#081633',
+        green = '#98be65',
+        orange = '#FF8800',
+        violet = '#a9a1e1',
+        magenta = '#c678dd',
+        blue = '#51afef',
+        red = '#ec5f67'
+      }
+      require('lualine').setup {
+        options = {
+          section_separators = { left = '', right = ''},
+          component_separators = { left = '', right = ''}
+        },
+        extensions = {'quickfix', 'nvim-tree', 'fugitive', 'trouble'},
+        sections = {
+          lualine_b = { 'branch', 'diff', },
+          lualine_c = { 'filename' },
+        }
+      }
+      require('gitsigns').setup()
+      require('hop').setup()
+      vim.api.nvim_set_keymap('n', '<leader>F', "<cmd>lua require'hop'.hint_words()<cr>", {})
+      require('numb').setup()
+
+      require'colorizer'.setup()
+
+      require("symbols-outline").setup()
+
+      require('render-markdown').setup({
+        file_types = {'markdown', 'vimwiki'},
+      })
+      vim.treesitter.language.register('markdown', 'vimwiki')
+      require('trouble').setup()
+      require('lsp_signature').setup()
+      require('lsp_lines').setup()
+      vim.diagnostic.config({
+        virtual_text = false,
+      })
+      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
     '';
     plugins = with pkgs.vimPlugins; [
       monokai-pro-nvim
@@ -287,8 +300,6 @@
       vimwiki
       fzf-vim
       vim-dirdiff
-      vim-pandoc
-      vim-pandoc-syntax
       todo-txt-vim
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
@@ -300,7 +311,6 @@
       cmp-spell
       cmp-nvim-lsp
       cmp-vsnip
-      cmp-pandoc-references
       cmp-nvim-lsp-document-symbol
       vim-vsnip
       friendly-snippets
@@ -317,6 +327,27 @@
       symbols-outline-nvim
       nvim-colorizer-lua
       markdown-preview-nvim
+      render-markdown-nvim
+      trouble-nvim
+      lsp_lines-nvim
+      lsp_signature-nvim
+    ];
+    extraPackages = with pkgs; [
+      nixd
+      tree-sitter
+      clang-tools
+      ctags
+      pandoc
+      pyright
+      nodePackages.yaml-language-server
+      nodePackages.bash-language-server
+      cmake-language-server
+      rust-analyzer
+      cargo
+      rustc
+      wl-clipboard
+      ripgrep
+      fd
     ];
   };
 }
