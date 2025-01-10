@@ -377,7 +377,7 @@
           "$mod SHIFT, 8, movetoworkspace, 8"
           "$mod SHIFT, 9, movetoworkspace, 9"
           "$mod SHIFT, 0, movetoworkspace, 10"
-          "$mod, Return, exec, alacritty"
+          "$mod, Return, exec, ghostty"
           "$mod, Space, exec, rofi -show drun"
           "$mod, w, killactive,"
           "$mod, m, fullscreen,"

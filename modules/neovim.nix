@@ -83,7 +83,6 @@
       let g:vimwiki_folding = 'custom'
 
 
-      nmap <C-t> :GitFiles<CR>
 
       nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
       nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -161,6 +160,9 @@
 
       nnoremap <leader>x <cmd>Trouble diagnostics toggle<cr>
       nnoremap <leader>t <cmd>Trouble symbols toggle<cr>
+
+      nnoremap <C-t> <cmd>FzfLua files<cr>
+      nnoremap <C-r> <cmd>FzfLua live_grep<cr>
     '';
     extraLuaConfig = ''
       -- Defines a read-write directory for treesitters in nvim's cache dir
@@ -186,6 +188,8 @@
       require'lspconfig'.nixd.setup{}
       require'lspconfig'.rust_analyzer.setup{}
       require'lspconfig'.yamlls.setup{}
+      require'lspconfig'.markdown_oxide.setup{}
+
 
       require'nvim-tree'.setup {
         disable_netrw       = true,
@@ -288,6 +292,7 @@
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
+      require('fzf-lua').setup({'borderless_full'})
     '';
     plugins = with pkgs.vimPlugins; [
       monokai-pro-nvim
@@ -298,7 +303,7 @@
       delimitMate
       vim-tmux-navigator
       vimwiki
-      fzf-vim
+      fzf-lua
       vim-dirdiff
       todo-txt-vim
       nvim-treesitter.withAllGrammars
@@ -351,6 +356,7 @@
       ninja
       bear
       cmake
+      markdown-oxide
     ];
   };
 }
