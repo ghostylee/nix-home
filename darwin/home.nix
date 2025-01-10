@@ -4,13 +4,12 @@
   imports = [
     ./../modules/neovim.nix
     ./../modules/tmux.nix
+    ./../modules/shell.nix
   ];
   # packages {{{
   home.packages = with pkgs; [
     tree
     silver-searcher
-    fd
-    ripgrep
     hexyl
     minicom
     gitAndTools.diff-so-fancy
@@ -18,31 +17,19 @@
     gitRepo
     file
     nodejs
-    clang-tools
     dconf
     ctags
     libnotify
     vifm
     wget
     feh
-    htop
-    bat
     neofetch
-    ranger
     perl
     nxpmicro-mfgtools
-    pandoc
     gcc
-    pyright
-    nodePackages.yaml-language-server
-    nodePackages.bash-language-server
-    rust-analyzer
-    cargo
-    rustc
     fasd
     ookla-speedtest
     yt-dlp
-    nixd
   ];
   # }}}
   # home-manager {{{
@@ -50,84 +37,6 @@
   # }}}
   # gpg {{{
     programs.gpg.enable = true;
-  # }}}
-  # command-not-found {{{
-    programs.command-not-found.enable = true;
-  # }}}
-  # fzf {{{
-    programs.fzf = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-  # }}}
-  # lsd {{{
-    programs.lsd = {
-      enable = true;
-      enableAliases = true;
-    };
-  # }}}
-  # starship {{{
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        add_newline = true;
-      };
-    };
-  # }}}
-  # zsh {{{
-    programs.zsh = {
-      enable = true;
-      autosuggestion.enable = true;
-      enableCompletion = true;
-      syntaxHighlighting.enable = true;
-      autocd = true;
-      shellAliases = {
-        vim = "nvim";
-        vimdiff = "nvim -d";
-      };
-      defaultKeymap = "emacs";
-      dotDir = ".config/zsh";
-      history = {
-        path = ".zsh_history";
-        size = 10000;
-      };
-      sessionVariables = {
-        TERM = "xterm-256color";
-      };
-      initExtraBeforeCompInit =
-        ''
-        source /etc/profile
-        '';
-      initExtra =
-        ''
-          zstyle ':completion:*' menu select
-          autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-          zle -N up-line-or-beginning-search
-          zle -N down-line-or-beginning-search
-          bindkey "^[[A" up-line-or-beginning-search
-          bindkey "^[[B" down-line-or-beginning-search
-
-          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+l:|=* r:|=*'
-        '';
-      };
-  # }}}
-  # direnv {{{
-    programs.direnv = {
-      enable = true;
-      nix-direnv = {
-        enable = true;
-      };
-      enableZshIntegration = true;
-    };
-  # }}}
-  # bat {{{
-    programs.bat = {
-      enable = true;
-      config = {
-        theme = "ansi-dark";
-      };
-    };
   # }}}
   # git {{{
     programs.git = {
