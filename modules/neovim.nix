@@ -348,6 +348,9 @@
       wl-clipboard
       ripgrep
       fd
+      ninja
+      bear
+      cmake
     ];
   };
 }
