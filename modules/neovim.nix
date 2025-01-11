@@ -275,15 +275,13 @@
 
       require'colorizer'.setup()
 
-      require("symbols-outline").setup()
-
       require('render-markdown').setup({
         file_types = {'markdown', 'vimwiki'},
       })
       vim.treesitter.language.register('markdown', 'vimwiki')
       require('trouble').setup()
       require('lsp_signature').setup()
-      require('lsp_lines').setup()
+      require('tiny-inline-diagnostic').setup()
       vim.diagnostic.config({
         virtual_text = false,
       })
@@ -326,15 +324,13 @@
       nvim-tree-lua
       telescope-nvim
       telescope-fzf-native-nvim
-      git-blame-nvim
       hop-nvim
       numb-nvim
-      symbols-outline-nvim
       nvim-colorizer-lua
       markdown-preview-nvim
       render-markdown-nvim
       trouble-nvim
-      lsp_lines-nvim
+      tiny-inline-diagnostic-nvim
       lsp_signature-nvim
     ];
     extraPackages = with pkgs; [
