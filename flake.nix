@@ -28,14 +28,14 @@
       T7910-Song = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./t7910/configuration.nix
-          ./t7910/hardware-configuration.nix
+          ./hosts/T7910-Song/configuration.nix
+          ./hosts/T7910-Song/hardware-configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.song = import ./t7910/home.nix;
-            home-manager.users.root = import ./t7910/home.nix;
+            home-manager.users.song = import ./hosts/T7910-Song/home.nix;
+            home-manager.users.root = import ./hosts/T7910-Song/home.nix;
           }
         ];
       };

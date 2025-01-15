@@ -89,7 +89,6 @@
     thermald.enable = true;
     tlp.enable = true;
     gvfs.enable = true;
-    tailscale.enable = true;
     gnome = {
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
@@ -130,7 +129,7 @@
   };
 
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";

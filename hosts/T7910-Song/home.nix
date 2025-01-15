@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
   imports = [
-    ./../modules/ghostty.nix
-    ./../modules/neovim.nix
-    ./../modules/tmux.nix
-    ./../modules/shell.nix
+    ./../../modules/ghostty.nix
+    ./../../modules/neovim.nix
+    ./../../modules/tmux.nix
+    ./../../modules/shell.nix
   ];
   # packages {{{
   home.packages = with pkgs; [
@@ -694,11 +694,6 @@
     services.random-background = {
       enable = false;
       imageDirectory = "%h/backgrounds";
-    };
-  # }}}
-  # services.nextcloud-client {{{
-    services.nextcloud-client = {
-      enable = true;
     };
   # }}}
   # services.blueman-applet {{{
