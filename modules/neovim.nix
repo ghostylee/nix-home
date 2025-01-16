@@ -39,7 +39,8 @@
       set list
       set listchars=tab:▸\ ,trail:¬
       set foldenable
-      set foldmethod=marker
+      set foldmethod=expr
+      set foldexpr=v:lua.vim.treesitter.foldexpr()
       set foldlevel=0
       set foldlevelstart=0
       set keywordprg=":help"
