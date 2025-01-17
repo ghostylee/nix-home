@@ -44,12 +44,12 @@
       Songs-MBP = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./darwin/configuration.nix
+          ./hosts/Songs-MBP/configuration.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.song = import ./darwin/home.nix;
+            home-manager.users.song = import ./hosts/Songs-MBP/home.nix;
           }
         ];
       };

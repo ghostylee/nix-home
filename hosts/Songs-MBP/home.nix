@@ -1,12 +1,11 @@
 { pkgs, ... }:
 {
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
   imports = [
-    ./../modules/neovim.nix
-    ./../modules/tmux.nix
-    ./../modules/shell.nix
+    ./../../modules/neovim.nix
+    ./../../modules/tmux.nix
+    ./../../modules/shell.nix
   ];
-  # packages {{{
   home.packages = with pkgs; [
     tree
     silver-searcher
@@ -31,14 +30,8 @@
     ookla-speedtest
     yt-dlp
   ];
-  # }}}
-  # home-manager {{{
     programs.home-manager.enable = true;
-  # }}}
-  # gpg {{{
     programs.gpg.enable = true;
-  # }}}
-  # git {{{
     programs.git = {
       enable = true;
       userName = "Song Li";
@@ -67,8 +60,6 @@
         };
       };
     };
-  # }}}
-  # alacritty {{{
     programs.alacritty = {
       enable = true;
       settings = {
@@ -122,8 +113,6 @@
         general.live_config_reload = true;
       };
     };
-  # }}}
-  # newsboat {{{
     programs.newsboat = {
       enable = true;
       autoReload = true;
@@ -174,5 +163,4 @@
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCkAQCw5_sIZmj2IkSrNy00A"; }
       ];
     };
-  # }}}
 }
