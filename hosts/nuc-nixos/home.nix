@@ -2,10 +2,10 @@
 {
   home.stateVersion = "24.11";
   imports = [
-    ./modules/ghostty.nix
-    ./modules/neovim.nix
-    ./modules/tmux.nix
-    ./modules/shell.nix
+    ./../../modules/ghostty.nix
+    ./../../modules/neovim.nix
+    ./../../modules/tmux.nix
+    ./../../modules/shell.nix
   ];
   # packages {{{
   home.packages = with pkgs; [

@@ -14,14 +14,14 @@
       nuc-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
-          ./hardware-configuration.nix
+          ./hosts/nuc-nixos/configuration.nix
+          ./hosts/nuc-nixos/hardware-configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.song = import ./home.nix;
-            home-manager.users.root = import ./home.nix;
+            home-manager.users.song = import ./hosts/nuc-nixos/home.nix;
+            home-manager.users.root = import ./hosts/nuc-nixos/home.nix;
           }
         ];
       };

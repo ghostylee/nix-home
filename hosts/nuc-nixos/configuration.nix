@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nix = {
@@ -71,7 +71,6 @@
     ];
 
     fontconfig = {
-      localConf   = lib.fileContents ./fontconfig.xml;
       defaultFonts = {
         serif = [ "DejaVu Serif" "WenQuanYi Zen Hei" ];
         sansSerif = [ "DejaVu Sans" "WenQuanYi Zen Hei" ];
