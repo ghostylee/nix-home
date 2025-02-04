@@ -4,8 +4,7 @@
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraConfig =
-    ''
+    extraConfig = ''
       set t_Co=256
       set background=dark
       set termguicolors

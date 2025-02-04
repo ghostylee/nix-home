@@ -7,7 +7,6 @@
     ./../../modules/tmux.nix
     ./../../modules/shell.nix
   ];
-  # packages {{{
   home.packages = with pkgs; [
     tree
     silver-searcher
@@ -41,15 +40,10 @@
     ostree
     sshpass
     dfu-util
+    grimblast
   ];
-  # }}}
-  # home-manager {{{
     programs.home-manager.enable = true;
-  # }}}
-  # gpg {{{
     programs.gpg.enable = true;
-  # }}}
-  # git {{{
     programs.git = {
       enable = true;
       userName = "Song Li";
@@ -74,8 +68,6 @@
         };
       };
     };
-  # }}}
-  # alacritty {{{
     programs.alacritty = {
       enable = true;
       settings = {
@@ -129,8 +121,6 @@
         general.live_config_reload = true;
       };
     };
-  # }}}
-  # rofi {{{
     programs.rofi = {
       enable = true;
       theme = "gruvbox-dark";
@@ -143,8 +133,6 @@
           modi = "drun,run";
         };
       };
-  # }}}
-  # firefox {{{
     programs.firefox = {
       enable = true;
       profiles = {
@@ -160,8 +148,6 @@
         };
       };
     };
-  # }}}
-  # qutebrowser {{{
     programs.qutebrowser = {
       enable = true;
       keyBindings = {
@@ -192,8 +178,6 @@
           config.load_autoconfig(False)
         '';
     };
-  # }}}
-  # newsboat {{{
     programs.newsboat = {
       enable = true;
       autoReload = true;
@@ -244,8 +228,6 @@
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCkAQCw5_sIZmj2IkSrNy00A"; }
       ];
     };
-  # }}}
-  # mpv {{{
     programs.mpv = {
       enable = true;
       bindings = {
@@ -256,19 +238,13 @@
         font = "Source Sans Pro";
       };
     };
-  # }}}
-  # password-store {{{
     programs.password-store = {
       enable = true;
     };
-  # }}}
-  # browserpass {{{
     programs.browserpass = {
       enable = true;
       browsers = ["firefox"];
     };
-  # }}}
-  # waybar {{{
     programs.waybar = {
       enable = true;
       systemd.enable = true;
@@ -319,8 +295,6 @@
         }
       '';
     };
-  # }}}
-  # xsession.windowManager.bspwm {{{
     xsession = {
       enable = true;
       initExtra = " setxkbmap -option caps:ctrl_modifier ";
@@ -347,8 +321,6 @@
             ];
         };
       };
-  # }}}
-  # wayland.windowManager.hyprland {{{
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -414,8 +386,6 @@
         env= XCURSOR_SIZE, 24
       '';
     };
-  # }}}
-  # services.sxhkd {{{
     services.sxhkd = {
       enable = true;
       keybindings = {
@@ -449,8 +419,6 @@
         "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
       };
     };
-  # }}}
-  # services.polybar {{{
     services.polybar = {
       enable = false;
       config = {
@@ -632,8 +600,6 @@
       };
       script = "polybar main &";
     };
-  # }}}
-  # services.dunst {{{
     services.dunst = {
       enable =true;
       settings = {
@@ -689,29 +655,19 @@
         };
       };
     };
-  # }}}
-  # services.random-background {{{
     services.random-background = {
       enable = false;
       imageDirectory = "%h/backgrounds";
     };
-  # }}}
-  # services.blueman-applet {{{
     services.blueman-applet = {
       enable = true;
     };
-  # }}}
-  # services.pasystray {{{
     services.pasystray = {
       enable = true;
     };
-  # }}}
-  # services.network-manager-applet {{{
     services.network-manager-applet = {
       enable = true;
     };
-  # }}}
-  # gtk {{{
     gtk = {
       enable = true;
       font = {
@@ -733,8 +689,6 @@
         gtk-application-prefer-dark-theme = true;
       };
     };
-  # }}}
-  # input method{{{
     i18n.inputMethod = {
       enabled = "fcitx5";
       fcitx5.addons = with pkgs; [
@@ -743,5 +697,4 @@
         fcitx5-gtk
       ];
     };
-  #}}}
 }

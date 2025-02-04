@@ -109,6 +109,10 @@
         wayland = true;
       };
     };
+    ollama = {
+      enable = true;
+    };
+    open-webui.enable = true;
   };
 
   programs.hyprland.enable = true;

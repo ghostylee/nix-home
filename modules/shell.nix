@@ -1,5 +1,4 @@
 {
-  # zsh {{{
     programs.zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -27,22 +26,15 @@
         '';
       };
   # }}}
-  # command-not-found {{{
     programs.command-not-found.enable = true;
-  # }}}
-  # fzf {{{
     programs.fzf = {
       enable = true;
       enableZshIntegration = true;
     };
-  # }}}
-  # lsd {{{
     programs.lsd = {
       enable = true;
       enableAliases = true;
     };
-  # }}}
-  # starship {{{
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
@@ -50,44 +42,30 @@
         add_newline = true;
       };
     };
-  # }}}
-  # autojump {{{
     programs.autojump = {
       enable = true;
     };
-  # }}}
-  # direnv {{{
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
+      nix-direnv.enable = true;
     };
-  # }}}
-  # bat {{{
     programs.bat = {
       enable = true;
       config = {
         theme = "ansi-dark";
       };
     };
-  # }}}
-  # fd {{{
     programs.fd = {
       enable = true;
     };
-  # }}}
-  # ripgrep {{{
     programs.ripgrep = {
       enable = true;
     };
-  # }}}
-  # ranger {{{
-    programs.ranger = {
+    programs.yazi = {
       enable = true;
     };
-  # }}}
-  # htop {{{
     programs.htop = {
       enable = true;
     };
-  # }}}
 }
