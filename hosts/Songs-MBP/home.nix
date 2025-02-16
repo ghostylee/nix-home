@@ -38,6 +38,7 @@
       userEmail = "ghosty.lee.1984@gmail.com";
       signing = {
         signByDefault = false;
+        format = "openpgp";
         key = "B1E0152BFCF886EC";
       };
       aliases = {

@@ -9,7 +9,6 @@
     shell = pkgs.zsh;                     # Default shell
   };
 
-
   networking = {
     computerName = "Songs-MBP";             # Host name
     hostName = "Songs-MBP";
@@ -45,32 +44,24 @@
   };
 
   services = {
-    nix-daemon.enable = true;             # Auto upgrade daemon
-    yabai = {                             # Tiling window manager
+    aerospace = {
       enable = true;
-      config = {                          # Other configuration options
-        layout = "bsp";
-        auto_balance = "on";
-        split_ratio = "0.50";
-        window_border = "off";
-        window_placement = "second_child";
-        focus_follows_mouse = "autoraise";
-        mouse_follows_focus = "on";
-        top_padding = "20";
-        bottom_padding = "20";
-        left_padding = "20";
-        right_padding = "20";
-        window_gap = "10";
+      settings = {
+        gaps = {
+          inner.horizontal = 8;
+          inner.vertical = 8;
+          outer.left = 8;
+          outer.bottom = 8;
+          outer.top = 8;
+          outer.right = 8;
+        };
+        mode.main.binding = {
+          alt-h = "focus left";
+          alt-j = "focus down";
+          alt-k = "focus up";
+          alt-l = "focus right";
+        };
       };
-      extraConfig = ''
-        yabai -m rule --add title='Preferences' manage=off layer=above
-        yabai -m rule --add title='^(Opening)' manage=off layer=above
-        yabai -m rule --add title='Library' manage=off layer=above
-        yabai -m rule --add app='^System Preferences$' manage=off layer=above
-        yabai -m rule --add app='Activity Monitor' manage=off layer=above
-        yabai -m rule --add app='Finder' manage=off layer=above
-        yabai -m rule --add app='^System Information$' manage=off layer=above
-      '';                                 # Specific rules for if it is managed and on which layer
     };
     skhd = {                              # Hotkey daemon
       enable = true;
