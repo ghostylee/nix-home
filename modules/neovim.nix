@@ -8,7 +8,7 @@
       set t_Co=256
       set background=dark
       set termguicolors
-      colorscheme monokai-pro-octagon
+      colorscheme catppuccin-macchiato
       filetype plugin indent on
       syntax enable
       syntax on
@@ -293,7 +293,7 @@
       require('fzf-lua').setup({'borderless_full'})
     '';
     plugins = with pkgs.vimPlugins; [
-      monokai-pro-nvim
+      catppuccin-nvim
       indentLine
       vim-nix
       vim-fugitive

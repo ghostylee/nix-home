@@ -48,6 +48,11 @@
       enable = true;
       userName = "Song Li";
       userEmail = "song.li@resideo.com";
+      signing = {
+        signByDefault = false;
+        format = "openpgp";
+        key = "B1E0152BFCF886EC";
+      };
       diff-so-fancy = {
         enable = true;
       };
