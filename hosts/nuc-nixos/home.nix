@@ -325,6 +325,10 @@
       systemd.enable = true;
       settings = {
         input.kb_options = "caps:ctrl_modifier";
+        ecosystem = {
+          no_update_news = true;
+          no_donation_nag = true;
+        };
 
         "$mod" = "SUPER";
 
@@ -685,7 +689,8 @@
       };
     };
     i18n.inputMethod = {
-      enabled = "fcitx5";
+      enable = true;
+      type = "fcitx5";
       fcitx5.addons = with pkgs; [
         fcitx5-rime
         fcitx5-nord

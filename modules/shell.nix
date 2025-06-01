@@ -12,7 +12,7 @@
     sessionVariables = {
       TERM = "xterm-256color";
     };
-    initExtra = ''
+    initContent = ''
     zstyle ':completion:*' menu select
     autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
     zle -N up-line-or-beginning-search
@@ -32,7 +32,7 @@
   };
   programs.lsd = {
     enable = true;
-    enableAliases = true;
+    enableZshIntegration = true;
   };
   programs.starship = {
     enable = true;

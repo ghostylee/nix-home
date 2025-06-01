@@ -100,10 +100,10 @@
       xkb.layout = "us";
       desktopManager.xterm.enable = false;
       #windowManager.bspwm.enable = true;
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
+    };
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
     };
   };
 
@@ -111,7 +111,13 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = [
     pkgs.ghostty
+    pkgs.heroic
   ];
+
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
 
 
   services.flatpak.enable = true;
