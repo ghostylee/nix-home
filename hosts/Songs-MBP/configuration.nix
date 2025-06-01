@@ -86,6 +86,7 @@
   };
 
   system = {
+    primaryUser = "song";
     defaults = {
       NSGlobalDomain = {
         KeyRepeat = 1;
