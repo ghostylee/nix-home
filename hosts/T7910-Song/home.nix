@@ -153,36 +153,6 @@
         };
       };
     };
-    programs.qutebrowser = {
-      enable = true;
-      keyBindings = {
-        normal = {
-          "h" = "close";
-          ",m" = "hint links spawn mpv {hint-url}";
-        };
-      };
-      searchEngines = {
-        g = "https://www.google.com/search?hl=en&q={}";
-        w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
-        yt = "https://www.youtube.com/results?search_query={}";
-        aw = "https://wiki.archlinux.org/?search={}";
-        nw = "https://nixos.wiki/index.php?search={}";
-        np = "https://search.nixos.org/packages?query={}&from=0&size=30&sort=relevance&channel=unstable";
-        no = "https://search.nixos.org/options?query={}&from=0&size=30&sort=relevance&channel=unstable";
-        lr = "https://search.azlyrics.com/search.php?q={}";
-        tw = "https://twitter.com/search?q={}&src=typed_query";
-        rd = "https://www.reddit.com/search/?q={}";
-      };
-      extraConfig =
-        ''
-          config.set("content.private_browsing", True);
-          config.set("tabs.tabs_are_windows", True);
-          config.set("url.start_pages", [ "about:blank" ]);
-          config.set("colors.webpage.darkmode.enabled", True);
-          config.set("colors.webpage.darkmode.policy.page", "always");
-          config.load_autoconfig(False)
-        '';
-    };
     programs.newsboat = {
       enable = true;
       autoReload = true;
@@ -331,6 +301,10 @@
       systemd.enable = true;
       settings = {
         input.kb_options = "caps:ctrl_modifier";
+        ecosystem = {
+          no_update_news = true;
+          no_donation_nag = true;
+        };
 
         "$mod" = "SUPER";
 
@@ -695,7 +669,8 @@
       };
     };
     i18n.inputMethod = {
-      enabled = "fcitx5";
+      enable = true;
+      type = "fcitx5";
       fcitx5.addons = with pkgs; [
         fcitx5-rime
         fcitx5-nord

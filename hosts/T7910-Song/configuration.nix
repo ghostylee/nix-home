@@ -112,15 +112,11 @@
       xkb.layout = "us";
       desktopManager.xterm.enable = false;
       #windowManager.bspwm.enable = true;
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
     };
-    ollama = {
+    displayManager.gdm = {
       enable = true;
+      wayland = true;
     };
-    open-webui.enable = true;
   };
 
   programs.hyprland.enable = true;
