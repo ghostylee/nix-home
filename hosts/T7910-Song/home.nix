@@ -131,7 +131,6 @@
       theme = "gruvbox-dark";
       font = "hack 10";
       terminal = "${pkgs.alacritty}/bin/alacritty";
-      package = pkgs.rofi-wayland;
       extraConfig = {
           show-icons = true;
           icon-theme = "Papirus-Dark";

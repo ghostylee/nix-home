@@ -8,7 +8,6 @@
     enableCompletion = true;
     autocd = true;
     defaultKeymap = "emacs";
-    dotDir = ".config/zsh";
     sessionVariables = {
       TERM = "xterm-256color";
     };
