@@ -21,6 +21,8 @@
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-mono
       nerd-fonts.blex-mono
+      nerd-fonts.zed-mono
+      nerd-fonts.commit-mono
     ];
   };
 
@@ -83,6 +85,7 @@
       auto-optimise-store = false
       experimental-features = nix-command flakes
     '';
+    settings.download-buffer-size = 524288000;
   };
 
   system = {

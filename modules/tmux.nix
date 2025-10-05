@@ -8,12 +8,10 @@
       terminal = "xterm-256color";
       customPaneNavigationAndResize = true;
       plugins = with pkgs.tmuxPlugins; [
-        sensible
-        catppuccin
+        nord
       ];
       extraConfig = ''
         set-option -ga terminal-overrides ",xterm-256color:Tc"
-        set -g @catppuccin_flavor "macchiato"
       '';
     };
 }

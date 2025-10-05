@@ -8,7 +8,7 @@
       set t_Co=256
       set background=dark
       set termguicolors
-      colorscheme catppuccin-macchiato
+      colorscheme rose-pine-moon
       filetype plugin indent on
       syntax enable
       syntax on
@@ -181,14 +181,14 @@
           max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
         }
       }
-      require'lspconfig'.bashls.setup{}
-      require'lspconfig'.clangd.setup{}
-      require'lspconfig'.cmake.setup{}
-      require'lspconfig'.pyright.setup{}
-      require'lspconfig'.nixd.setup{}
-      require'lspconfig'.rust_analyzer.setup{}
-      require'lspconfig'.yamlls.setup{}
-      require'lspconfig'.markdown_oxide.setup{}
+      vim.lsp.enable('bashls')
+      vim.lsp.enable('clangd')
+      vim.lsp.enable('cmake')
+      vim.lsp.enable('pyright')
+      vim.lsp.enable('nixd')
+      vim.lsp.enable('rust_analyzer')
+      vim.lsp.enable('yamlls')
+      vim.lsp.enable('markdown_oxide')
 
 
       require'nvim-tree'.setup {
@@ -282,18 +282,11 @@
       require('trouble').setup()
       require('lsp_signature').setup()
       require('tiny-inline-diagnostic').setup()
-      vim.diagnostic.config({
-        virtual_text = false,
-      })
-      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
       require('fzf-lua').setup({'borderless_full'})
     '';
     plugins = with pkgs.vimPlugins; [
       catppuccin-nvim
+      rose-pine
       indentLine
       vim-nix
       vim-fugitive
@@ -346,7 +339,6 @@
       rust-analyzer
       cargo
       rustc
-      wl-clipboard
       ripgrep
       fd
       ninja
