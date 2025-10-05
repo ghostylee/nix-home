@@ -243,55 +243,40 @@
       enable = true;
       browsers = ["firefox"];
     };
-    programs.waybar = {
+    programs.hyprpanel = {
       enable = true;
-      systemd.enable = true;
       settings = {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 30;
-
-          modules-left = [ "hyprland/workspaces" ];
-          modules-center = [ "clock" ];
-          modules-right = ["tray"];
-
-          "hyprland/workspaces" = {
-            format = "{name}";
-          };
-          tray = {
-            icon-size = 21;
-            spacing = 10;
-          };
-          clock = {
-            interval = 60;
-            format = "{:%H:%M}";
-            max-length = 25;
+        layout = {
+          bar.layouts = {
+            "0" = {
+              left = [ "dashboard" "workspaces" ];
+              middle = [ "media" ];
+              right = [ "volume" "systray" "notifications" ];
+            };
           };
         };
+
+        bar.launcher.autoDetectIcon = true;
+        bar.workspaces.show_icons = true;
+
+        menus.clock = {
+          time = {
+            military = true;
+            hideSeconds = true;
+          };
+          weather.unit = "metric";
+        };
+
+        menus.dashboard.directories.enabled = false;
+        menus.dashboard.stats.enable_gpu = true;
+
+        theme.bar.transparent = true;
+
+        theme.font = {
+          name = "CommitMono Nerd Font";
+          size = "16px";
+        };
       };
-      style = ''
-        * {
-          border: none;
-          border-radius: 0px;
-          font-family: "JetBrainsMono Nerd Font";
-          font-size: 16px;
-          min-height: 0;
-          color: #ebdbb2;
-        }
-        window#waybar {
-          background: @theme_base_color;
-          border-bottom: 1px solid @unfocused_borders;
-          color: @theme_text_color;
-        }
-        #workspaces button.active {
-          background: #689d6a;
-        }
-        #clock {
-          color: #d79921;
-          font-weight: bold;
-        }
-      '';
     };
     xsession = {
       enable = true;
@@ -597,65 +582,6 @@
         };
       };
       script = "polybar main &";
-    };
-    services.dunst = {
-      enable =true;
-      settings = {
-        global = {
-          monitor = 0;
-          follow = "mouse";
-          geometry = "300x5-13+37";
-          transparency = 0;
-          frame_color = "#fb4934";
-          font = "Iosevka Term 20";
-          markup = "full";
-          plain_text = false;
-          format = "<b>%s</b>\\n%b";
-          shrink = false;
-          sort = false;
-          indicate_hidden = true;
-          alignment = "center";
-          bounce_freq = 0;
-          word_wrap = true;
-          ignore_newline = false;
-          stack_duplicates = true;
-          hide_duplicates_count = true;
-          show_indicators = false;
-          line_height = 3;
-          separator_height = 2;
-          padding = 6;
-          horizontal_padding = 6;
-          separator_color = "frame";
-          startup_notification = false;
-          icon_position = "left";
-          max_icon_size = 80;
-        };
-
-        urgency_low = {
-          frame_color = "#3B7C87";
-          foreground = "#3B7C87";
-          background = "#191311";
-          timeout = 4;
-        };
-
-        urgency_normal = {
-          frame_color = "#5B8234";
-          foreground = "#5B8234";
-          background = "#191311";
-          timeout = 6;
-        };
-
-        urgency_critical = {
-          frame_color = "#B7472A";
-          foreground = "#B7472A";
-          background = "#191311";
-          timeout = 8;
-        };
-      };
-    };
-    services.random-background = {
-      enable = false;
-      imageDirectory = "%h/backgrounds";
     };
     services.nextcloud-client = {
       enable = true;
