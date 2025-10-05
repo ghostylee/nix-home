@@ -3,8 +3,8 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "catppuccin-macchiato";
-      font-family = "CaskaydiaMono Nerd Font Mono";
+      theme = "Rose Pine Moon";
+      font-family = "CommitMono Nerd Font";
       font-size = "14";
       background-opacity = "0.9";
       window-decoration = false;
