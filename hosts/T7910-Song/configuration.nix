@@ -78,6 +78,7 @@
       nerd-fonts.fira-mono
       nerd-fonts.caskaydia-mono
       nerd-fonts.blex-mono
+      nerd-fonts.commit-mono
       joypixels
       twitter-color-emoji
       source-sans-pro

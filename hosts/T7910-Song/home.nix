@@ -219,55 +219,26 @@
       enable = true;
       browsers = ["firefox"];
     };
-    programs.waybar = {
+    programs.hyprpanel = {
       enable = true;
-      systemd.enable = true;
       settings = {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 30;
-
-          modules-left = [ "hyprland/workspaces" ];
-          modules-center = [ "clock" ];
-          modules-right = ["tray"];
-
-          "hyprland/workspaces" = {
-            format = "{name}";
-          };
-          tray = {
-            icon-size = 21;
-            spacing = 10;
-          };
-          clock = {
-            interval = 60;
-            format = "{:%H:%M}";
-            max-length = 25;
+        bar.layouts = {
+          "*" = {
+            left = [ "dashboard" "workspaces" "windowtitle" ];
+            middle = [ "clock" ];
+            right = [ "cpu" "ram" "storage" "systray" "notifications" ];
           };
         };
+        bar.launcher.autoDetectIcon = true;
+        bar.workspaces.show_numbered = true;
+
+        theme.bar.transparent = true;
+
+        theme.font = {
+          name = "CommitMono Nerd Font";
+          size = "16px";
+        };
       };
-      style = ''
-        * {
-          border: none;
-          border-radius: 0px;
-          font-family: "JetBrainsMono Nerd Font";
-          font-size: 16px;
-          min-height: 0;
-          color: #ebdbb2;
-        }
-        window#waybar {
-          background: @theme_base_color;
-          border-bottom: 1px solid @unfocused_borders;
-          color: @theme_text_color;
-        }
-        #workspaces button.active {
-          background: #689d6a;
-        }
-        #clock {
-          color: #d79921;
-          font-weight: bold;
-        }
-      '';
     };
     xsession = {
       enable = true;
@@ -396,246 +367,6 @@
         "super + alt + shift + {h,j,k,l}" = "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
         "super + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
       };
-    };
-    services.polybar = {
-      enable = false;
-      config = {
-        "colors" = {
-          bg = "#282828";
-          fg = "#ebdbb2";
-          black = "#282828";
-          darkgrey = "#928374";
-          darkred = "#cc241d";
-          red = "#fb4934";
-          darkgreen = "#98971a";
-          green = "#b8bb26";
-          darkyellow = "#d79921";
-          yellow = "#fabd2f";
-          darkblue = "#458588";
-          blue = "#83a598";
-          darkmegenta = "#b16286";
-          magenta = "#d3869b";
-          darkcyan = "#689d6a";
-          cyan = "#8ec07c";
-          lightgrey = "#a89984";
-          white = "#ebdbb2";
-          ac = "#fabd2f";
-        };
-
-        "global/wm" = {
-          margin-bottom = 0;
-          margin-top = 0;
-        };
-
-        "bar/main" = {
-          width = "100%";
-          height = 24;
-          radius = 0;
-          modules-left = "bspwm";
-          modules-center = "date";
-          modules-right = "tray";
-          font-0 = "FiraMono Nerd Font:size=12:weight=bold;3";
-          font-1 = "FiraMono Nerd Font Mono:pixelsize=24;6";
-          background = "\${colors.bg}";
-          foreground = "\${colors.fg}";
-          separator = " ";
-        };
-
-        "module/tray" = {
-          type = "internal/tray";
-          format-margin = "8px";
-          tray-spacing = "8px";
-        };
-
-        "module/date" = {
-          type = "internal/date";
-          internal = 30;
-          time = "%Y-%m-%d %H:%M";
-          label = "%time%";
-          format-background = "\${colors.bg}";
-          format-foreground = "\${colors.yellow}";
-        };
-
-        "module/bspwm" = {
-          type = "internal/bspwm";
-          ws-icon-0 ="1;1";
-          ws-icon-1 ="2;2";
-          ws-icon-2 ="3;3";
-          ws-icon-3 ="4;4";
-          ws-icon-4 ="5;5";
-          ws-icon-5 ="6;6";
-          ws-icon-6 ="7;7";
-          ws-icon-7 ="8;8";
-          ws-icon-8 ="9;9";
-          ws-icon-9 ="0;0";
-          label-monitor = "%icon%";
-          label-focused = "%icon%";
-          label-focused-font = 2;
-          label-focused-foreground = "\${colors.ac}";
-          label-focused-background = "\${colors.bg}";
-          label-occupied = "%icon%";
-          label-occupied-font = 2;
-          label-empty = "%icon%";
-          label-empty-font = 2;
-          label-empty-foreground = "\${colors.darkgrey}";
-          label-empty-background = "\${colors.bg}";
-          label-urgent = "%icon%";
-          label-urgent-font = 2;
-        };
-
-        "module/cpu" = {
-          type = "internal/cpu";
-          format = "<ramp-coreload>";
-          format-foreground = "\${colors.yellow}";
-          label = "CPU %percentage%%";
-          ramp-coreload-spacing = 1;
-          ramp-coreload-0 = "▁";
-          ramp-coreload-1 = "▂";
-          ramp-coreload-2 = "▃";
-          ramp-coreload-3 = "▄";
-          ramp-coreload-4 = "▅";
-          ramp-coreload-5 = "▆";
-          ramp-coreload-6 = "▇";
-          ramp-coreload-7 = "█";
-        };
-
-        "module/temperature" = {
-          type = "internal/temperature";
-          warn-temperature = 60;
-          format = "<ramp> <label>";
-          format-warn = "<ramp> <label-warn>";
-          label = "%temperature-c%";
-          label-warn = "%temperature-c%";
-          label-warn-foreground = "\${colors.red}";
-
-
-        };
-
-        "module/battery" = {
-          type = "internal/battery";
-          full-at = 99;
-          battery = "BAT0";
-          adapter = "ADP1";
-          time-format = "%H:%M";
-          format-charging = "<animation-charging> <label-charging>";
-          format-discharging = "<ramp-capacity> <label-discharging>";
-          format-full = "<label-full>";
-          format-full-foreground = "\${colors.green}";
-          label-charging = "%percentage%%";
-          label-discharging = "%percentage%%";
-          label-full = "";
-          ramp-capacity-0 = "";
-          ramp-capacity-1 = "";
-          ramp-capacity-2 = "";
-          ramp-capacity-3 = "";
-          ramp-capacity-4 = "";
-          ramp-capacity-5 = "";
-          ramp-capacity-6 = "";
-          ramp-capacity-7 = "";
-          ramp-capacity-8 = "";
-          ramp-capacity-9 = "";
-          animation-charging-0 = "";
-          animation-charging-1 = "";
-          animation-charging-2 = "";
-          animation-charging-3 = "";
-          animation-charging-4 = "";
-          animation-charging-5 = "";
-          animation-charging-6 = "";
-          animation-charging-framerate = 750;
-        };
-
-        "module/volume" = {
-          type = "internal/alsa";
-          format-volume = "<ramp-volume> <label-volume>";
-          format-muted = "<label-muted>";
-          label-muted = "婢";
-          label-muted-foreground = "\${colors.red}";
-          ramp-volume-0 = "奄";
-          ramp-volume-1 = "奄";
-          ramp-volume-2 = "奔";
-          ramp-volume-3 = "奔";
-          ramp-volume-4 = "墳";
-          ramp-volume-5 = "墳";
-          ramp-volume-6 = "墳";
-        };
-
-        "module/network" = {
-          type = "internal/network";
-          interface = "wlp6s0";
-          accumulate-stats = true;
-          unknown-as-up = true;
-          format-connected = "<ramp-signal> <label-connected>";
-          format-disconnected = "<label-disconnected>";
-          label-connected = "%essid% %local_ip% ﯴ %upspeed% ﯲ %downspeed%";
-          label-disconnected = "睊";
-          label-disconnected-foreground = "\${colors.red}";
-          ramp-signal-0 = "直";
-          ramp-signal-1 = "直";
-          ramp-signal-2 = "直";
-          ramp-signal-3 = "直";
-          ramp-signal-4 = "直";
-        };
-      };
-      script = "polybar main &";
-    };
-    services.dunst = {
-      enable =true;
-      settings = {
-        global = {
-          monitor = 0;
-          follow = "mouse";
-          geometry = "300x5-13+37";
-          transparency = 0;
-          frame_color = "#fb4934";
-          font = "Iosevka Term 20";
-          markup = "full";
-          plain_text = false;
-          format = "<b>%s</b>\\n%b";
-          shrink = false;
-          sort = false;
-          indicate_hidden = true;
-          alignment = "center";
-          bounce_freq = 0;
-          word_wrap = true;
-          ignore_newline = false;
-          stack_duplicates = true;
-          hide_duplicates_count = true;
-          show_indicators = false;
-          line_height = 3;
-          separator_height = 2;
-          padding = 6;
-          horizontal_padding = 6;
-          separator_color = "frame";
-          startup_notification = false;
-          icon_position = "left";
-          max_icon_size = 80;
-        };
-
-        urgency_low = {
-          frame_color = "#3B7C87";
-          foreground = "#3B7C87";
-          background = "#191311";
-          timeout = 4;
-        };
-
-        urgency_normal = {
-          frame_color = "#5B8234";
-          foreground = "#5B8234";
-          background = "#191311";
-          timeout = 6;
-        };
-
-        urgency_critical = {
-          frame_color = "#B7472A";
-          foreground = "#B7472A";
-          background = "#191311";
-          timeout = 8;
-        };
-      };
-    };
-    services.random-background = {
-      enable = false;
-      imageDirectory = "%h/backgrounds";
     };
     services.blueman-applet = {
       enable = true;
