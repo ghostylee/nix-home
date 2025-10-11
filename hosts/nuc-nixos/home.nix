@@ -28,7 +28,6 @@
     feh
     neofetch
     perl
-    nxpmicro-mfgtools
     gcc
     fasd
     obsidian
@@ -46,9 +45,11 @@
       userEmail = "ghosty.lee.1984@gmail.com";
       difftastic = {
         enable = true;
-        background = "dark";
-        color = "always";
-        display = "inline";
+        options = {
+          background = "dark";
+          color = "always";
+          display = "inline";
+        };
       };
       aliases = {
         co = "checkout";
@@ -246,28 +247,26 @@
     programs.hyprpanel = {
       enable = true;
       settings = {
-        layout = {
-          bar.layouts = {
-            "0" = {
-              left = [ "dashboard" "workspaces" ];
-              middle = [ "media" ];
-              right = [ "volume" "systray" "notifications" ];
-            };
+        bar.layouts = {
+          "*" = {
+            left = [ "dashboard" "workspaces" "windowtitle" ];
+            middle = [ "clock" ];
+            right = [ "cpu" "ram" "storage" "systray" "notifications" ];
           };
         };
 
         bar.launcher.autoDetectIcon = true;
-        bar.workspaces.show_icons = true;
+        bar.workspaces.show_numbered = true;
 
         menus.clock = {
           time = {
             military = true;
             hideSeconds = true;
           };
-          weather.unit = "metric";
+          weather.enabled = false;
         };
 
-        menus.dashboard.directories.enabled = false;
+        menus.dashboard.directories.enabled = true;
         menus.dashboard.stats.enable_gpu = true;
 
         theme.bar.transparent = true;
