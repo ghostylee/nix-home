@@ -41,28 +41,20 @@
     programs.gpg.enable = true;
     programs.git = {
       enable = true;
-      userName = "Song Li";
-      userEmail = "ghosty.lee.1984@gmail.com";
-      difftastic = {
-        enable = true;
-        options = {
-          background = "dark";
-          color = "always";
-          display = "inline";
+      settings = {
+        user.name = "Song Li";
+        user.email = "ghosty.lee.1984@gmail.com";
+        alias = {
+          co = "checkout";
+          cob = "checkout -b";
+          br = "branch";
+          st = "status";
+          log-fancy = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative";
+          log-nice = "log --graph --decorate --pretty=oneline --abbrev-commit";
+          master = "checkout master";
+          cm = "commit -m";
+          cam = "commit -a -m";
         };
-      };
-      aliases = {
-        co = "checkout";
-        cob = "checkout -b";
-        br = "branch";
-        st = "status";
-        log-fancy = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative";
-        log-nice = "log --graph --decorate --pretty=oneline --abbrev-commit";
-        master = "checkout master";
-        cm = "commit -m";
-        cam = "commit -a -m";
-      };
-      extraConfig = {
         pull = {
           ff = "only";
         };
