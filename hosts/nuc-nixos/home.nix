@@ -36,6 +36,7 @@
     libva-utils
     tradingview
     remmina
+    devenv
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;
