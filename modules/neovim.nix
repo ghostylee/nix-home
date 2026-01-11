@@ -8,7 +8,7 @@
       set t_Co=256
       set background=dark
       set termguicolors
-      colorscheme rose-pine-moon
+      colorscheme gruvbox
       filetype plugin indent on
       syntax enable
       syntax on
@@ -285,8 +285,7 @@
       require('fzf-lua').setup({'borderless_full'})
     '';
     plugins = with pkgs.vimPlugins; [
-      catppuccin-nvim
-      rose-pine
+      gruvbox-nvim
       indentLine
       vim-nix
       vim-fugitive
