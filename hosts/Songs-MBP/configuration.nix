@@ -45,36 +45,6 @@
     zsh.enable = true;
   };
 
-  services = {
-    aerospace = {
-      enable = true;
-      settings = {
-        gaps = {
-          inner.horizontal = 8;
-          inner.vertical = 8;
-          outer.left = 8;
-          outer.bottom = 8;
-          outer.top = 8;
-          outer.right = 8;
-        };
-        mode.main.binding = {
-          alt-h = "focus left";
-          alt-j = "focus down";
-          alt-k = "focus up";
-          alt-l = "focus right";
-        };
-      };
-    };
-    skhd = {                              # Hotkey daemon
-      enable = true;
-      package = pkgs.skhd;
-      skhdConfig = ''
-        # Open Terminal
-        cmd - return : ~/Applications/Home\ Manager\ Apps/Alacritty.app/Contents/MacOS/alacritty
-      '';
-    };
-  };
-
   nix = {
     package = pkgs.nixVersions.latest;
     gc = {
