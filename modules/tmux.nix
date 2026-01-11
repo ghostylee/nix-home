@@ -8,7 +8,7 @@
       terminal = "xterm-256color";
       customPaneNavigationAndResize = true;
       plugins = with pkgs.tmuxPlugins; [
-        nord
+        gruvbox
       ];
       extraConfig = ''
         set-option -ga terminal-overrides ",xterm-256color:Tc"
