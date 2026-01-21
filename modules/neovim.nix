@@ -314,6 +314,7 @@
       ninja
       bear
       cmake
+      lazygit
     ];
   };
 }

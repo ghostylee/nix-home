@@ -19,7 +19,7 @@
     ncdu
     nodejs
     dconf
-    xfce.thunar
+    thunar
     ctags
     libnotify
     brightnessctl
@@ -29,7 +29,6 @@
     feh
     neofetch
     perl
-    nxpmicro-mfgtools
     gcc
     fasd
     obsidian
@@ -46,28 +45,20 @@
     programs.gpg.enable = true;
     programs.git = {
       enable = true;
-      userName = "Song Li";
-      userEmail = "song.li@resideo.com";
-      signing = {
-        signByDefault = false;
-        format = "openpgp";
-        key = "B1E0152BFCF886EC";
-      };
-      diff-so-fancy = {
-        enable = true;
-      };
-      aliases = {
-        co = "checkout";
-        cob = "checkout -b";
-        br = "branch";
-        st = "status";
-        log-fancy = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative";
-        log-nice = "log --graph --decorate --pretty=oneline --abbrev-commit";
-        master = "checkout master";
-        cm = "commit -m";
-        cam = "commit -a -m";
-      };
-      extraConfig = {
+      settings = {
+        user.name = "Song Li";
+        user.email = "song.li@resideo.com";
+        alias = {
+          co = "checkout";
+          cob = "checkout -b";
+          br = "branch";
+          st = "status";
+          log-fancy = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit --date=relative";
+          log-nice = "log --graph --decorate --pretty=oneline --abbrev-commit";
+          master = "checkout master";
+          cm = "commit -m";
+          cam = "commit -a -m";
+        };
         pull = {
           ff = "only";
         };
