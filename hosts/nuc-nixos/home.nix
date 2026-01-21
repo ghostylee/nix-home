@@ -19,7 +19,7 @@
     ncdu
     nodejs
     dconf
-    xfce.thunar
+    thunar
     libnotify
     brightnessctl
     vifm

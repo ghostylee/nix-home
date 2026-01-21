@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.neovim = {
+ programs.neovim = {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
@@ -58,111 +58,6 @@
 
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
-
-      let g:vimwiki_list = [{'path': '~/Notes/',
-                  \ 'auto_tags': 1,
-                  \ 'auto_diary_index': 0,
-                  \ 'syntax': 'markdown',
-                  \ 'ext': '.md'}]
-      let g:vimwiki_table_mappings = 0
-      let g:vimwiki_key_mappings =
-                  \ {
-                  \   'all_maps': 1,
-                  \   'global': 1,
-                  \   'headers': 0,
-                  \   'text_objs': 0,
-                  \   'table_format': 0,
-                  \   'table_mappings': 0,
-                  \   'lists': 1,
-                  \   'links': 1,
-                  \   'html': 0,
-                  \   'mouse': 0,
-                  \ }
-      let g:vimwiki_filetypes = ['markdown']
-      let g:vimwiki_global_ext = 0
-      let g:vimwiki_folding = 'custom'
-
-
-
-      nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-      nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-      nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-      nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-      nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-
-      let g:nvim_tree_window_picker_exclude = {
-          \   'filetype': [
-          \     'packer',
-          \     'qf'
-          \   ],
-          \   'buftype': [
-          \     'terminal'
-          \   ]
-          \ }
-      " Dictionary of buffer option names mapped to a list of option values that
-      " indicates to the window picker that the buffer's window should not be
-      " selectable.
-      let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
-      let g:nvim_tree_show_icons = {
-          \ 'git': 1,
-          \ 'folders': 1,
-          \ 'files': 1,
-          \ 'folder_arrows': 1,
-          \ }
-      "If 0, do not show the icons for one of 'git' 'folder' and 'files'
-      "1 by default, notice that if 'files' is 1, it will only display
-      "if nvim-web-devicons is installed and on your runtimepath.
-      "if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
-      "but this will not work when you set indent_markers (because of UI conflict)
-
-      " default will show icon by default if no icon is provided
-      " default shows no icon by default
-      let g:nvim_tree_icons = {
-          \ 'default': '',
-          \ 'symlink': '',
-          \ 'git': {
-          \   'unstaged': "✗",
-          \   'staged': "✓",
-          \   'unmerged': "",
-          \   'renamed': "➜",
-          \   'untracked': "★",
-          \   'deleted': "",
-          \   'ignored': "◌"
-          \   },
-          \ 'folder': {
-          \   'arrow_open': "",
-          \   'arrow_closed': "",
-          \   'default': "",
-          \   'open': "",
-          \   'empty': "",
-          \   'empty_open': "",
-          \   'symlink': "",
-          \   'symlink_open': "",
-          \   },
-          \   'lsp': {
-          \     'hint': "",
-          \     'info': "",
-          \     'warning': "",
-          \     'error': "",
-          \   }
-          \ }
-
-      nnoremap <leader>e :NvimTreeToggle<CR>
-      nnoremap <leader>r :NvimTreeRefresh<CR>
-      nnoremap <leader>n :NvimTreeFindFile<CR>
-
-
-      " Find files using Telescope command-line sugar.
-      nnoremap <leader>ff <cmd>Telescope find_files<cr>
-      nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-      nnoremap <leader>fb <cmd>Telescope buffers<cr>
-      nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-      nnoremap <leader>x <cmd>Trouble diagnostics toggle<cr>
-      nnoremap <leader>t <cmd>Trouble symbols toggle<cr>
-
-      nnoremap <C-t> <cmd>FzfLua files<cr>
-      nnoremap <C-r> <cmd>FzfLua live_grep<cr>
     '';
     extraLuaConfig = ''
       -- Defines a read-write directory for treesitters in nvim's cache dir
@@ -188,61 +83,23 @@
       vim.lsp.enable('nixd')
       vim.lsp.enable('rust_analyzer')
       vim.lsp.enable('yamlls')
-      vim.lsp.enable('markdown_oxide')
 
-
-      require'nvim-tree'.setup {
-        disable_netrw       = true,
-        hijack_netrw        = true,
-        open_on_tab         = false,
-        hijack_cursor       = false,
-        update_cwd          = false,
-        update_focused_file = {
-          enable      = false,
-          update_cwd  = false,
-          ignore_list = {}
+      require('blink.cmp').setup({
+        keymap = {
+          preset = 'default',
+          ['<CR>'] = { 'accept', 'fallback' },
+          ['<Tab>'] = { 'snippet_forward', 'fallback' },
+          ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
         },
-        system_open = {
-          cmd  = nil,
-          args = {}
+        completion = { list = { selection = { preselect = false, auto_insert = true } } },
+        appearance = {
+          nerd_font_variant = 'mono'
         },
-        view = {
-          width = 30,
-          side = 'left',
-        }
-      }
-
-      vim.o.completeopt = "menuone,noselect"
-      local cmp = require'cmp'
-
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            -- For `vsnip` user.
-            vim.fn["vsnip#anonymous"](args.body)
-          end,
-        },
+        completion = { documentation = { auto_show = false } },
         sources = {
-          { name = 'nvim_lsp' },
-          { name = 'buffer' },
-          { name = 'emoji' },
-          { name = 'path' },
-          { name = 'calc' },
-          { name = 'vsnip' },
-          { name = 'orgmode' },
-          { name = 'spell' },
-          { name = 'render-markdown' },
-          { name = 'nvim_lsp_document_symbol' }
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
         },
-        mapping = {
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })
-        }
-      }
+      })
 
       local colors = {
         bg = '#202328',
@@ -275,14 +132,136 @@
 
       require'colorizer'.setup()
 
-      require('render-markdown').setup({
-        file_types = {'markdown', 'vimwiki'},
-      })
-      vim.treesitter.language.register('markdown', 'vimwiki')
+      require('render-markdown').setup()
       require('trouble').setup()
       require('lsp_signature').setup()
       require('tiny-inline-diagnostic').setup()
-      require('fzf-lua').setup({'borderless_full'})
+      require('snacks').setup({
+        explorer = { enabled = true },
+        indent = { enabled = true },
+        input = { enabled = true },
+        notifier = {
+          enabled = true,
+          timeout = 3000,
+        },
+        picker = { enabled = true },
+        quickfile = { enabled = true },
+        scope = { enabled = true },
+        scroll = { enabled = true },
+        statuscolumn = { enabled = true },
+        words = { enabled = true },
+      })
+      require('obsidian').setup({
+        legacy_commands = false,
+        workspaces = {
+          {
+            name = "nextcloud-notes",
+            path = "~/Notes",
+          },
+        },
+        templates = {
+          folder = "Templates",
+        },
+      })
+
+      keymaps = {
+        -- Top Pickers & Explorer
+        { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+        { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+        { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+        { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+        -- find
+        { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+        { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+        { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+        { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+        { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+        { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+        -- git
+        { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+        { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+        { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+        { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+        { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+        { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+        { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+        -- gh
+        { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
+        { "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+        { "<leader>gp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
+        { "<leader>gP", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
+        -- Grep
+        { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+        { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+        { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
+        { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+        -- search
+        { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+        { '<leader>s/', function() Snacks.picker.search_history() end, desc = "Search History" },
+        { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+        { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+        { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+        { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+        { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+        { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+        { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+        { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+        { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
+        { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+        { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+        { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+        { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+        { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+        { "<leader>sp", function() Snacks.picker.lazy() end, desc = "Search for Plugin Spec" },
+        { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+        { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+        { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
+        { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+        -- LSP
+        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+        { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+        { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+        { "gai", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
+        { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
+        { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+        { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+        -- Other
+        { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+        { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+        { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+        { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+        { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+        { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+        { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
+        { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
+        { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+        { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+        { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
+        { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
+        { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+        { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+      }
+      for _, map in ipairs(keymaps) do
+        local opts = { desc = map.desc }
+        if map.silent ~= nil then
+          opts.silent = map.silent
+        end
+        if map.noremap ~= nil then
+          opts.noremap = map.noremap
+        else
+          opts.noremap = true
+        end
+        if map.expr ~= nil then
+          opts.expr = map.expr
+        end
+
+        local mode = map.mode or "n"
+        vim.keymap.set(mode, map[1], map[2], opts)
+      end
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox-nvim
@@ -292,21 +271,12 @@
       nerdcommenter
       delimitMate
       vim-tmux-navigator
-      vimwiki
-      fzf-lua
+      snacks-nvim
       vim-dirdiff
       todo-txt-vim
       nvim-treesitter.withAllGrammars
       nvim-lspconfig
-      nvim-cmp
-      cmp-path
-      cmp-calc
-      cmp-buffer
-      cmp-emoji
-      cmp-spell
-      cmp-nvim-lsp
-      cmp-vsnip
-      cmp-nvim-lsp-document-symbol
+      blink-cmp
       vim-vsnip
       friendly-snippets
       lualine-nvim
@@ -324,6 +294,7 @@
       trouble-nvim
       tiny-inline-diagnostic-nvim
       lsp_signature-nvim
+      obsidian-nvim
     ];
     extraPackages = with pkgs; [
       nixd
@@ -343,7 +314,6 @@
       ninja
       bear
       cmake
-      markdown-oxide
     ];
   };
 }
