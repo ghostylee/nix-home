@@ -66,4 +66,13 @@
   programs.htop = {
     enable = true;
   };
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      disableStartupPopups = true;
+      gui = {
+        showRandomTip = false;
+      };
+    };
+  };
 }
