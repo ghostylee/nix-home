@@ -46,11 +46,6 @@
       nnoremap <silent> <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
       let mapleader=","
       let maplocalleader=","
-      nmap <silent> <leader>v :e ~/.config/nixpkgs/home.nix<CR>
-      nmap <silent> <C-h>     :wincmd h<CR>
-      nmap <silent> <C-j>     :wincmd j<CR>
-      nmap <silent> <C-k>     :wincmd k<CR>
-      nmap <silent> <C-l>     :wincmd l<CR>
 
       let g:airline_powerline_fonts = 1
       let g:airline#extensions#tabline#enabled = 1
@@ -257,6 +252,16 @@
         { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
         { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
         { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+        -- Window
+        { "<C-h>", "<cmd>wincmd h<cr>", group = "windows" },
+        { "<C-j>", "<cmd>wincmd j<cr>", group = "windows" },
+        { "<C-k>", "<cmd>wincmd k<cr>", group = "windows" },
+        { "<C-l>", "<cmd>wincmd l<cr>", group = "windows" },
+        -- Obsidian
+        { "<leader>ww", "<cmd>Obsidian new<cr><cr>", desc = "Obsidian create a quick note"},
+        { "<leader>wt", "<cmd>Obsidian new_from_template<cr>", desc = "Obsidian create a new note from template"},
+        { "<leader>wr", "<cmd>Obsidian rename<cr>", desc = "Obsidian rename current note"},
+        { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
       })
     '';
     plugins = with pkgs.vimPlugins; [
