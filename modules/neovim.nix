@@ -76,6 +76,12 @@
           max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
         }
       }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'markdown' },
+        callback = function() vim.treesitter.start() end,
+      })
+
       vim.lsp.enable('bashls')
       vim.lsp.enable('clangd')
       vim.lsp.enable('cmake')
@@ -132,7 +138,9 @@
 
       require'colorizer'.setup()
 
-      require('render-markdown').setup()
+      require('render-markdown').setup({
+        completions = { lsp = { enabled = true }},
+      })
       require('trouble').setup()
       require('lsp_signature').setup()
       require('tiny-inline-diagnostic').setup()
@@ -150,6 +158,9 @@
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
         words = { enabled = true },
+        terminal = { enabled = true },
+        toggle = { enabled = true },
+        rename = { enabled = true },
       })
       require('obsidian').setup({
         legacy_commands = false,
@@ -162,9 +173,11 @@
         templates = {
           folder = "Templates",
         },
+        ui = { enable = false },
       })
 
-      keymaps = {
+      local wk = require("which-key")
+      wk.add({
         -- Top Pickers & Explorer
         { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
         { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
@@ -244,24 +257,7 @@
         { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
         { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
         { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
-      }
-      for _, map in ipairs(keymaps) do
-        local opts = { desc = map.desc }
-        if map.silent ~= nil then
-          opts.silent = map.silent
-        end
-        if map.noremap ~= nil then
-          opts.noremap = map.noremap
-        else
-          opts.noremap = true
-        end
-        if map.expr ~= nil then
-          opts.expr = map.expr
-        end
-
-        local mode = map.mode or "n"
-        vim.keymap.set(mode, map[1], map[2], opts)
-      end
+      })
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox-nvim
@@ -295,6 +291,7 @@
       tiny-inline-diagnostic-nvim
       lsp_signature-nvim
       obsidian-nvim
+      which-key-nvim
     ];
     extraPackages = with pkgs; [
       nixd
