@@ -89,8 +89,8 @@
         keymap = {
           preset = 'default',
           ['<CR>'] = { 'accept', 'fallback' },
-          ['<Tab>'] = { 'snippet_forward', 'fallback' },
-          ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+          ['<Tab>'] = { 'select_next', 'fallback' },
+          ['<S-Tab>'] = { 'select_prev', 'fallback' },
         },
         completion = { list = { selection = { preselect = false, auto_insert = true } } },
         appearance = {
