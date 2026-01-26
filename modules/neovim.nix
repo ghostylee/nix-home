@@ -169,6 +169,7 @@
           folder = "Templates",
         },
         ui = { enable = false },
+        frontmatter = { enabled = false },
         note_id_func = function(title)
           if title ~= nil then
             return title:gsub(" ", " "):gsub("[\n\r]", "")
