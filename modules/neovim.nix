@@ -169,6 +169,12 @@
           folder = "Templates",
         },
         ui = { enable = false },
+        note_id_func = function(title)
+          if title ~= nil then
+            return title:gsub(" ", " "):gsub("[\n\r]", "")
+          end
+            return tostring(os.date("%Y-%m-%d-%H%M%S"))
+        end,
       })
 
       local wk = require("which-key")
@@ -258,8 +264,8 @@
         { "<C-k>", "<cmd>wincmd k<cr>", group = "windows" },
         { "<C-l>", "<cmd>wincmd l<cr>", group = "windows" },
         -- Obsidian
-        { "<leader>ww", "<cmd>Obsidian new<cr><cr>", desc = "Obsidian create a quick note"},
-        { "<leader>wt", "<cmd>Obsidian new_from_template<cr>", desc = "Obsidian create a new note from template"},
+        { "<leader>ww", "<cmd>Obsidian new_from_template note-template.md<cr>", desc = "Obsidian create a quick note"},
+        { "<leader>wt", "<cmd>Obsidian template<cr>", desc = "Obsidian insert a template"},
         { "<leader>wr", "<cmd>Obsidian rename<cr>", desc = "Obsidian rename current note"},
         { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
       })
