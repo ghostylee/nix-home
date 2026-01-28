@@ -1,4 +1,18 @@
 { pkgs, ... }:
+let
+  markdown-plus-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "markdown-plus.nvim";
+    version = "v1.10.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "YousefHadder";
+      repo = "markdown-plus.nvim";
+      rev = "9ae1b048f939731ea1c5c04a9e1c7ee97205236c";
+      hash = "sha256-f4COT377GsQo0QUdzbv9D5V0auYrGSW8LtSdviGipXQ=";
+    };
+    meta.homepage = "https://github.com/YousefHadder/markdown-plus.nvim";
+    meta.hydraPlatforms = [ ];
+  };
+in
 {
  programs.neovim = {
     enable = true;
@@ -270,6 +284,7 @@
         { "<leader>wr", "<cmd>Obsidian rename<cr>", desc = "Obsidian rename current note"},
         { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
       })
+      require("markdown-plus").setup()
     '';
     plugins = with pkgs.vimPlugins; [
       gruvbox-nvim
@@ -304,6 +319,7 @@
       lsp_signature-nvim
       obsidian-nvim
       which-key-nvim
+      markdown-plus-nvim
     ];
     extraPackages = with pkgs; [
       nixd
