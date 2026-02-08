@@ -68,7 +68,7 @@ in
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
     '';
-    extraLuaConfig = ''
+      initLua = ''
       -- Defines a read-write directory for treesitters in nvim's cache dir
       local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
       vim.fn.mkdir(parser_install_dir, "p")

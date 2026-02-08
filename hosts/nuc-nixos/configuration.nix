@@ -127,7 +127,7 @@
   users.users.song = {
      isNormalUser = true;
      uid = 1000;
-     extraGroups = [ "wheel" "docker" "audio" ];
+     extraGroups = [ "wheel" "docker" "audio" "dialout" ];
   };
 
   system.stateVersion = "24.11";
