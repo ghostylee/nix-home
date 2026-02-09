@@ -37,9 +37,11 @@
     tradingview
     remmina
     devenv
+    (llm.withPlugins { llm-perplexity = true; llm-gemini = true;})
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;
+    programs.opencode.enable = true;
     programs.git = {
       enable = true;
       settings = {
