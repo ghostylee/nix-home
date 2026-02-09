@@ -54,8 +54,8 @@ in
       set foldenable
       set foldmethod=expr
       set foldexpr=v:lua.vim.treesitter.foldexpr()
-      set foldlevel=0
-      set foldlevelstart=0
+      set foldlevel=3
+      set foldlevelstart=3
       set keywordprg=":help"
       nnoremap <silent> <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
       let mapleader=","
@@ -68,7 +68,7 @@ in
       let g:indentLine_setConceal = 0
       let g:indentLine_concealcursor = ""
     '';
-      initLua = ''
+    initLua = ''
       -- Defines a read-write directory for treesitters in nvim's cache dir
       local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
       vim.fn.mkdir(parser_install_dir, "p")
@@ -155,14 +155,11 @@ in
       require('tiny-inline-diagnostic').setup()
       require('snacks').setup({
         explorer = { enabled = true },
-        indent = { enabled = true },
+        indent = { enabled = false },
         input = { enabled = true },
-        notifier = {
-          enabled = true,
-          timeout = 3000,
-        },
+        notifier = { enabled = true, timeout = 3000, },
         picker = { enabled = true },
-        quickfile = { enabled = true },
+        quickfile = { enabled = false },
         scope = { enabled = true },
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
@@ -285,7 +282,16 @@ in
         { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
       })
       require("markdown-plus").setup()
-    '';
+      require("conform").setup({
+        formatters_by_ft = {
+          markdown = { "prettier" },
+          cpp = { "clang-format" },
+          c = { "clang-format" },
+          dockerfile = { "dockerfmt" }
+        }
+      })
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+      '';
     plugins = with pkgs.vimPlugins; [
       gruvbox-nvim
       indentLine
@@ -320,6 +326,8 @@ in
       obsidian-nvim
       which-key-nvim
       markdown-plus-nvim
+      conform-nvim
+      opencode-nvim
     ];
     extraPackages = with pkgs; [
       nixd
@@ -340,6 +348,9 @@ in
       bear
       cmake
       lazygit
+      prettier
+      clang-tools
+      dockerfmt
     ];
   };
 }
