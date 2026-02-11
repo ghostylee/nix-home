@@ -640,6 +640,7 @@
       systemd.enable = true;
       settings = {
         input.kb_options = "caps:ctrl_modifier";
+        input.sensitivity = "0.2";
         ecosystem = {
           no_update_news = true;
           no_donation_nag = true;
