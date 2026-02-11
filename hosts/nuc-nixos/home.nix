@@ -38,6 +38,7 @@
     remmina
     devenv
     (llm.withPlugins { llm-perplexity = true; llm-gemini = true;})
+    glow
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;
