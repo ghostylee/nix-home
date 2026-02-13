@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
   imports = [
     ./../../modules/neovim.nix
     ./../../modules/tmux.nix
@@ -27,6 +27,7 @@
     fasd
     ookla-speedtest
     yt-dlp
+    tailscale
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;
