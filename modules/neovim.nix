@@ -137,7 +137,7 @@ in
         extensions = {'quickfix', 'nvim-tree', 'fugitive', 'trouble'},
         sections = {
           lualine_b = { 'branch', 'diff', },
-          lualine_c = { 'filename' },
+          lualine_c = { 'filename', require("opencode").statusline },
         }
       }
       require('gitsigns').setup()
@@ -264,7 +264,7 @@ in
         { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
         { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
         { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
-        { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+        { "<leader>gg", function() Snacks.lazygit() end, desc = "Lxzygit" },
         { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
         { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
         { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
@@ -280,6 +280,13 @@ in
         { "<leader>wt", "<cmd>Obsidian template<cr>", desc = "Obsidian insert a template"},
         { "<leader>wr", "<cmd>Obsidian rename<cr>", desc = "Obsidian rename current note"},
         { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
+        -- Opencode
+        { "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, desc = "Ask opencode…" },
+        { "<C-x>", function() require("opencode").select() end, desc = "Execute opencode action…" },
+        { "<C-.>", function() require("opencode").toggle() end, desc = "Toggle opencode" },
+        { "go",    function() return require("opencode").operator("@this ") end, desc = "Add range to opencode" },
+        { "goo",   function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode" },
+
       })
       require("markdown-plus").setup()
       require("conform").setup({
