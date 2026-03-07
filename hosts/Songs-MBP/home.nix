@@ -21,7 +21,7 @@
     vifm
     wget
     feh
-    neofetch
+    fastfetch
     perl
     gcc
     fasd
