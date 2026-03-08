@@ -39,6 +39,7 @@
     devenv
     (llm.withPlugins { llm-perplexity = true; llm-gemini = true;})
     glow
+    d2
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;

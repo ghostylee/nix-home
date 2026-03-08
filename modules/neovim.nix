@@ -335,6 +335,7 @@ in
       markdown-plus-nvim
       conform-nvim
       opencode-nvim
+      d2-vim
     ];
     extraPackages = with pkgs; [
       nixd
