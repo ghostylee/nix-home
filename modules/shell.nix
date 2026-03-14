@@ -75,4 +75,21 @@
       };
     };
   };
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        email = "ghosty.lee.1984@gmail.com";
+        name = "Song Li";
+      };
+      ui = {
+        default-command = "log";
+      };
+    };
+  };
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    enableJujutsuIntegration = true;
+  };
 }
