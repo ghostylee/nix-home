@@ -40,6 +40,8 @@
     (llm.withPlugins { llm-perplexity = true; llm-gemini = true;})
     glow
     d2
+    dua
+    duf
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;

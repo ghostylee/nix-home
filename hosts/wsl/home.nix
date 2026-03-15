@@ -34,6 +34,8 @@
     libva-utils
     devenv
     tio
+    dua
+    duf
   ];
     programs.home-manager.enable = true;
     programs.git = {

@@ -28,6 +28,8 @@
     ookla-speedtest
     yt-dlp
     tailscale
+    dua
+    duf
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;

@@ -41,6 +41,8 @@
     dfu-util
     grimblast
     tio
+    dua
+    duf
   ];
     programs.home-manager.enable = true;
     programs.opencode.enable = true;
