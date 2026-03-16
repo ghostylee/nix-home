@@ -1,11 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
   imports = [
     ./../../modules/ghostty.nix
     ./../../modules/neovim.nix
     ./../../modules/tmux.nix
     ./../../modules/shell.nix
+    inputs.noctalia.homeModules.default
   ];
   home.packages = with pkgs; [
     tree
@@ -216,7 +217,7 @@
       browsers = ["firefox"];
     };
     programs.hyprpanel = {
-      enable = true;
+      enable = false;
       settings = {
         bar.layouts = {
           "*" = {
@@ -612,41 +613,86 @@
         };
       };
     };
-    xsession = {
+    programs.noctalia-shell = {
       enable = true;
-      initExtra = " setxkbmap -option caps:ctrl_modifier ";
-      windowManager.bspwm = {
-          enable = true;
-          monitors = {
-            "HDMI-5" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" ];
-          };
-          settings = {
-            border_width = 2;
-            window_gap = 12;
-            split_ratio = 0.52;
-            borderless_monocle = true;
-            gapless_monocle = true;
-          };
-          rules = {
-            "Firefox" = {
-              desktop = "^2";
-              follow = true;
-            };
-          };
-          startupPrograms = [
-            "systemctl restart --user polybar"
+      settings = {
+        # configure noctalia here
+        bar = {
+          barType = "floating";
+          density = "comfortable";
+          position = "top";
+          showCapsule = true;
+          widgets = {
+            left = [
+              {
+                id = "ControlCenter";
+                useDistroLogo = true;
+              }
+              {
+                hideUnoccupied = false;
+                id = "Workspace";
+                labelMode = "name";
+                showLabelsOnlyWhenOccupied = false;
+
+              }
             ];
+            center = [
+              {
+                formatHorizontal = "HH:mm";
+                formatVertical = "HH mm";
+                id = "Clock";
+                useMonospacedFont = true;
+                usePrimaryColor = true;
+              }
+            ];
+            right = [
+              {
+                id = "Network";
+              }
+              {
+                id = "SystemMonitor";
+              }
+            ];
+          };
+        };
+        colorSchemes.predefinedScheme = "Gruvbox";
+        location = {
+          monthBeforeDay = true;
+          name = "New York, US";
         };
       };
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
+      systemd.extraCommands = [ "noctalia-shell" ];
       settings = {
         input.kb_options = "caps:ctrl_modifier";
         input.sensitivity = "0.2";
         ecosystem = {
           no_update_news = true;
           no_donation_nag = true;
+        };
+
+        general = {
+          gaps_in = 5;
+          gaps_out = 10;
+        };
+        decoration = {
+          rounding = 20;
+          rounding_power = 2;
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(1a1a1aee)";
+          };
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 2;
+            vibrancy = 0.1696;
+          };
         };
 
         "$mod" = "SUPER";
@@ -673,7 +719,7 @@
           "$mod SHIFT, 9, movetoworkspace, 9"
           "$mod SHIFT, 0, movetoworkspace, 10"
           "$mod, Return, exec, ghostty"
-          "$mod, Space, exec, rofi -show drun"
+          "$mod, Space, exec, noctalia-shell ipc call launcher toggle"
           "$mod, w, killactive,"
           "$mod, m, fullscreen,"
           "$mod, f, togglefloating,"

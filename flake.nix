@@ -45,6 +45,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.song = import ./hosts/T7910-Song/home.nix;
             home-manager.users.root = import ./hosts/T7910-Song/home.nix;
           }
