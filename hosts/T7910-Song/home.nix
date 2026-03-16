@@ -43,6 +43,7 @@
     tio
     dua
     duf
+    just
   ];
     programs.home-manager.enable = true;
     programs.opencode.enable = true;
