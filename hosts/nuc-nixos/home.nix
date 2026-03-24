@@ -260,7 +260,8 @@
             ];
             right = [
               {
-                id = "Tailscale";
+                id = "plugin:tailscale";
+                defaultSettings.terminalCommand = "ghostty";
               }
               {
                 id = "Network";
