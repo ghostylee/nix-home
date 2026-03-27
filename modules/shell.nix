@@ -39,6 +39,7 @@
     settings = {
       add_newline = true;
     };
+    presets = [ "pure-preset" ];
   };
   programs.zoxide = {
     enable = true;
