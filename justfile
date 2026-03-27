@@ -6,9 +6,9 @@ update-flake:
 
 [macos]
 rebuild:
-  sudo darwin-rebuild switch --flake .
+    sudo darwin-rebuild switch --flake .
 
 [linux]
 rebuild:
-  sudo nixos-rebuild switch --flake .
+    @if command -v nixos-rebuild >/dev/null 2>&1; then sudo nixos-rebuild switch --flake . ; else home-manager switch ;fi
 
