@@ -344,8 +344,8 @@ in
       ctags
       pandoc
       pyright
-      nodePackages.yaml-language-server
-      nodePackages.bash-language-server
+      yaml-language-server
+      bash-language-server
       cmake-language-server
       rust-analyzer
       cargo
