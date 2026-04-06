@@ -72,25 +72,6 @@ in
       nerdcommenter
       delimitMate
       vim-tmux-navigator
-      { plugin = snacks-nvim; type = "lua";
-        config = ''
-          require('snacks').setup({
-          explorer = { enabled = true },
-          indent = { enabled = true },
-          input = { enabled = true },
-          notifier = { enabled = true, timeout = 3000, },
-          picker = { enabled = true },
-          quickfile = { enabled = false },
-          scope = { enabled = true },
-          scroll = { enabled = true },
-          statuscolumn = { enabled = true },
-          words = { enabled = true },
-          terminal = { enabled = true },
-          toggle = { enabled = true },
-          rename = { enabled = true },
-          })
-        '';
-      }
       vim-dirdiff
       todo-txt-vim
       { plugin = nvim-treesitter.withAllGrammars; type = "lua";
@@ -100,7 +81,30 @@ in
           })
         '';
       }
-      { plugin = nvim-treesitter-textobjects; type = "lua"; config = "require('nvim-treesitter-textobjects').setup()"; }
+      { plugin = nvim-treesitter-textobjects; type = "lua";
+        config = ''
+          require("nvim-treesitter-textobjects").setup({ move = { set_jumps = true, }, })
+          local move = require("nvim-treesitter-textobjects.move")
+          require("which-key").add({
+           { "]", group = "Treesitter next" },
+           { "[", group = "Treesitter previous" },
+           { "]m", function() move.goto_next_start("@function.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Next function start" },
+           { "]]", function() move.goto_next_start("@class.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Next class start" },
+           { "]o", function() move.goto_next_start({ "@loop.inner", "@loop.outer" }, "textobjects") end, mode = { "n", "x", "o" }, desc = "Next loop start" },
+           { "]s", function() move.goto_next_start("@local.scope", "locals") end, mode = { "n", "x", "o" }, desc = "Next local scope start" },
+           { "]z", function() move.goto_next_start("@fold", "folds") end, mode = { "n", "x", "o" }, desc = "Next fold start" },
+           { "]M", function() move.goto_next_end("@function.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Next function end" },
+           { "][", function() move.goto_next_end("@class.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Next class end" },
+
+           { "[m", function() move.goto_previous_start("@function.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Previous function start" },
+           { "[[", function() move.goto_previous_start("@class.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Previous class start" },
+           { "[M", function() move.goto_previous_end("@function.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Previous function end" },
+           { "[]", function() move.goto_previous_end("@class.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Previous class end" },
+
+           { "]d", function() move.goto_next("@conditional.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Next conditional" },
+           { "[d", function() move.goto_previous("@conditional.outer", "textobjects") end, mode = { "n", "x", "o" }, desc = "Previous conditional" },          })
+        '';
+      }
       { plugin = nvim-lspconfig; type = "lua";
          config = ''
            vim.lsp.enable('bashls')
@@ -138,8 +142,8 @@ in
         config = ''
           require('lualine').setup {
             options = {
-              section_separators = { left = '', right = ''},
-              component_separators = { left = '', right = ''}
+              section_separators = { left = "", right = "" },
+              component_separators = { left = '|', right = '|' },
             },
             extensions = {'quickfix', 'nvim-tree', 'fugitive', 'trouble'},
             sections = {
@@ -174,41 +178,42 @@ in
       { plugin = trouble-nvim; type = "lua"; config = "require('trouble').setup()"; }
       { plugin = tiny-inline-diagnostic-nvim; type = "lua"; config = "require('tiny-inline-diagnostic').setup()"; }
       { plugin = lsp_signature-nvim; type = "lua"; config = "require('lsp_signature').setup()"; }
-      { plugin = obsidian-nvim; type = "lua";
-        config = ''
-          require('obsidian').setup({
-            legacy_commands = false,
-            workspaces = {
-            {
-              name = "nextcloud-notes",
-              path = "~/Notes",
-            },
-            },
-            templates = {
-            folder = "Templates",
-            },
-            ui = { enable = false },
-            frontmatter = { enabled = false },
-            note_id_func = function(title)
-            if title ~= nil then
-              return title:gsub(" ", " "):gsub("[\n\r]", "")
-            end
-              return tostring(os.date("%Y-%m-%d-%H%M%S"))
-            end,
-          })
-          '';
-      }
       { plugin = which-key-nvim; type = "lua";
         config = ''
-          local wk = require("which-key")
-          wk.add({
+          require("which-key").add({
+          -- Window
+          { "<C-h>", "<cmd>wincmd h<cr>", group = "windows" },
+          { "<C-j>", "<cmd>wincmd j<cr>", group = "windows" },
+          { "<C-k>", "<cmd>wincmd k<cr>", group = "windows" },
+          { "<C-l>", "<cmd>wincmd l<cr>", group = "windows" },
+          })
+        '';
+      }
+      { plugin = snacks-nvim; type = "lua";
+        config = ''
+          require('snacks').setup({
+            explorer = { enabled = true },
+            indent = { enabled = true },
+            input = { enabled = true },
+            notifier = { enabled = true, timeout = 3000, },
+            picker = { enabled = true },
+            quickfile = { enabled = false },
+            scope = { enabled = true },
+            scroll = { enabled = true },
+            statuscolumn = { enabled = true },
+            words = { enabled = true },
+            terminal = { enabled = true },
+            toggle = { enabled = true },
+            rename = { enabled = true },
+          })
+          require("which-key").add({
           -- Top Pickers & Explorer
           { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
           { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
           { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
           { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
           { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
-          { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+          -- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
           -- find
           { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
           { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -281,24 +286,38 @@ in
           { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
           { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
           { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
-          -- Window
-          { "<C-h>", "<cmd>wincmd h<cr>", group = "windows" },
-          { "<C-j>", "<cmd>wincmd j<cr>", group = "windows" },
-          { "<C-k>", "<cmd>wincmd k<cr>", group = "windows" },
-          { "<C-l>", "<cmd>wincmd l<cr>", group = "windows" },
-          -- Obsidian
+          })
+        '';
+      }
+      { plugin = obsidian-nvim; type = "lua";
+        config = ''
+          require('obsidian').setup({
+            legacy_commands = false,
+            workspaces = {
+            {
+              name = "nextcloud-notes",
+              path = "~/Notes",
+            },
+            },
+            templates = {
+            folder = "Templates",
+            },
+            ui = { enable = false },
+            frontmatter = { enabled = false },
+            note_id_func = function(title)
+            if title ~= nil then
+              return title:gsub(" ", " "):gsub("[\n\r]", "")
+            end
+              return tostring(os.date("%Y-%m-%d-%H%M%S"))
+            end,
+          })
+          require("which-key").add({
           { "<leader>ww", "<cmd>Obsidian new_from_template note-template.md<cr>", desc = "Obsidian create a quick note"},
           { "<leader>wt", "<cmd>Obsidian template<cr>", desc = "Obsidian insert a template"},
           { "<leader>wr", "<cmd>Obsidian rename<cr>", desc = "Obsidian rename current note"},
           { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
-          -- Opencode
-          { "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, desc = "Ask opencode…" },
-          { "<C-x>", function() require("opencode").select() end, desc = "Execute opencode action…" },
-          { "<C-.>", function() require("opencode").toggle() end, desc = "Toggle opencode" },
-          { "go",    function() return require("opencode").operator("@this ") end, desc = "Add range to opencode" },
-          { "goo",   function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode" },
           })
-        '';
+          '';
       }
       { plugin = markdown-plus-nvim; type = "lua"; config = "require('markdown-plus').setup()"; }
       { plugin = conform-nvim; type = "lua";
@@ -314,8 +333,19 @@ in
           vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
         '';
       }
-      opencode-nvim
+      { plugin = opencode-nvim; type = "lua";
+        config = ''
+          require("which-key").add({
+          { "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, desc = "Ask opencode…" },
+          { "<C-x>", function() require("opencode").select() end, desc = "Execute opencode action…" },
+          { "<C-.>", function() require("opencode").toggle() end, desc = "Toggle opencode" },
+          { "go",    function() return require("opencode").operator("@this ") end, desc = "Add range to opencode" },
+          { "goo",   function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode" },
+          })
+        '';
+      }
       d2-vim
+      { plugin = yazi-nvim; type = "lua"; config = ''require("which-key").add({{ "<leader>e", function() require("yazi").yazi() end, desc = "Yazi" }})'';}
     ];
     extraPackages = with pkgs; [
       nixd

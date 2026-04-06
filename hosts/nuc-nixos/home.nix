@@ -269,6 +269,11 @@
               {
                 id = "Bluetooth";
               }
+              {
+                id = "Tray";
+                colorizeIcons = true;
+                drawerEnabled = true;
+              }
             ];
           };
         };
