@@ -100,6 +100,7 @@ in
           })
         '';
       }
+      { plugin = nvim-treesitter-textobjects; type = "lua"; config = "require('nvim-treesitter-textobjects').setup()"; }
       { plugin = nvim-lspconfig; type = "lua";
          config = ''
            vim.lsp.enable('bashls')
@@ -143,7 +144,7 @@ in
             extensions = {'quickfix', 'nvim-tree', 'fugitive', 'trouble'},
             sections = {
               lualine_b = { 'branch', 'diff', },
-              lualine_c = { 'filename', require("opencode").statusline },
+              lualine_c = { 'filename', 'lsp_status', 'diagnostics' },
             }
           }
         '';
