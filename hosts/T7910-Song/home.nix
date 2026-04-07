@@ -652,6 +652,9 @@
               {
                 id = "SystemMonitor";
               }
+              {
+                id = "Tray";
+              }
             ];
           };
         };

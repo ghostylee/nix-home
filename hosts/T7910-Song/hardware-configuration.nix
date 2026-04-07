@@ -41,7 +41,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.powerManagement.enable = false;
   hardware.nvidia.powerManagement.finegrained = false;
