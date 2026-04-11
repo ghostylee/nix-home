@@ -6,6 +6,7 @@
     ./../../modules/neovim.nix
     ./../../modules/tmux.nix
     ./../../modules/shell.nix
+    ./../../modules/agent.nix
     inputs.noctalia.homeModules.default
   ];
   home.packages = with pkgs; [
@@ -47,7 +48,6 @@
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;
-    programs.opencode.enable = true;
     programs.git = {
       enable = true;
       settings = {

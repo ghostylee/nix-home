@@ -346,6 +346,7 @@ in
       }
       d2-vim
       { plugin = yazi-nvim; type = "lua"; config = ''require("which-key").add({{ "<leader>y", function() require("yazi").yazi() end, desc = "Yazi" }})'';}
+      { plugin = pi-nvim; type = "lua"; config = "require('pi').setup()"; }
     ];
     extraPackages = with pkgs; [
       nixd
