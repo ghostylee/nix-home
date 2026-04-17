@@ -7,6 +7,7 @@
       mouse = true;
       terminal = "xterm-256color";
       customPaneNavigationAndResize = true;
+      escapeTime = 0;
       plugins = with pkgs.tmuxPlugins; [
         gruvbox
       ];
