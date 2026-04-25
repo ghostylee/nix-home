@@ -168,7 +168,7 @@ in
       }
       { plugin = numb-nvim; type = "lua"; config = "require('numb').setup()";}
       markdown-preview-nvim
-      markview-nvim
+      render-markdown-nvim
       { plugin = trouble-nvim; type = "lua"; config = "require('trouble').setup()"; }
       { plugin = tiny-inline-diagnostic-nvim; type = "lua"; config = "require('tiny-inline-diagnostic').setup()"; }
       { plugin = lsp_signature-nvim; type = "lua"; config = "require('lsp_signature').setup()"; }
