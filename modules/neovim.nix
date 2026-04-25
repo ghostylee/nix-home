@@ -6,7 +6,7 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "YousefHadder";
       repo = "markdown-plus.nvim";
-      rev = "9ae1b048f939731ea1c5c04a9e1c7ee97205236c";
+      rev = "36ef546e086708eacc09f3badbdee517fc3972f7";
       hash = "sha256-f4COT377GsQo0QUdzbv9D5V0auYrGSW8LtSdviGipXQ=";
     };
     meta.homepage = "https://github.com/YousefHadder/markdown-plus.nvim";
@@ -168,13 +168,7 @@ in
       { plugin = numb-nvim; type = "lua"; config = "require('numb').setup()";}
       { plugin = nvim-colorizer-lua; type = "lua"; config = "require('colorizer').setup()";}
       markdown-preview-nvim
-      { plugin = render-markdown-nvim; type = "lua";
-        config = ''
-          require('render-markdown').setup({
-            completions = { lsp = { enabled = true }},
-          })
-        '';
-      }
+      markview-nvim
       { plugin = trouble-nvim; type = "lua"; config = "require('trouble').setup()"; }
       { plugin = tiny-inline-diagnostic-nvim; type = "lua"; config = "require('tiny-inline-diagnostic').setup()"; }
       { plugin = lsp_signature-nvim; type = "lua"; config = "require('lsp_signature').setup()"; }
@@ -313,7 +307,7 @@ in
           })
           require("which-key").add({
           { "<leader>ww", "<cmd>Obsidian new_from_template note-template.md<cr>", desc = "Obsidian create a quick note"},
-          { "<leader>wt", "<cmd>Obsidian template<cr>", desc = "Obsidian insert a template"},
+          { "<leader>wt", "<cmd>Obsidian today<cr>", desc = "Obsidian today's note"},
           { "<leader>wr", "<cmd>Obsidian rename<cr>", desc = "Obsidian rename current note"},
           { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
           })

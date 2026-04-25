@@ -13,6 +13,8 @@
       ];
       extraConfig = ''
         set-option -ga terminal-overrides ",xterm-256color:Tc"
+        set -g extended-keys on
+        set -g extended-keys-format csi-u
       '';
     };
 }
