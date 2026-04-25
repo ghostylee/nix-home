@@ -114,6 +114,7 @@ in
            vim.lsp.enable('nixd')
            vim.lsp.enable('rust_analyzer')
            vim.lsp.enable('yamlls')
+           vim.lsp.enable('codebook')
         '';
       }
       { plugin = blink-cmp; type = "lua";
@@ -166,7 +167,6 @@ in
           '';
       }
       { plugin = numb-nvim; type = "lua"; config = "require('numb').setup()";}
-      { plugin = nvim-colorizer-lua; type = "lua"; config = "require('colorizer').setup()";}
       markdown-preview-nvim
       markview-nvim
       { plugin = trouble-nvim; type = "lua"; config = "require('trouble').setup()"; }
@@ -364,6 +364,7 @@ in
       prettier
       clang-tools
       dockerfmt
+      codebook
     ];
   };
 }
