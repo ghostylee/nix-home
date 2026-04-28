@@ -7,7 +7,7 @@ let
       owner = "YousefHadder";
       repo = "markdown-plus.nvim";
       rev = "36ef546e086708eacc09f3badbdee517fc3972f7";
-      hash = "sha256-f4COT377GsQo0QUdzbv9D5V0auYrGSW8LtSdviGipXQ=";
+      hash = "sha256-13DCxnQ62opW5A1fFl3CoeS2o4KSeXkCAHW4h+bbYc4=";
     };
     meta.homepage = "https://github.com/YousefHadder/markdown-plus.nvim";
     meta.hydraPlatforms = [ ];
