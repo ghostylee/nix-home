@@ -45,6 +45,7 @@
     dua
     duf
     just
+    hyprshot
   ];
     programs.home-manager.enable = true;
     programs.opencode.enable = true;
@@ -730,6 +731,7 @@
           "$mod, l, movefocus, r"
           "$mod, k, movefocus, u"
           "$mod, j, movefocus, d"
+          "$mod SHIFT, s, exec, hyprshot -m region"
         ];
 
         bindm = [
