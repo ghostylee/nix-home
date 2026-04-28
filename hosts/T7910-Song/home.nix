@@ -6,6 +6,7 @@
     ./../../modules/neovim.nix
     ./../../modules/tmux.nix
     ./../../modules/shell.nix
+    ./../../modules/agent.nix
     inputs.noctalia.homeModules.default
   ];
   home.packages = with pkgs; [
