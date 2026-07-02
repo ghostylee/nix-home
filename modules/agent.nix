@@ -1,7 +1,4 @@
-{pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    pi-coding-agent
-  ];
   programs.opencode.enable = true;
+  programs.pi-coding-agent.enable = true;
 }

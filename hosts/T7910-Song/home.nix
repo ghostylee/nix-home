@@ -11,7 +11,6 @@
   ];
   home.packages = with pkgs; [
     tree
-    silver-searcher
     hexyl
     pamixer
     minicom

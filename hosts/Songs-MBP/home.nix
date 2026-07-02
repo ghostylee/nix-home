@@ -6,10 +6,10 @@
     ./../../modules/tmux.nix
     ./../../modules/shell.nix
     ./../../modules/ghostty.nix
+    ./../../modules/agent.nix
   ];
   home.packages = with pkgs; [
     tree
-    silver-searcher
     hexyl
     minicom
     unzip
