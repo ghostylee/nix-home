@@ -1,13 +1,13 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
-  home.stateVersion = "26.05";
+  home.stateVersion = "26.11";
   imports = [
     ./../../modules/ghostty.nix
     ./../../modules/neovim.nix
     ./../../modules/tmux.nix
     ./../../modules/shell.nix
     ./../../modules/agent.nix
-    inputs.noctalia.homeModules.default
+    ./../../modules/hyprland.nix
   ];
   home.packages = with pkgs; [
     tree
@@ -226,149 +226,6 @@
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?user=MarakanaTechTV"; }
         { tags = [ "talk" ]; url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCkAQCw5_sIZmj2IkSrNy00A"; }
       ];
-    };
-    programs.noctalia-shell = {
-      enable = true;
-      settings = {
-        # configure noctalia here
-        bar = {
-          barType = "floating";
-          density = "comfortable";
-          position = "top";
-          showCapsule = true;
-          widgets = {
-            left = [
-              {
-                id = "ControlCenter";
-                useDistroLogo = true;
-              }
-              {
-                hideUnoccupied = false;
-                id = "Workspace";
-                labelMode = "name";
-              }
-            ];
-            center = [
-              {
-                formatHorizontal = "HH:mm";
-                formatVertical = "HH mm";
-                id = "Clock";
-                useMonospacedFont = true;
-                usePrimaryColor = true;
-              }
-            ];
-            right = [
-              {
-                id = "plugin:tailscale";
-                defaultSettings.terminalCommand = "ghostty";
-              }
-              {
-                id = "Network";
-              }
-              {
-                id = "Bluetooth";
-              }
-              {
-                id = "Tray";
-                colorizeIcons = true;
-                drawerEnabled = true;
-              }
-            ];
-          };
-        };
-        colorSchemes.predefinedScheme = "Gruvbox";
-        location = {
-          monthBeforeDay = true;
-          name = "New York, US";
-        };
-      };
-    };
-    wayland.windowManager.hyprland = {
-      enable = true;
-      systemd.enable = true;
-      systemd.extraCommands = [ "noctalia-shell" ];
-      settings = {
-        input.kb_options = "caps:ctrl_modifier";
-        ecosystem = {
-          no_update_news = true;
-          no_donation_nag = true;
-        };
-
-        general = {
-          gaps_in = 5;
-          gaps_out = 10;
-        };
-        decoration = {
-          rounding = 20;
-          rounding_power = 2;
-          shadow = {
-            enabled = true;
-            range = 4;
-            render_power = 3;
-            color = "rgba(1a1a1aee)";
-          };
-          blur = {
-            enabled = true;
-            size = 3;
-            passes = 2;
-            vibrancy = 0.1696;
-          };
-        };
-
-        "$mod" = "SUPER";
-
-        bind = [
-          "$mod, 1, workspace, 1"
-          "$mod, 2, workspace, 2"
-          "$mod, 3, workspace, 3"
-          "$mod, 4, workspace, 4"
-          "$mod, 5, workspace, 5"
-          "$mod, 6, workspace, 6"
-          "$mod, 7, workspace, 7"
-          "$mod, 8, workspace, 8"
-          "$mod, 9, workspace, 9"
-          "$mod, 0, workspace, 10"
-          "$mod SHIFT, 1, movetoworkspace, 1"
-          "$mod SHIFT, 2, movetoworkspace, 2"
-          "$mod SHIFT, 3, movetoworkspace, 3"
-          "$mod SHIFT, 4, movetoworkspace, 4"
-          "$mod SHIFT, 5, movetoworkspace, 5"
-          "$mod SHIFT, 6, movetoworkspace, 6"
-          "$mod SHIFT, 7, movetoworkspace, 7"
-          "$mod SHIFT, 8, movetoworkspace, 8"
-          "$mod SHIFT, 9, movetoworkspace, 9"
-          "$mod SHIFT, 0, movetoworkspace, 10"
-          "$mod, Return, exec, ghostty"
-          "$mod, Space, exec, noctalia-shell ipc call launcher toggle"
-          "$mod, w, killactive,"
-          "$mod, m, fullscreen,"
-          "$mod, f, togglefloating,"
-          "$mod, h, movefocus, l"
-          "$mod, l, movefocus, r"
-          "$mod, k, movefocus, u"
-          "$mod, j, movefocus, d"
-        ];
-
-        bindm = [
-          # mouse movements
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
-          "$mod ALT, mouse:272, resizewindow"
-        ];
-
-        bindl = [
-          ",XF86AudioMute, exec, noctalia-shell ipc call volume muteOutput"
-          ",XF86AudioRaiseVolume, exec, noctalia-shell ipc call volume increase"
-          ",XF86AudioLowerVolume, exec, noctalia-shell ipc call volume decrease"
-        ];
-      };
-
-      extraConfig = ''
-        env= HYPRCURSOR_THEME, Bibata-Modern-Classic
-        env= HYPRCURSOR_SIZE, 24
-        env= XCURSOR_THEME, Bibata-Modern-Classic
-        env= XCURSOR_SIZE, 24
-      '';
     };
     services.nextcloud-client = {
       enable = true;

@@ -8,13 +8,7 @@
     darwin.url = "github:nix-darwin/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.follows = "noctalia-qs";
-    };
-
-    noctalia-qs = {
-      url = "github:noctalia-dev/noctalia-qs";
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
