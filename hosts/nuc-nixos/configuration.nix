@@ -129,7 +129,7 @@
      extraGroups = [ "wheel" "docker" "audio" "dialout" ];
   };
 
-  system.stateVersion = "26.05";
+  system.stateVersion = "26.11";
 
   nix.gc.automatic = true;
   nix.gc.dates = "03:15";
