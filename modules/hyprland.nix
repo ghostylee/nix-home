@@ -1,4 +1,4 @@
-{inputs, ...}:
+{ inputs, ...}:
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -88,6 +88,10 @@
         hl.bind(mod .. " + w", hl.dsp.window.close())
         hl.bind(mod .. " + m", hl.dsp.window.fullscreen({ mode="maximized", action = "toggle" }))
         hl.bind(mod .. " + SHIFT + s", hl.dsp.exec_cmd("hyprshot -m region"))
+        hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
+        hl.env("HYPRCURSOR_SIZE", "24")
+        hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
+        hl.env("XCURSOR_SIZE", "24")
     '';
   };
 }
