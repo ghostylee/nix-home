@@ -66,11 +66,8 @@
     enable = true;
 
     theme = {
-      manager = {
+      mgr = {
         cwd = { fg = "#83a598"; };
-
-        hovered = { fg = "#282828"; bg = "#83a598"; };
-        preview_hovered = { underline = true; };
 
         find_keyword = { fg = "#b8bb26"; italic = true; };
         find_position = { fg = "#fe8019"; bg = "reset"; italic = true; };
@@ -79,13 +76,14 @@
         marker_copied   = { fg = "#b8bb26"; bg = "#b8bb26"; };
         marker_cut      = { fg = "#fb4934"; bg = "#fb4934"; };
 
-        tab_active   = { fg = "#282828"; bg = "#504945"; };
-        tab_inactive = { fg = "#a89984"; bg = "#3c3836"; };
-        tab_width = 1;
-
         border_symbol = "│";
         border_style  = { fg = "#665c54"; };
       };
+
+    tabs = {
+        active   = { fg = "#282828"; bg = "#504945"; };
+        inactive = { fg = "#a89984"; bg = "#3c3836"; };
+    };
 
       status = {
         separator_open  = "";
@@ -166,8 +164,8 @@
           { mime = "application/x-7z-compressed"; fg = "#fe8019"; }
           { mime = "application/x-rar";           fg = "#fe8019"; }
 
-          { name = "*";  fg = "#a89984"; }
-          { name = "*/"; fg = "#83a598"; }
+          { url = "*";  fg = "#a89984"; }
+          { url = "*/"; fg = "#83a598"; }
         ];
       };
     };
