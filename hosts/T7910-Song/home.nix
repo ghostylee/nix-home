@@ -46,6 +46,7 @@
     duf
     just
     hyprshot
+    acli
   ];
     programs.home-manager.enable = true;
     programs.opencode.enable = true;
@@ -670,8 +671,8 @@
         name = "hack 10";
       };
       theme = {
-        name = "Gruvbox-Dark";
-        package = pkgs.gruvbox-gtk-theme;
+        name = "gruvbox-dark";
+        package = pkgs.gruvbox-dark-gtk;
       };
       iconTheme = {
         name = "Papirus-Dark";
