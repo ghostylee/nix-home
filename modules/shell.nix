@@ -207,4 +207,20 @@
     enable = true;
     enableTelevisionIntegration = true;
   };
+  programs.herdr = {
+    enable = true;
+    settings = {
+      onboarding = false;
+      theme = {
+        auto_switch = true;
+        dark_name = "gruvbox";
+        light_name = "gruvbox-light";
+        name = "gruvbox";
+      };
+      ui = {
+        sidebar_start_collapsed = true;
+        sidebar_collapsed_mode = "hidden";
+      };
+    };
+  };
 }
