@@ -220,6 +220,7 @@
       ui = {
         sidebar_start_collapsed = true;
         sidebar_collapsed_mode = "hidden";
+        tab_bar_position = "bottom";
       };
     };
   };
