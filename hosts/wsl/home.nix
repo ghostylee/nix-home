@@ -29,7 +29,6 @@
     fastfetch
     perl
     gcc
-    fasd
     libva-utils
     devenv
     tio

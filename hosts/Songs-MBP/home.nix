@@ -25,7 +25,6 @@
     fastfetch
     perl
     gcc
-    fasd
     ookla-speedtest
     yt-dlp
     tailscale
