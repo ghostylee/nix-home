@@ -87,7 +87,6 @@
   };
 
   services = {
-    thermald.enable = true;
     tlp.enable = true;
     gvfs.enable = true;
     gnome = {

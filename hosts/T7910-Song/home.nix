@@ -31,7 +31,6 @@
     fastfetch
     perl
     gcc
-    fasd
     obsidian
     img2pdf
     eog
