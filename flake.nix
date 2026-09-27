@@ -15,6 +15,21 @@
 
   outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs: {
     nixosConfigurations = {
+      powercat-nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/powercat-nixos/configuration.nix
+          ./hosts/powercat-nixos/hardware-configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.song = import ./hosts/powercat-nixos/home.nix;
+            home-manager.users.root = import ./hosts/powercat-nixos/home.nix;
+          }
+        ];
+      };
       nuc-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

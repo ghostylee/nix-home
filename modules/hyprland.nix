@@ -32,6 +32,7 @@
           gaps_in = 5;
           gaps_out = 10;
         };
+        cursor.no_hardware_cursors = 1;
       };
 
       mod = { _var = "SUPER";};
