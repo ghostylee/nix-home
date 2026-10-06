@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nix = {
@@ -28,7 +28,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
   # Set your time zone.
   time.timeZone = "America/New_York";
 
@@ -46,6 +45,8 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+  console.font = "Lat2-Terminus16";
+  console.keyMap = "us";
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
@@ -62,6 +63,8 @@
     enable = true;
     withUWSM = false;
   };
+
+  virtualisation.docker.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -84,8 +87,12 @@
     # jack.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
+  services.tailscale.enable = true;
+
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;

@@ -43,6 +43,7 @@
     dua
     duf
     just
+    lmstudio
   ];
     programs.home-manager.enable = true;
     programs.gpg.enable = true;
