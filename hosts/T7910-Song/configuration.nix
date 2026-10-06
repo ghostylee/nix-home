@@ -87,7 +87,6 @@
   };
 
   services = {
-    tlp.enable = true;
     gvfs.enable = true;
     gnome = {
       gnome-keyring.enable = true;
@@ -124,7 +123,7 @@
   users.users.song = {
      isNormalUser = true;
      uid = 1000;
-     extraGroups = [ "wheel" "docker" "audio" ];
+     extraGroups = [ "wheel" "docker" "audio" "dialout"];
   };
 
 

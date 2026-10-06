@@ -224,4 +224,7 @@
       };
     };
   };
+  programs.gh = {
+    enable = true;
+  };
 }
