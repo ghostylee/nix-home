@@ -23,8 +23,7 @@ in
       vim.opt.background = "dark"
       vim.opt.swapfile = false
       vim.opt.autoread = true
-      vim.opt.autoread = true
-      vim.opt.autochdir = true
+      vim.opt.autochdir = false
       vim.opt.wildmenu = true
       vim.opt.hidden = true
       vim.opt.shortmess:append({ a = true, t = true, I = true })
@@ -126,11 +125,13 @@ in
               ['<Tab>'] = { 'select_next', 'fallback' },
               ['<S-Tab>'] = { 'select_prev', 'fallback' },
             },
-            completion = { list = { selection = { preselect = false, auto_insert = true } } },
+            completion = {
+              list = { selection = { preselect = false, auto_insert = true } },
+              documentation = { auto_show = false },
+            },
             appearance = {
               nerd_font_variant = 'mono'
             },
-            completion = { documentation = { auto_show = false } },
             sources = {
               default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
@@ -157,7 +158,18 @@ in
       lualine-lsp-progress
       nvim-web-devicons
       { plugin = gitsigns-nvim; type = "lua"; config = "require('gitsigns').setup()"; }
-      nvim-tree-lua
+      { plugin = nvim-tree-lua; type = "lua";
+        config = ''
+          require("nvim-tree").setup({
+            view = { width = 35 },
+            update_focused_file = { enable = true },
+          })
+          require("which-key").add({
+            { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file explorer" },
+            { "<leader>E", "<cmd>NvimTreeFindFile<cr>", desc = "Reveal current file in explorer" },
+          })
+        '';
+      }
       telescope-nvim
       telescope-fzf-native-nvim
       { plugin = hop-nvim; type = "lua";
@@ -186,7 +198,7 @@ in
       { plugin = snacks-nvim; type = "lua";
         config = ''
           require('snacks').setup({
-            explorer = { enabled = true },
+            explorer = { enabled = false },
             indent = { enabled = true },
             input = { enabled = true },
             notifier = { enabled = true, timeout = 3000, },
@@ -207,7 +219,6 @@ in
           { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
           { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
           { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
-          { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
           -- find
           { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
           { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -256,6 +267,7 @@ in
           { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
           { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
           -- LSP
+          { "<leader>ca", vim.lsp.buf.code_action, mode = { "n", "x" }, desc = "Code action / spelling correction" },
           { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
           { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
           { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
@@ -293,16 +305,24 @@ in
               path = "~/Notes",
             },
             },
+            notes_subdir = "Inbox",
+            new_notes_location = "notes_subdir",
+            daily_notes = {
+              folder = "Daily",
+              date_format = "%Y/%Y-%m-%d",
+              template = "Daily Note Template.md",
+            },
+            picker = { name = "snacks.picker" },
             templates = {
-            folder = "Templates",
+              folder = "Templates",
             },
             ui = { enable = false },
             frontmatter = { enabled = false },
             note_id_func = function(title)
-            if title ~= nil then
-              return title:gsub(" ", " "):gsub("[\n\r]", "")
-            end
-              return tostring(os.date("%Y-%m-%d-%H%M%S"))
+              if title and title:match("%S") then
+                return title:gsub("[/\\\\:]", "-"):gsub("[\n\r]", ""):gsub("^%s+", ""):gsub("%s+$", "")
+              end
+              return os.date("%Y-%m-%d-%H%M%S")
             end,
           })
           require("which-key").add({
@@ -310,6 +330,16 @@ in
           { "<leader>wt", "<cmd>Obsidian today<cr>", desc = "Obsidian today's note"},
           { "<leader>wr", "<cmd>Obsidian rename<cr>", desc = "Obsidian rename current note"},
           { "<leader>ws", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes"},
+          { "<leader>w", group = "Notes" },
+          { "<leader>wf", "<cmd>Obsidian quick_switch<cr>", desc = "Find note by name" },
+          { "<leader>wy", "<cmd>Obsidian yesterday<cr>", desc = "Yesterday's note" },
+          { "<leader>wb", "<cmd>Obsidian backlinks<cr>", desc = "Note backlinks" },
+          { "<leader>wi", function()
+              Snacks.picker.files({ cwd = vim.fn.expand("~/Notes/Inbox") })
+            end, desc = "Review inbox" },
+          { "<leader>wh", function()
+              vim.cmd.edit(vim.fn.fnameescape(vim.fn.expand("~/Notes/Home.md")))
+            end, desc = "Notes home" },
           })
           '';
       }
@@ -325,17 +355,6 @@ in
             }
           })
           vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-        '';
-      }
-      { plugin = opencode-nvim; type = "lua";
-        config = ''
-          require("which-key").add({
-          { "<C-a>", function() require("opencode").ask("@this: ", { submit = true }) end, desc = "Ask opencode…" },
-          { "<C-x>", function() require("opencode").select() end, desc = "Execute opencode action…" },
-          { "<C-.>", function() require("opencode").toggle() end, desc = "Toggle opencode" },
-          { "go",    function() return require("opencode").operator("@this ") end, desc = "Add range to opencode" },
-          { "goo",   function() return require("opencode").operator("@this ") .. "_" end, desc = "Add line to opencode" },
-          })
         '';
       }
       d2-vim
