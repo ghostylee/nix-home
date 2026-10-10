@@ -20,7 +20,12 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
-    systemd.extraCommands = [ "noctalia" ];
+    # Keep the session targets active so graphical user services (e.g. Fcitx5) start.
+    systemd.extraCommands = [
+      "systemctl --user stop hyprland-session.target"
+      "systemctl --user start hyprland-session.target"
+      "noctalia"
+    ];
     settings = {
       config = {
         input.kb_options = "caps:ctrl_modifier";

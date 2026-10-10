@@ -47,11 +47,7 @@
   };
   console.font = "Lat2-Terminus16";
   console.keyMap = "us";
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.addons = with pkgs; [ fcitx5-rime ];
-  };
+  # Fcitx5 is configured per user in home.nix (including its systemd service).
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
