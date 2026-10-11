@@ -10,6 +10,8 @@ in
   imports = [
     inputs.noctalia.homeModules.default
   ];
+  home.packages = [ pkgs.wl-clipboard ];
+
   programs.noctalia = {
     enable = true;
     settings = {

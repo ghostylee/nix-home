@@ -28,4 +28,38 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
+
+  # Empty ARGB zones are skipped by this controller. A size of 1 enables
+  # the tested hardware Static effect on all connected lights; it is not
+  # the physical LED count (per-LED effects would need the actual count).
+  systemd.services.openrgb.serviceConfig.ExecStart = lib.mkForce (
+    lib.escapeShellArgs (
+      [
+        (lib.getExe config.services.hardware.openrgb.package)
+        "--server"
+        "--noautoconnect"
+        "--server-port"
+        config.services.hardware.openrgb.server.port
+      ]
+      ++ lib.concatMap (zone: [
+        "--device"
+        "B850 GAMING WIFI6"
+        "--zone"
+        (toString zone)
+        "--size"
+        "1"
+        "--mode"
+        "Static"
+        "--color"
+        "5277C3"
+        "--brightness"
+        "100"
+      ]) [ 0 1 2 ]
+    )
+  );
 }
