@@ -85,6 +85,8 @@
 
   services.tailscale.enable = true;
 
+  services.gnome.gnome-keyring.enable = true;
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
