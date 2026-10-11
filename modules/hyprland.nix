@@ -10,18 +10,23 @@ in
   imports = [
     inputs.noctalia.homeModules.default
   ];
-  home.packages = [ pkgs.wl-clipboard ];
+  home.packages = [
+    pkgs.wl-clipboard
+    pkgs.xdg-utils
+    inputs.ai-usagebar.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
 
   programs.noctalia = {
     enable = true;
     settings = {
       theme.builtin = "Gruvbox";
+      plugins.enabled = [ "felipeartur/ai-usagebar" ];
       bar.main = {
         capsule = true;
         margin_ends = 0;
         start = [ "control-center" "workspaces" "launcher" "weather" ];
         center = [ "clock" ];
-        end = [ "tray" "temp" "cpu" "ram" "network_tx" "network_rx" "network" "bluetooth" "volume" "notifications" "session" ];
+        end = [ "felipeartur/ai-usagebar:bar" "tray" "temp" "cpu" "ram" "network_tx" "network_rx" "network" "bluetooth" "volume" "notifications" "session" ];
       };
       # Work around panel-to-panel switching by closing before opening Session.
       widget.session.actions.left = "exec ${openSessionMenu}";

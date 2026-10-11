@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "ai-usagebar": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791691489,
+        "narHash": "sha256-B9YhDlurssVm+oYUK+WZiu/p03NnVEtIFntFHHJBnUQ=",
+        "owner": "akitaonrails",
+        "repo": "ai-usagebar",
+        "rev": "578ff5fcfdf858adc3235428d97a16026c459730",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akitaonrails",
+        "repo": "ai-usagebar",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -79,6 +99,7 @@
     },
     "root": {
       "inputs": {
+        "ai-usagebar": "ai-usagebar",
         "darwin": "darwin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
