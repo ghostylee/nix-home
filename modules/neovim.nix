@@ -1,5 +1,17 @@
 { pkgs, ... }:
 let
+  alex35mil-pi-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "pi.nvim";
+    version = "unstable-0f9f015";
+    src = pkgs.fetchFromGitHub {
+      owner = "alex35mil";
+      repo = "pi.nvim";
+      rev = "0f9f015433404da949c2e8388842c1449e88f793";
+      hash = "sha256-nDb37FWBCmcVHtQlvIW2nkRQW8uoFcbPFHeygfMXKOc=";
+    };
+    meta.homepage = "https://github.com/alex35mil/pi.nvim";
+    meta.hydraPlatforms = [ ];
+  };
   markdown-plus-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "markdown-plus.nvim";
     version = "v1.10.0";
@@ -359,7 +371,25 @@ in
       }
       d2-vim
       { plugin = yazi-nvim; type = "lua"; config = ''require("which-key").add({{ "<leader>y", function() require("yazi").yazi() end, desc = "Yazi" }})'';}
-      { plugin = pi-nvim; type = "lua"; config = "require('pi').setup()"; }
+      { plugin = alex35mil-pi-nvim; type = "lua";
+        config = ''
+          require('pi').setup()
+          require("which-key").add({
+            { "<leader>p", group = "Pi", mode = { "n", "x" } },
+            { "<leader>pp", "<cmd>Pi<cr>", desc = "Toggle Pi chat" },
+            { "<leader>pf", "<cmd>PiSendMention<cr>", desc = "Mention current file" },
+            { "<leader>ps", ":PiSendMention<cr>", mode = "x", desc = "Mention selection" },
+            { "<leader>pc", "<cmd>PiContinue<cr>", desc = "Continue last session" },
+            { "<leader>pr", "<cmd>PiResume<cr>", desc = "Resume a session" },
+            { "<leader>pn", "<cmd>PiNewSession<cr>", desc = "New session" },
+            { "<leader>pm", "<cmd>PiSelectModel<cr>", desc = "Select model" },
+            { "<leader>pt", "<cmd>PiSelectThinking<cr>", desc = "Select thinking level" },
+            { "<leader>pl", "<cmd>PiToggleLayout<cr>", desc = "Toggle side/float layout" },
+            { "<leader>pa", "<cmd>PiAttention<cr>", desc = "Open pending review or dialog" },
+            { "<leader>px", "<cmd>PiAbort<cr>", desc = "Abort current operation" },
+          })
+        '';
+      }
     ];
     extraPackages = with pkgs; [
       nixd
