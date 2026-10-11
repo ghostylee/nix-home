@@ -1,4 +1,11 @@
-{ inputs, ...}:
+{ inputs, pkgs, ...}:
+let
+  openSessionMenu = pkgs.writeShellScript "noctalia-open-session" ''
+    noctalia msg panel-close
+    ${pkgs.coreutils}/bin/sleep 0.3
+    noctalia msg panel-open session
+  '';
+in
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -12,8 +19,10 @@
         margin_ends = 0;
         start = [ "control-center" "workspaces" "launcher" "weather" ];
         center = [ "clock" ];
-        end = [ "tray" "temp" "cpu" "ram" "network_tx" "network_rx" "network" "bluetooth" "volume" "notifications" ];
+        end = [ "tray" "temp" "cpu" "ram" "network_tx" "network_rx" "network" "bluetooth" "volume" "notifications" "session" ];
       };
+      # Work around panel-to-panel switching by closing before opening Session.
+      widget.session.actions.left = "exec ${openSessionMenu}";
       location.auto_locate = true;
     };
   };
@@ -47,6 +56,7 @@
     extraConfig = ''
         hl.bind(mod .. " + Return", hl.dsp.exec_cmd("ghostty"))
         hl.bind(mod .. " + Space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
+        hl.bind(mod .. " + SHIFT + e", hl.dsp.exec_cmd("${openSessionMenu}"))
         hl.bind(mod .. " + 1", hl.dsp.focus({ workspace = "1" }))
         hl.bind(mod .. " + 2", hl.dsp.focus({ workspace = "2" }))
         hl.bind(mod .. " + 3", hl.dsp.focus({ workspace = "3" }))
