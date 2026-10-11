@@ -127,14 +127,14 @@
     programs.rofi = {
       enable = true;
       theme = "gruvbox-dark";
-      font = "hack 10";
-      terminal = "${pkgs.alacritty}/bin/alacritty";
-      extraConfig = {
-          show-icons = true;
-          icon-theme = "Papirus-Dark";
-          modi = "drun,run";
-        };
+      settings = {
+        font = "hack 10";
+        terminal = "${pkgs.alacritty}/bin/alacritty";
+        show-icons = true;
+        icon-theme = "Papirus-Dark";
+        modi = "drun,run";
       };
+    };
     programs.firefox = {
       enable = true;
       profiles = {
