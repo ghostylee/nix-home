@@ -10,5 +10,5 @@ rebuild:
 
 [linux]
 rebuild:
-    @if command -v nixos-rebuild >/dev/null 2>&1; then sudo nixos-rebuild switch --flake . ; else home-manager switch ;fi
+    @if command -v nixos-rebuild >/dev/null 2>&1; then sudo nixos-rebuild switch --flake . ; else home-manager switch --flake .#song ;fi
 
