@@ -15,10 +15,32 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    claude-code-nix = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, darwin, nixos-wsl, ... }@inputs: {
     nixosConfigurations = {
+      wsl-nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          nixos-wsl.nixosModules.default
+          ./hosts/wsl-nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.song = import ./hosts/wsl-nixos/home.nix;
+          }
+        ];
+      };
       powercat-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
