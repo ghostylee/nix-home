@@ -16,6 +16,8 @@
 
   wsl.enable = true;
   wsl.defaultUser = "song";
+  # USB passthrough via usbipd-win: `usbipd attach --wsl --busid <id>` on Windows.
+  wsl.usbip.enable = true;
 
   networking.hostName = "wsl-nixos"; # Define your hostname.
 
