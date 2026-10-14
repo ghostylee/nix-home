@@ -112,6 +112,9 @@
   programs.hyprland.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  # Run unpatched dynamic binaries: Claude Desktop's SSH engine, vendor SDK installers, etc.
+  programs.nix-ld.enable = true;
+
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;

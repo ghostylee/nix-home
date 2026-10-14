@@ -49,6 +49,7 @@
   ];
     programs.home-manager.enable = true;
     programs.opencode.enable = true;
+    programs.claude-code.enable = true;
     programs.gpg.enable = true;
     programs.git = {
       enable = true;
