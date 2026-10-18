@@ -11,6 +11,10 @@
       url = "github:akitaonrails/ai-usagebar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    qmd = {
+      url = "github:tobi/qmd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -92,6 +96,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.song = import ./hosts/Songs-MBP/home.nix;
           }
         ];

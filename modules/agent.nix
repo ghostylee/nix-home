@@ -1,4 +1,9 @@
+{ inputs, ... }:
 {
+  imports = [ inputs.qmd.homeModules.default ];
+
+  programs.qmd.enable = true;
+
   programs.opencode.enable = true;
   programs.pi-coding-agent = {
     enable = true;
