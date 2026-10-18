@@ -407,7 +407,6 @@ in
       ripgrep
       fd
       ninja
-      bear
       cmake
       lazygit
       prettier
