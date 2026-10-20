@@ -1,4 +1,7 @@
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs.croc ];
+
   programs.fish = {
     enable = true;
   };
