@@ -7,12 +7,16 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     darwin.url = "github:nix-darwin/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-    ai-usagebar = {
-      url = "github:akitaonrails/ai-usagebar";
+    dankaiusage = {
+      url = "github:alcxyz/DankAIUsage/v1.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     qmd = {
       url = "github:tobi/qmd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dms = {
+      url = "github:duxlabs-dev/dux-shell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
