@@ -2,9 +2,10 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
+  imports = [ inputs.dux-greeter.nixosModules.default ];
   nix = {
     package = pkgs.nixVersions.latest;
     extraOptions = ''
@@ -49,10 +50,14 @@
   console.keyMap = "us";
   # Fcitx5 is configured per user in home.nix (including its systemd service).
 
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  # services.desktopManager.gnome.enable = true;
-  # services.displayManager.defaultSession = "hyprland";
+  # Dux Greeter replaces GDM; take effect at the next boot, not mid-session.
+  services.displayManager.gdm.enable = false;
+  services.displayManager.defaultSession = "hyprland";
+  programs.dms-greeter = {
+    enable = true;
+    compositor.name = "hyprland";
+    configHome = "/home/song";
+  };
 
   # Hyprland
   programs.hyprland = {

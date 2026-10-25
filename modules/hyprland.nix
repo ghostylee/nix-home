@@ -11,11 +11,15 @@ in
   imports = [
     inputs.noctalia.homeModules.default
     inputs.dms.homeModules.default
+    inputs.dux-files.homeModules.default
+    inputs.dux-search.homeModules.default
+    inputs.dux-calendar.homeModules.default
   ];
   home.packages = [
     pkgs.wl-clipboard
     pkgs.xdg-utils
     pkgs.codex
+    inputs.dux-gop.packages.${pkgs.stdenv.hostPlatform.system}.default
     aiUsage
   ];
 
@@ -33,6 +37,16 @@ in
       # Work around panel-to-panel switching by closing before opening Session.
       widget.session.actions.left = "exec ${openSessionMenu}";
       location.auto_locate = true;
+    };
+  };
+
+  programs.dux-files.enable = true;
+  programs.dsearch.enable = true;
+  programs.dank-calendar = {
+    enable = true;
+    systemd = {
+      enable = true;
+      target = "hyprland-session.target";
     };
   };
 

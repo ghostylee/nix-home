@@ -23,6 +23,26 @@
       url = "github:duxlabs-dev/dux-shell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dux-search = {
+      url = "github:duxlabs-dev/dux-search";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dux-gop = {
+      url = "github:duxlabs-dev/dux-gop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dux-calendar = {
+      url = "github:duxlabs-dev/dux-calendar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dux-greeter = {
+      url = "github:duxlabs-dev/dux-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dux-files = {
+      url = "github:duxlabs-dev/dux-files";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +71,7 @@
       };
       powercat-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/powercat-nixos/configuration.nix
           ./hosts/powercat-nixos/hardware-configuration.nix
