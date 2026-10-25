@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.stateVersion = "26.11";
   imports = [
@@ -10,6 +10,7 @@
     ./../../modules/hyprland.nix
   ];
   home.packages = with pkgs; [
+    inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
     tree
     hexyl
     pamixer
