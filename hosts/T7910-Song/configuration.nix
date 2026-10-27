@@ -35,21 +35,40 @@
 
   networking.networkmanager.enable = true;
 
-  # Route Anthropic/Claude traffic (api.anthropic.com, claude.ai, claude.com)
-  # via the 10.10.100.1 gateway on enp9s0 instead of the default route.
-  # Range from https://docs.anthropic.com/en/api/ip-addresses
-  networking.networkmanager.dispatcherScripts = [{
-    type = "basic";
-    source = pkgs.writeShellScript "claude-route" ''
-      [ "$1" = enp9s0 ] || exit 0
-      case "$2" in
-        up|dhcp4-change)
-          ${pkgs.iproute2}/bin/ip route replace 160.79.104.0/23 via 10.10.100.1 dev enp9s0 ;;
-        down)
-          ${pkgs.iproute2}/bin/ip route del 160.79.104.0/23 via 10.10.100.1 dev enp9s0 || true ;;
-      esac
-    '';
-  }];
+  # Two NICs, declared as named NetworkManager profiles:
+  #   corporate   (enp0s25): DHCP, carries the only default route.
+  #   engineering (enp9s0, 10.10.100.0/23): never takes the default route, but
+  #     routes Anthropic/Claude traffic (api.anthropic.com, claude.ai,
+  #     claude.com) via the 10.10.100.1 gateway.
+  #     Range from https://docs.anthropic.com/en/api/ip-addresses
+  networking.networkmanager.ensureProfiles.profiles.corporate = {
+    connection = {
+      id = "corporate";
+      type = "ethernet";
+      interface-name = "enp0s25";
+      autoconnect-priority = 10;
+    };
+    ipv4.method = "auto";
+    ipv6.method = "auto";
+  };
+
+  networking.networkmanager.ensureProfiles.profiles.engineering = {
+    connection = {
+      id = "engineering";
+      type = "ethernet";
+      interface-name = "enp9s0";
+      autoconnect-priority = 10;
+    };
+    ipv4 = {
+      method = "auto";
+      never-default = true;
+      route1 = "160.79.104.0/23,10.10.100.1";
+    };
+    ipv6 = {
+      method = "auto";
+      never-default = true;
+    };
+  };
 
   hardware.bluetooth.enable = true;
 
