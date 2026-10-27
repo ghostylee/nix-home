@@ -35,6 +35,22 @@
 
   networking.networkmanager.enable = true;
 
+  # Route Anthropic/Claude traffic (api.anthropic.com, claude.ai, claude.com)
+  # via the 10.10.100.1 gateway on enp9s0 instead of the default route.
+  # Range from https://docs.anthropic.com/en/api/ip-addresses
+  networking.networkmanager.dispatcherScripts = [{
+    type = "basic";
+    source = pkgs.writeShellScript "claude-route" ''
+      [ "$1" = enp9s0 ] || exit 0
+      case "$2" in
+        up|dhcp4-change)
+          ${pkgs.iproute2}/bin/ip route replace 160.79.104.0/23 via 10.10.100.1 dev enp9s0 ;;
+        down)
+          ${pkgs.iproute2}/bin/ip route del 160.79.104.0/23 via 10.10.100.1 dev enp9s0 || true ;;
+      esac
+    '';
+  }];
+
   hardware.bluetooth.enable = true;
 
   services.openssh.enable = true;
