@@ -23,34 +23,26 @@ const G = {
   bg2: '#504945',
   bg3: '#665c54',
   bg4: '#7c6f64',
-  fg0: '#fbf1c7',
   fg1: '#ebdbb2',
   fg4: '#a89984',
   green: '#98971a',
   yellow: '#d79921',
   brightRed: '#fb4934',
-  brightBlue: '#83a598',
   brightPurple: '#d3869b',
   brightAqua: '#8ec07c',
   brightOrange: '#fe8019',
-  fadedRed: '#9d0006',
-  fadedYellow: '#b57614',
-  fadedBlue: '#076678',
-  fadedAqua: '#427b58',
 };
 
-// Pills are [bg, fg]: bright colors take dark text, faded ones light text.
+// Pills are [bg, fg]; bright backgrounds take dark text.
 const C = {
   host: [G.bg3, G.fg1],
   model: [G.brightOrange, G.bg0],
   dir: [G.bg2, G.fg1],
   gitClean: [G.green, G.bg0],
   gitDirty: [G.yellow, G.bg0],
-  limit5h: [G.fadedAqua, G.fg0],
-  limit7d: [G.fadedBlue, G.fg0],
-  limitWarn: [G.fadedYellow, G.fg0],
-  limitHot: [G.fadedRed, G.fg0],
   effort: G.fg4,
+  limitLabel: G.fg4,
+  limit: G.fg1,
   sep: G.bg4,
   ctx: G.brightAqua,
   warn: G.brightOrange,
@@ -58,8 +50,8 @@ const C = {
   time: G.brightPurple,
 };
 
+// Auto is the default mode (permissions.defaultMode), so only the others show.
 const MODES = {
-  auto: ['auto', [G.brightBlue, G.bg0]],
   plan: ['plan', [G.brightAqua, G.bg0]],
   acceptEdits: ['accept edits', [G.brightPurple, G.bg0]],
   bypassPermissions: ['bypass', [G.brightRed, G.bg0]],
@@ -243,12 +235,13 @@ function statusLine(data, cols) {
 
   const rl = data.rate_limits || {};
   const limits = [];
-  for (const [label, w, base] of [['5H', rl.five_hour, C.limit5h], ['7D', rl.seven_day, C.limit7d]]) {
+  for (const [label, w] of [['5H', rl.five_hour], ['7D', rl.seven_day]]) {
     if (!w || typeof w.used_percentage !== 'number') continue;
     const p = w.used_percentage;
-    limits.push(pill(`${label} ${fmtPct(p)}%`, p >= 80 ? C.limitHot : p >= 50 ? C.limitWarn : base, '1'));
+    const color = p >= 80 ? C.hot : p >= 50 ? C.warn : C.limit;
+    limits.push(paint(`${label} `, fg(C.limitLabel)) + paint(`${fmtPct(p)}%`, '1', fg(color)));
   }
-  if (limits.length) items.push(item('limits', DOT, limits.join(paint('·', fg(C.sep)))));
+  if (limits.length) items.push(item('limits', DOT, limits.join(DOT)));
 
   return fit(items, ['time', 'ctx', 'git', 'dir', 'dir', 'effort', 'host', 'git'], cols);
 }
