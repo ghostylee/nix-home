@@ -7,6 +7,7 @@
     ./../../modules/tmux.nix
     ./../../modules/shell.nix
     ./../../modules/agent.nix
+    ./../../modules/claude-code.nix
     ./../../modules/hyprland.nix
   ];
   home.packages = with pkgs; [
@@ -50,7 +51,6 @@
   ];
     programs.home-manager.enable = true;
     programs.opencode.enable = true;
-    programs.claude-code.enable = true;
     programs.gpg.enable = true;
     programs.git = {
       enable = true;
