@@ -1,10 +1,19 @@
-{ inputs, ... }:
+{ inputs, pkgs, lib, ... }:
 {
   imports = [ inputs.qmd.homeModules.default ];
 
   programs.qmd.enable = true;
 
   programs.opencode.enable = true;
+  # nixpkgs opencode 2.2.5 ships a wrong node_modules FOD hash on x86_64-linux.
+  # Drop this override once nixpkgs fixes it (rebuild will fail with a hash
+  # mismatch again when the version bumps).
+  programs.opencode.package = lib.mkIf (pkgs.stdenv.hostPlatform.system == "x86_64-linux")
+    (pkgs.opencode.overrideAttrs (old: {
+      node_modules = old.node_modules.overrideAttrs {
+        outputHash = "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
+      };
+    }));
   programs.pi-coding-agent = {
     enable = true;
 
