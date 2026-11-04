@@ -11,6 +11,8 @@
       app-notifications = "no-clipboard-copy";
       clipboard-paste-protection = false;
       confirm-close-surface = false;
+      # default: precision:1,discrete:3 (precision = touchpad, discrete = wheel)
+      mouse-scroll-multiplier = "precision:0.5,discrete:1";
     };
   };
 # }}}
