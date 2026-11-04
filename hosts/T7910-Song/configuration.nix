@@ -41,6 +41,8 @@
   #     routes Anthropic/Claude traffic (api.anthropic.com, claude.ai,
   #     claude.com) via the 10.10.100.1 gateway.
   #     Range from https://docs.anthropic.com/en/api/ip-addresses
+  #     downloads.claude.ai (Claude Code release binaries) is on a separate
+  #     GCP load-balancer IP (35.190.46.17), not in Anthropic's range.
   networking.networkmanager.ensureProfiles.profiles.corporate = {
     connection = {
       id = "corporate";
@@ -63,6 +65,7 @@
       method = "auto";
       never-default = true;
       route1 = "160.79.104.0/23,10.10.100.1";
+      route2 = "35.190.46.17/32,10.10.100.1"; # downloads.claude.ai
     };
     ipv6 = {
       method = "auto";
