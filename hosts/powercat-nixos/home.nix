@@ -1,6 +1,14 @@
 { pkgs, inputs, ... }:
 {
   home.stateVersion = "26.11";
+  wayland.windowManager.hyprland.extraConfig = ''
+    hl.monitor({
+      output = "DP-3",
+      mode = "3840x2160@120",
+      position = "0x0",
+      scale = 1.5,
+    })
+  '';
   imports = [
     ./../../modules/ghostty.nix
     ./../../modules/neovim.nix
